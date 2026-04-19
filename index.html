@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BHARATAI GEO — Professional India Travel Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<style>
+:root{
+  --ink:#08101e;--ink2:#0c1526;--ink3:#111d35;
+  --paper:#e8e0cc;--paper2:#ddd3ba;
+  --gold:#c9963a;--gold2:#e8b84b;--gold3:rgba(201,150,58,0.15);
+  --teal:#1a7a6e;--teal2:#22a093;
+  --red:#8b2020;--blue:#1a3a8b;
+  --text:#0a0e1a;--muted:#4a5570;--light:rgba(232,224,204,0.7);
+  --border-light:rgba(232,224,204,0.1);--border-gold:rgba(201,150,58,0.25);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden}
+::selection{background:var(--gold);color:#000}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--ink)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+a{text-decoration:none;color:inherit}button{font-family:'Rajdhani',sans-serif;cursor:pointer;border:none;background:none}
+img{display:block;max-width:100%}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,#FF9933,var(--gold),#138808);z-index:9999;transition:width .1s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:58px;background:rgba(8,16,30,0.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border-gold)}
+.nav-logo{font-family:'Crimson Pro',serif;font-size:22px;color:var(--paper);letter-spacing:.05em;display:flex;flex-direction:column;line-height:1.1}
+.nav-logo span{color:var(--gold);font-style:italic}
+.nav-logo sub{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--teal2);letter-spacing:.15em;text-transform:uppercase}
+.nav-links{display:flex;gap:24px}
+.nav-lnk{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,224,204,0.55);font-weight:600;cursor:pointer;transition:color .2s;padding:4px 0;border-bottom:1px solid transparent}
+.nav-lnk:hover,.nav-lnk.on{color:var(--gold);border-color:var(--gold)}
+.nav-acts{display:flex;gap:8px;align-items:center}
+.nav-coord{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal2);letter-spacing:.08em}
+.btn-nv{padding:8px 20px;background:var(--gold);color:#000;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);transition:all .3s}
+.btn-nv:hover{background:var(--gold2)}
+.hbg{display:none;flex-direction:column;gap:5px;padding:4px}
+.hbg span{display:block;width:20px;height:1.5px;background:var(--paper);border-radius:1px;transition:all .3s}
+.mob-menu{position:fixed;inset:0;z-index:999;background:rgba(8,16,30,.97);backdrop-filter:blur(24px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .35s}
+.mob-menu.open{opacity:1;pointer-events:all}
+.mob-menu a{font-family:'Crimson Pro',serif;font-size:clamp(28px,7vw,48px);letter-spacing:.08em;text-transform:uppercase;color:var(--paper);transition:color .3s}
+.mob-menu a:hover{color:var(--gold)}
+.mob-x{position:absolute;top:20px;right:32px;font-size:28px;color:rgba(232,224,204,.5);cursor:pointer}
+
+/* GEO GRID */
+.geo-grid{background-image:linear-gradient(rgba(201,150,58,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(201,150,58,0.05) 1px,transparent 1px);background-size:40px 40px}
+.geo-grid-sm{background-image:linear-gradient(rgba(201,150,58,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,150,58,0.04) 1px,transparent 1px);background-size:10px 10px}
+
+/* HERO */
+#hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;overflow:hidden}
+/* Real Google Maps globe embed in background */
+.hero-map-bg{position:absolute;inset:0;z-index:0}
+.hero-map-bg iframe{width:100%;height:100%;border:none;opacity:.45;filter:saturate(0.3) brightness(0.4) hue-rotate(200deg)}
+.hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(8,16,30,.95) 0%,rgba(8,16,30,.7) 50%,rgba(8,16,30,.4) 100%)}
+.hero-content{position:relative;z-index:2;padding:0 60px;max-width:750px;padding-top:58px}
+.hero-eye{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.hero-eye-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
+.hero-h1{font-family:'Crimson Pro',serif;font-size:clamp(48px,7vw,88px);font-weight:300;line-height:.92;letter-spacing:-.01em;color:var(--paper);margin-bottom:22px}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-h1 .ghost{-webkit-text-stroke:1.5px rgba(232,224,204,.4);color:transparent}
+.hero-p{font-size:15px;color:rgba(232,224,204,.6);font-weight:400;line-height:1.75;max-width:500px;margin-bottom:36px;letter-spacing:.02em}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:var(--gold);color:#000;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);transition:all .3s}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-1px)}
+.btn-out{display:inline-flex;align-items:center;gap:8px;padding:13px 32px;background:transparent;border:1px solid var(--border-gold);color:var(--paper);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);transition:all .3s}
+.btn-out:hover{border-color:var(--gold);color:var(--gold)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-gold);border:1px solid var(--border-gold)}
+.hero-stat{padding:16px 20px;background:rgba(8,16,30,.7);backdrop-filter:blur(10px)}
+.hero-stat-n{font-family:'Crimson Pro',serif;font-size:28px;font-weight:300;color:var(--gold);line-height:1}
+.hero-stat-l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,204,.4);margin-top:3px}
+
+/* SECTION BASE */
+.sec{padding:clamp(60px,10vw,120px) clamp(20px,6vw,80px);position:relative}
+.sec-inner{max-width:1280px;margin:0 auto}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.sec-tag::before{content:'';width:18px;height:1px;background:var(--gold);flex-shrink:0}
+.sec-h2{font-family:'Crimson Pro',serif;font-size:clamp(30px,4.5vw,56px);font-weight:300;line-height:1.05;margin-bottom:14px;letter-spacing:-.01em}
+.sec-h2 em{font-style:italic;color:var(--gold)}
+.sec-sub{font-size:13px;color:var(--muted);line-height:1.75;max-width:480px;letter-spacing:.02em}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rv.in{opacity:1;transform:none}
+.rv-l{opacity:0;transform:translateX(-30px);transition:opacity .8s ease,transform .8s ease}.rv-l.in{opacity:1;transform:none}
+.rv-r{opacity:0;transform:translateX(30px);transition:opacity .8s ease,transform .8s ease}.rv-r.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.18s}.d3{transition-delay:.26s}.d4{transition-delay:.34s}
+
+/* MARQUEE */
+.mq-wrap{overflow:hidden;border-top:1px solid var(--border-gold);border-bottom:1px solid var(--border-gold);background:var(--ink2);padding:14px 0}
+.mq-track{display:flex;gap:48px;white-space:nowrap;animation:mq 32s linear infinite;width:max-content}
+.mq-track:hover{animation-play-state:paused}
+.mq-item{display:flex;align-items:center;gap:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,224,204,.45);flex-shrink:0}
+.mq-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* DESTINATIONS GRID */
+#destinations{background:var(--paper);overflow:hidden}
+.dest-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.df{padding:7px 16px;border:1px solid var(--border-gold);background:transparent;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .25s;clip-path:polygon(5px 0,100% 0,calc(100% - 5px) 100%,0 100%)}
+.df.on,.df:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+.dest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.dest-card{background:var(--ink2);border:1px solid rgba(232,224,204,.08);border-radius:2px;overflow:hidden;cursor:pointer;transition:transform .5s cubic-bezier(.23,1,.32,1),box-shadow .5s,border-color .3s;transform-style:preserve-3d}
+.dest-card:hover{transform:perspective(900px) rotateX(2deg) rotateY(-3deg) translateY(-6px) scale(1.02);box-shadow:12px 20px 48px rgba(0,0,0,.5);border-color:rgba(201,150,58,.4)}
+.dest-img{height:160px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:64px}
+.dest-img-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,21,38,.96) 0%,rgba(12,21,38,.2) 50%,transparent 100%)}
+.dest-badge{position:absolute;top:10px;left:10px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;background:var(--gold);color:#000;clip-path:polygon(3px 0,100% 0,calc(100% - 3px) 100%,0 100%)}
+.dest-rating-badge{position:absolute;top:10px;right:10px;z-index:2;background:rgba(8,16,30,.85);border:1px solid var(--border-gold);padding:4px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);font-weight:500}
+.dest-body{padding:14px 16px 16px}
+.dest-cat{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal2);margin-bottom:5px}
+.dest-name{font-family:'Crimson Pro',serif;font-size:20px;font-weight:400;color:var(--paper);margin-bottom:2px}
+.dest-loc{font-size:10px;color:rgba(232,224,204,.4);letter-spacing:.05em;margin-bottom:10px}
+.dest-meta{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid rgba(232,224,204,.07)}
+.dest-price{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold2);font-weight:500}
+.dest-season{font-size:10px;color:var(--teal2);text-align:right;letter-spacing:.04em}
+
+/* TRIP PLANS */
+#plans{background:var(--ink);position:relative;overflow:hidden}
+.plans-geo{position:absolute;inset:0;background-image:linear-gradient(rgba(201,150,58,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,150,58,.04) 1px,transparent 1px);background-size:44px 44px;pointer-events:none}
+.plans-tabs{display:flex;gap:2px;margin-bottom:40px;border:1px solid var(--border-gold);width:fit-content}
+.plan-tab{padding:10px 28px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,224,204,.5);cursor:pointer;transition:all .25s;background:transparent;border:none}
+.plan-tab.on{background:var(--gold);color:#000}
+.plans-content{display:none}.plans-content.on{display:block}
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.plan-card{background:var(--ink3);border:1px solid var(--border-gold);border-radius:2px;overflow:hidden;transition:border-color .3s,transform .3s}
+.plan-card:hover{border-color:rgba(201,150,58,.5);transform:translateY(-4px)}
+.plan-header{padding:18px 20px;border-bottom:1px solid rgba(232,224,204,.08);background:rgba(201,150,58,.05)}
+.plan-dest{font-family:'Crimson Pro',serif;font-size:22px;font-weight:400;color:var(--paper);margin-bottom:4px}
+.plan-duration{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.plan-days{padding:16px 20px;display:flex;flex-direction:column;gap:0}
+.plan-day{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid rgba(232,224,204,.05)}
+.plan-day:last-child{border-bottom:none}
+.plan-day-n{width:28px;height:28px;border-radius:2px;background:var(--gold3);border:1px solid var(--border-gold);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);flex-shrink:0}
+.plan-day-t{font-size:13px;font-weight:600;color:var(--paper);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.plan-day-d{font-size:11px;color:rgba(232,224,204,.45);line-height:1.5}
+.plan-footer{padding:14px 20px;border-top:1px solid rgba(232,224,204,.07);background:rgba(201,150,58,.03);display:flex;justify-content:space-between;align-items:center}
+.plan-budget{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--gold2);font-weight:500}
+.plan-btn{padding:7px 18px;background:transparent;border:1px solid var(--border-gold);color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);transition:all .3s}
+.plan-btn:hover{background:var(--gold);color:#000}
+
+/* VIDEO CLIPS */
+#clips{background:var(--paper);overflow:hidden}
+.clips-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.clip-card{background:var(--ink2);border:1px solid rgba(232,224,204,.08);border-radius:2px;overflow:hidden;cursor:pointer;position:relative;transition:transform .4s,box-shadow .4s}
+.clip-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,.4)}
+.clip-thumb{height:200px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.clip-play{position:absolute;z-index:3;width:52px;height:52px;border-radius:50%;background:rgba(201,150,58,.9);display:flex;align-items:center;justify-content:center;transition:transform .3s,background .3s}
+.clip-card:hover .clip-play{transform:scale(1.15);background:var(--gold)}
+.clip-play::after{content:'';border-left:18px solid #000;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:4px}
+.clip-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,21,38,.9) 0%,transparent 60%)}
+.clip-dur{position:absolute;bottom:10px;right:10px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;background:rgba(0,0,0,.7);color:var(--paper);letter-spacing:.06em}
+.clip-body{padding:14px 16px}
+.clip-name{font-family:'Crimson Pro',serif;font-size:18px;color:var(--paper);margin-bottom:3px}
+.clip-loc{font-size:10px;color:var(--teal2);letter-spacing:.06em}
+
+/* VIDEO MODAL */
+.vid-modal{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.vid-modal.open{opacity:1;pointer-events:all}
+.vid-inner{position:relative;width:min(900px,92vw);aspect-ratio:16/9;background:#000}
+.vid-inner iframe{width:100%;height:100%;border:none}
+.vid-close{position:absolute;top:-40px;right:0;font-size:26px;color:rgba(232,224,204,.7);cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:300;background:none;border:none;transition:color .2s}
+.vid-close:hover{color:var(--gold)}
+
+/* FAQ */
+#faq{background:var(--ink);position:relative;overflow:hidden}
+.faq-geo{position:absolute;inset:0;background-image:linear-gradient(rgba(201,150,58,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(201,150,58,.03) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px}
+.faq-item{background:var(--ink3);border:1px solid rgba(232,224,204,.08);border-radius:2px;overflow:hidden;transition:border-color .3s}
+.faq-item.open{border-color:var(--border-gold)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;cursor:pointer;gap:12px}
+.faq-q-text{font-size:14px;font-weight:600;color:var(--paper);letter-spacing:.03em;text-transform:uppercase;line-height:1.3}
+.faq-icon{width:24px;height:24px;border-radius:50%;border:1px solid var(--border-gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:16px;flex-shrink:0;transition:transform .3s,background .3s}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--gold);color:#000;border-color:var(--gold)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-a-inner{padding:0 20px 18px;font-size:13px;color:rgba(232,224,204,.55);line-height:1.75;letter-spacing:.02em;border-top:1px solid rgba(232,224,204,.06)}
+.faq-item.open .faq-a{max-height:300px}
+.faq-item.open .faq-a-inner{padding-top:14px}
+
+/* CTA */
+#cta-sec{background:var(--ink2);border-top:2px solid var(--gold);border-bottom:2px solid var(--gold);position:relative;overflow:hidden}
+.cta-inner{max-width:760px;margin:0 auto;text-align:center;padding:80px 20px}
+.cta-eye{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px}
+.cta-eye::before,.cta-eye::after{content:'';flex:0 0 24px;height:1px;background:var(--gold)}
+.cta-h2{font-family:'Crimson Pro',serif;font-size:clamp(40px,6vw,72px);font-weight:300;line-height:.95;color:var(--paper);margin-bottom:18px}
+.cta-h2 em{color:var(--gold);font-style:italic}
+.cta-p{font-size:14px;color:rgba(232,224,204,.5);line-height:1.75;margin-bottom:36px}
+.cta-form{display:flex;gap:8px;max-width:440px;margin:0 auto 0}
+.cta-input{flex:1;background:rgba(232,224,204,.06);border:1px solid var(--border-gold);padding:13px 18px;color:var(--paper);font-family:'Rajdhani',sans-serif;font-size:13px;outline:none;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);transition:border-color .3s}
+.cta-input:focus{border-color:var(--gold)}.cta-input::placeholder{color:rgba(232,224,204,.3)}
+.cta-ok{display:none;background:rgba(201,150,58,.15);border:1px solid var(--border-gold);color:var(--gold);padding:12px 24px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:16px;border-radius:2px}
+.cta-ok.show{display:block}
+
+/* FOOTER */
+footer{background:var(--ink);border-top:1px solid var(--border-gold);padding:60px clamp(20px,6vw,80px) 32px}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:clamp(20px,4vw,60px);margin-bottom:48px}
+.ft-logo{font-family:'Crimson Pro',serif;font-size:24px;color:var(--paper);margin-bottom:3px}
+.ft-logo span{color:var(--gold);font-style:italic}
+.ft-sub{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--teal2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px}
+.ft-tag{font-size:12px;color:rgba(232,224,204,.4);line-height:1.7;max-width:260px;margin-bottom:20px;font-weight:300}
+.ft-soc{display:flex;gap:8px}
+.ft-s{width:32px;height:32px;border:1px solid rgba(232,224,204,.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:rgba(232,224,204,.4);cursor:pointer;transition:all .3s}
+.ft-s:hover{border-color:var(--gold);color:var(--gold)}
+.ft-col-t{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,224,204,.4);margin-bottom:16px;font-weight:500}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-links li a{font-size:13px;color:rgba(232,224,204,.4);font-weight:300;transition:color .2s;cursor:pointer}
+.ft-links li a:hover{color:var(--gold)}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:24px;border-top:1px solid rgba(232,224,204,.07)}
+.ft-copy{font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(232,224,204,.25);letter-spacing:.08em}
+.ft-badges{display:flex;gap:8px}
+.ft-badge{padding:4px 12px;border:1px solid rgba(232,224,204,.1);font-family:'JetBrains Mono',monospace;font-size:8px;color:rgba(232,224,204,.35);letter-spacing:.08em;text-transform:uppercase}
+
+/* Responsive */
+@media(max-width:1024px){.ft-top{grid-template-columns:1fr 1fr 1fr}.dest-grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}.clips-grid{grid-template-columns:1fr 1fr}.faq-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.nav-links,.btn-nv{display:none}.hbg{display:flex}.hero-content{padding:0 24px;padding-top:58px}.hero-stats{grid-template-columns:1fr 1fr}.plans-tabs{flex-wrap:wrap}.clips-grid{grid-template-columns:1fr}.ft-top{grid-template-columns:1fr 1fr}.cta-form{flex-direction:column}}
+@media(max-width:480px){.hero-stats{grid-template-columns:1fr}.ft-top{grid-template-columns:1fr}.hero-btns{flex-direction:column}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob-menu">
+  <button class="mob-x" onclick="closeMob()">✕</button>
+  <a href="#destinations" onclick="closeMob()">Destinations</a>
+  <a href="#plans" onclick="closeMob()">Trip Plans</a>
+  <a href="#clips" onclick="closeMob()">Explore</a>
+  <a href="#faq" onclick="closeMob()">FAQ</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Bharat<span>AI</span> Geo<sub>· cartographic edition</sub></div>
+  <div class="nav-links">
+    <div class="nav-lnk on" onclick="scrollTo2('destinations')">DESTINATIONS</div>
+    <div class="nav-lnk" onclick="scrollTo2('plans')">TRIP PLANS</div>
+    <div class="nav-lnk" onclick="scrollTo2('clips')">EXPLORE</div>
+    <div class="nav-lnk" onclick="scrollTo2('faq')">FAQ</div>
+    <div class="nav-lnk" onclick="scrollTo2('cta-sec')">AI PLANNER</div>
+  </div>
+  <div class="nav-acts">
+    <div class="nav-coord" id="nav-coord">28.6°N · 77.2°E</div>
+    <button class="btn-nv" onclick="scrollTo2('cta-sec')">PLAN TRIP →</button>
+    <button class="hbg" id="hbg" onclick="openMob()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section id="hero">
+  <!-- Real Google Maps satellite view as background -->
+  <div class="hero-map-bg">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7500000!2d78.0!3d22.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="India satellite map background">
+    </iframe>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-eye"><div class="hero-eye-dot"></div>PROFESSIONAL GEOGRAPHY TRAVEL PLATFORM</div>
+    <h1 class="hero-h1">
+      Discover<br><em>Incredible</em><br>
+      <span class="ghost">Bharat.</span>
+    </h1>
+    <p class="hero-p">A cartographic travel platform where satellite-grade geography meets AI-powered journey intelligence. Every coordinate, every story.</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="scrollTo2('destinations')">⚡ EXPLORE ATLAS →</button>
+      <button class="btn-out" onclick="scrollTo2('plans')">VIEW TRIP PLANS</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-n" data-count="36" data-suf="+">0</div><div class="hero-stat-l">States & UTs</div></div>
+      <div class="hero-stat"><div class="hero-stat-n" data-count="847" data-suf="+">0</div><div class="hero-stat-l">Destinations</div></div>
+      <div class="hero-stat"><div class="hero-stat-n" data-count="42" data-suf="+">0</div><div class="hero-stat-l">UNESCO Sites</div></div>
+      <div class="hero-stat"><div class="hero-stat-n" data-count="2.4" data-suf="M">0</div><div class="hero-stat-l">Trips Planned</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap" aria-hidden="true"><div class="mq-track" id="mq-t"></div></div>
+
+<!-- ═══════════════════════ DESTINATIONS ═══════════════════════ -->
+<section id="destinations" class="sec">
+  <div class="sec-inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:32px">
+      <div>
+        <div class="sec-tag rv">ALL DESTINATIONS</div>
+        <h2 class="sec-h2 rv">Every corner of<br><em>incredible Bharat</em></h2>
+        <p class="sec-sub rv d1">From Himalayan peaks to tropical backwaters — all 36 states and UTs mapped, rated and priced.</p>
+      </div>
+      <div class="rv d2" id="dest-count" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.1em"></div>
+    </div>
+
+    <div class="dest-filter rv d2" id="dest-filter">
+      <button class="df on" data-cat="all">ALL</button>
+      <button class="df" data-cat="Heritage">HERITAGE</button>
+      <button class="df" data-cat="Beaches">BEACHES</button>
+      <button class="df" data-cat="Mountains">MOUNTAINS</button>
+      <button class="df" data-cat="Spiritual">SPIRITUAL</button>
+      <button class="df" data-cat="Wildlife">WILDLIFE</button>
+      <button class="df" data-cat="Backwaters">BACKWATERS</button>
+      <button class="df" data-cat="Urban">URBAN</button>
+    </div>
+
+    <div class="dest-grid" id="dest-grid"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ TRIP PLANS ═══════════════════════ -->
+<section id="plans" class="sec geo-grid">
+  <div class="sec-inner">
+    <div class="sec-tag rv" style="color:var(--gold)">CURATED ITINERARIES</div>
+    <h2 class="sec-h2 rv" style="color:var(--paper)">Ready-made<br><em>trip plans</em></h2>
+    <p class="sec-sub rv d1" style="color:rgba(232,224,204,.5)">Choose your duration. AI curates every detail — hotels, transport, activities and costs.</p>
+
+    <div class="plans-tabs rv d2" style="margin-top:36px">
+      <button class="plan-tab on" onclick="switchPlan('2d',this)">2 DAYS</button>
+      <button class="plan-tab" onclick="switchPlan('3d',this)">3 DAYS</button>
+      <button class="plan-tab" onclick="switchPlan('5d',this)">5 DAYS</button>
+      <button class="plan-tab" onclick="switchPlan('7d',this)">7 DAYS</button>
+    </div>
+
+    <div id="plans-2d" class="plans-content on"><div class="plan-grid" id="pg-2d"></div></div>
+    <div id="plans-3d" class="plans-content"><div class="plan-grid" id="pg-3d"></div></div>
+    <div id="plans-5d" class="plans-content"><div class="plan-grid" id="pg-5d"></div></div>
+    <div id="plans-7d" class="plans-content"><div class="plan-grid" id="pg-7d"></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ VIDEO CLIPS ═══════════════════════ -->
+<section id="clips" class="sec">
+  <div class="sec-inner">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:0">
+      <div>
+        <div class="sec-tag rv">DESTINATION REELS</div>
+        <h2 class="sec-h2 rv">See it before<br><em>you go</em></h2>
+        <p class="sec-sub rv d1">Short cinematic clips from India's most breathtaking destinations. Hit play and let Bharat speak.</p>
+      </div>
+    </div>
+    <div class="clips-grid" id="clips-grid"></div>
+  </div>
+</section>
+
+<!-- VIDEO MODAL -->
+<div class="vid-modal" id="vid-modal">
+  <div class="vid-inner">
+    <button class="vid-close" onclick="closeVid()">✕ CLOSE</button>
+    <iframe id="vid-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- ═══════════════════════ FAQ ═══════════════════════ -->
+<section id="faq" class="sec">
+  <div class="faq-geo"></div>
+  <div class="sec-inner" style="position:relative;z-index:1">
+    <div class="sec-tag rv" style="color:var(--gold)">FAQ</div>
+    <h2 class="sec-h2 rv" style="color:var(--paper)">Answers for every<br><em>explorer</em></h2>
+    <div class="faq-grid rv d1" id="faq-grid"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ CTA ═══════════════════════ -->
+<section id="cta-sec" class="geo-grid">
+  <div class="cta-inner">
+    <div class="cta-eye rv">START YOUR JOURNEY</div>
+    <h2 class="cta-h2 rv">Bharat is<br><em>calling you.</em></h2>
+    <p class="cta-p rv d1">Join 2.4 million travellers who let AI build their perfect Indian adventure. Free to start. No credit card required.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:36px" class="rv d2">
+      <button class="btn-gold" onclick="scrollTo2('destinations')">⚡ EXPLORE ATLAS</button>
+      <button class="btn-out" onclick="scrollTo2('plans')">VIEW TRIP PLANS</button>
+    </div>
+    <div class="cta-form rv d3" id="cta-form">
+      <input class="cta-input" type="email" id="cta-email" placeholder="your@email.com — Get notified at launch"/>
+      <button class="btn-gold" onclick="submitEmail()">NOTIFY ME</button>
+    </div>
+    <div class="cta-ok" id="cta-ok">🎉 YOU'RE ON THE LIST! WE'LL REACH YOU AT LAUNCH.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-logo">Bharat<span>AI</span> Geo</div>
+      <div class="ft-sub">भारत · Cartographic Travel Platform</div>
+      <p class="ft-tag">The world's first geography-grade AI travel platform for India eternal.</p>
+      <div class="ft-soc">
+        <div class="ft-s">𝕏</div><div class="ft-s">IG</div><div class="ft-s">IN</div><div class="ft-s">YT</div>
+      </div>
+    </div>
+    <div><div class="ft-col-t">EXPLORE</div><ul class="ft-links" id="ft-explore"></ul></div>
+    <div><div class="ft-col-t">PLATFORM</div><ul class="ft-links"><li><a>AI Trip Builder</a></li><li><a>Price Predictor</a></li><li><a>Crowd Insights</a></li><li><a>Weather AI</a></li><li><a>Travel Rewards</a></li></ul></div>
+    <div><div class="ft-col-t">COMPANY</div><ul class="ft-links"><li><a>About BharatAI</a></li><li><a>Blog</a></li><li><a>Careers</a></li><li><a>Press Kit</a></li></ul></div>
+    <div><div class="ft-col-t">LEGAL</div><ul class="ft-links"><li><a>Privacy Policy</a></li><li><a>Terms of Service</a></li><li><a>Cookie Policy</a></li></ul></div>
+  </div>
+  <div class="ft-bot">
+    <div class="ft-copy">© 2025 BHARATAI GEO EDITION · भारत · MADE WITH ❤️ IN INDIA</div>
+    <div class="ft-badges">
+      <span class="ft-badge">🔒 SSL</span><span class="ft-badge">🇮🇳 INDIA</span><span class="ft-badge">🤖 AI POWERED</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════════ */
+const DESTS = [
+  // Heritage
+  {name:'Taj Mahal',loc:'Agra, UP',cat:'Heritage',emoji:'🕌',rating:4.9,price:'₹1,100',season:'Oct–Mar',badge:'UNESCO',bg:'linear-gradient(145deg,#1a1228,#2a1a3a,#3a1228)'},
+  {name:'Amer Fort',loc:'Jaipur, Rajasthan',cat:'Heritage',emoji:'🏰',rating:4.8,price:'₹550',season:'Oct–Feb',badge:'ICONIC',bg:'linear-gradient(145deg,#2a1a08,#4a2a10,#6a3a18)'},
+  {name:'Hampi Ruins',loc:'Karnataka',cat:'Heritage',emoji:'🗿',rating:4.8,price:'₹500',season:'Oct–Mar',badge:'UNESCO',bg:'linear-gradient(145deg,#2a1a08,#3a2010,#5a3218)'},
+  {name:'Qutub Minar',loc:'Delhi',cat:'Heritage',emoji:'🕍',rating:4.6,price:'₹300',season:'Nov–Mar',badge:'UNESCO',bg:'linear-gradient(145deg,#1a1a1a,#2a2210,#3a2e18)'},
+  {name:'Ajanta Caves',loc:'Maharashtra',cat:'Heritage',emoji:'🏛️',rating:4.8,price:'₹250',season:'Nov–Mar',badge:'UNESCO',bg:'linear-gradient(145deg,#1a1208,#2a1c10,#3a2818)'},
+  {name:'Ellora Caves',loc:'Maharashtra',cat:'Heritage',emoji:'⛩️',rating:4.8,price:'₹250',season:'Nov–Mar',badge:'UNESCO',bg:'linear-gradient(145deg,#181220,#281a30,#382240)'},
+  {name:'Konark Temple',loc:'Odisha',cat:'Heritage',emoji:'🌅',rating:4.7,price:'₹40',season:'Oct–Mar',badge:'UNESCO',bg:'linear-gradient(145deg,#201808,#3a2810,#5a3818)'},
+  {name:'Red Fort',loc:'Delhi',cat:'Heritage',emoji:'🏯',rating:4.5,price:'₹35',season:'Oct–Mar',badge:'ICONIC',bg:'linear-gradient(145deg,#2a0808,#4a1010,#6a1818)'},
+  // Beaches
+  {name:'Calangute Beach',loc:'North Goa',cat:'Beaches',emoji:'🏖️',rating:4.7,price:'₹3,500/day',season:'Nov–Feb',badge:'POPULAR',bg:'linear-gradient(145deg,#0c3d6e,#1565a8,#c47e1a)'},
+  {name:'Radhanagar Beach',loc:'Andaman',cat:'Beaches',emoji:'🐠',rating:4.9,price:'₹4,000/day',season:'Nov–Apr',badge:'TOP RATED',bg:'linear-gradient(145deg,#0a2a4a,#1a5a8a,#2a8a6a)'},
+  {name:'Varkala Cliffs',loc:'Kerala',cat:'Beaches',emoji:'🪨',rating:4.7,price:'₹2,500/day',season:'Oct–Mar',badge:'SCENIC',bg:'linear-gradient(145deg,#1a0c0a,#3a1a10,#c47e1a)'},
+  {name:'Palolem Beach',loc:'South Goa',cat:'Beaches',emoji:'🛶',rating:4.8,price:'₹3,200/day',season:'Nov–Feb',badge:'SERENE',bg:'linear-gradient(145deg,#0a3040,#1a6080,#2a9060)'},
+  {name:'Marina Beach',loc:'Chennai, TN',cat:'Beaches',emoji:'🌊',rating:4.4,price:'₹500/day',season:'Nov–Mar',badge:'LARGEST',bg:'linear-gradient(145deg,#0a1a3a,#1a3a6a,#2a5a5a)'},
+  {name:'Gokarna Beach',loc:'Karnataka',cat:'Beaches',emoji:'🕉️',rating:4.7,price:'₹1,800/day',season:'Oct–Mar',badge:'HIDDEN GEM',bg:'linear-gradient(145deg,#0a2a1a,#1a5a3a,#2a8a4a)'},
+  // Mountains
+  {name:'Spiti Valley',loc:'Himachal Pradesh',cat:'Mountains',emoji:'🏔️',rating:4.9,price:'₹4,200/day',season:'Jun–Sep',badge:'REMOTE',bg:'linear-gradient(145deg,#1a2a4a,#243859,#5a8ab8)'},
+  {name:'Rohtang Pass',loc:'Manali, HP',cat:'Mountains',emoji:'❄️',rating:4.7,price:'₹3,500/day',season:'May–Oct',badge:'SCENIC',bg:'linear-gradient(145deg,#1a2848,#2a3868,#3a4888)'},
+  {name:'Chopta Valley',loc:'Uttarakhand',cat:'Mountains',emoji:'🦌',rating:4.8,price:'₹2,800/day',season:'Apr–Jun',badge:'MINI SWISS',bg:'linear-gradient(145deg,#0a1e1a,#1a3e2a,#2a5e3a)'},
+  {name:'Ziro Valley',loc:'Arunachal Pradesh',cat:'Mountains',emoji:'🌾',rating:4.8,price:'₹3,000/day',season:'Sep–Oct',badge:'UNESCO NOM.',bg:'linear-gradient(145deg,#0a1a0a,#1a3a1a,#2a5a2a)'},
+  {name:'Nubra Valley',loc:'Ladakh',cat:'Mountains',emoji:'🐪',rating:4.9,price:'₹5,000/day',season:'Jun–Sep',badge:'HIGH ALT.',bg:'linear-gradient(145deg,#1a1830,#2a2840,#3a3850)'},
+  {name:'Coorg',loc:'Karnataka',cat:'Mountains',emoji:'☕',rating:4.7,price:'₹3,800/day',season:'Oct–Mar',badge:'COFFEE LAND',bg:'linear-gradient(145deg,#0a1e0a,#1a3e1a,#2a5e2a)'},
+  // Spiritual
+  {name:'Varanasi Ghats',loc:'Uttar Pradesh',cat:'Spiritual',emoji:'🪔',rating:4.6,price:'₹2,000/day',season:'Oct–Mar',badge:'SACRED',bg:'linear-gradient(145deg,#1a0a0a,#3a1a08,#5a2810)'},
+  {name:'Rishikesh',loc:'Uttarakhand',cat:'Spiritual',emoji:'🧘',rating:4.8,price:'₹2,200/day',season:'Sep–Jun',badge:'YOGA CAPITAL',bg:'linear-gradient(145deg,#0a1e1a,#1a3e2a,#2a5e3a)'},
+  {name:'Tirupati',loc:'Andhra Pradesh',cat:'Spiritual',emoji:'🙏',rating:4.8,price:'₹1,500/day',season:'All Year',badge:'DIVINE',bg:'linear-gradient(145deg,#1a1208,#3a2210,#5a3218)'},
+  {name:'Golden Temple',loc:'Amritsar, Punjab',cat:'Spiritual',emoji:'⭐',rating:4.9,price:'₹1,000/day',season:'Oct–Mar',badge:'ICONIC',bg:'linear-gradient(145deg,#1a1208,#3a2a08,#6a4a10)'},
+  {name:'Kedarnath',loc:'Uttarakhand',cat:'Spiritual',emoji:'⛰️',rating:4.9,price:'₹3,500/day',season:'May–Nov',badge:'DIVINE',bg:'linear-gradient(145deg,#0a1220,#1a2230,#2a3240)'},
+  {name:'Ajmer Sharif',loc:'Rajasthan',cat:'Spiritual',emoji:'🕌',rating:4.6,price:'₹1,200/day',season:'Oct–Mar',badge:'SUFI',bg:'linear-gradient(145deg,#1a0808,#2a1010,#3a1818)'},
+  // Wildlife
+  {name:'Ranthambhore',loc:'Rajasthan',cat:'Wildlife',emoji:'🐅',rating:4.8,price:'₹8,000/day',season:'Oct–Jun',badge:'TIGER RESERVE',bg:'linear-gradient(145deg,#1a1008,#2a2010,#3a3018)'},
+  {name:'Jim Corbett',loc:'Uttarakhand',cat:'Wildlife',emoji:'🦁',rating:4.7,price:'₹7,500/day',season:'Nov–Jun',badge:'TIGER RESERVE',bg:'linear-gradient(145deg,#0a1e08,#1a3e10,#2a5e18)'},
+  {name:'Kaziranga',loc:'Assam',cat:'Wildlife',emoji:'🦏',rating:4.9,price:'₹6,000/day',season:'Nov–Apr',badge:'UNESCO',bg:'linear-gradient(145deg,#0a2010,#1a4020,#2a6030)'},
+  {name:'Periyar',loc:'Kerala',cat:'Wildlife',emoji:'🐘',rating:4.7,price:'₹4,500/day',season:'Oct–Mar',badge:'BIOSPHERE',bg:'linear-gradient(145deg,#0a1e18,#1a3e28,#2a5e38)'},
+  {name:'Sundarbans',loc:'West Bengal',cat:'Wildlife',emoji:'🐊',rating:4.6,price:'₹5,000/day',season:'Oct–Mar',badge:'UNESCO',bg:'linear-gradient(145deg,#081818,#183030,#284848)'},
+  // Backwaters
+  {name:'Alleppey',loc:'Kerala',cat:'Backwaters',emoji:'🛥️',rating:4.8,price:'₹8,500/2nights',season:'Sep–Feb',badge:'BACKWATERS',bg:'linear-gradient(145deg,#0a2e1e,#145a38,#2a8a5a)'},
+  {name:'Kumarakom',loc:'Kerala',cat:'Backwaters',emoji:'🐦',rating:4.8,price:'₹9,000/2nights',season:'Oct–Feb',badge:'BIRD SANCTUARY',bg:'linear-gradient(145deg,#081e18,#143830,#204848)'},
+  {name:'Kollam Backwaters',loc:'Kerala',cat:'Backwaters',emoji:'🌴',rating:4.6,price:'₹7,000/2nights',season:'Oct–Feb',badge:'SERENE',bg:'linear-gradient(145deg,#0a2a1a,#1a4a2a,#2a6a3a)'},
+  // Urban
+  {name:'Old Delhi',loc:'Delhi',cat:'Urban',emoji:'🕌',rating:4.6,price:'₹2,500/day',season:'Oct–Mar',badge:'CHAOTIC BEAUTY',bg:'linear-gradient(145deg,#1a1010,#2a1a18,#3a2220)'},
+  {name:'Mumbai',loc:'Maharashtra',cat:'Urban',emoji:'🌆',rating:4.5,price:'₹4,800/day',season:'Oct–Mar',badge:'MAX CITY',bg:'linear-gradient(145deg,#1a0a2e,#3a1550,#c04a20)'},
+  {name:'Jodhpur',loc:'Rajasthan',cat:'Urban',emoji:'🔵',rating:4.7,price:'₹3,200/day',season:'Oct–Feb',badge:'BLUE CITY',bg:'linear-gradient(145deg,#0a1040,#1a2060,#2a3080)'},
+  {name:'Udaipur',loc:'Rajasthan',cat:'Urban',emoji:'🏰',rating:4.8,price:'₹4,000/day',season:'Oct–Mar',badge:'LAKE CITY',bg:'linear-gradient(145deg,#0a1830,#1a2848,#2a3860)'},
+  {name:'Kolkata',loc:'West Bengal',cat:'Urban',emoji:'🎨',rating:4.6,price:'₹2,800/day',season:'Oct–Mar',badge:'CITY OF JOY',bg:'linear-gradient(145deg,#1a1028,#2a1a38,#3a2248)'},
+  {name:'Mysore',loc:'Karnataka',cat:'Urban',emoji:'👑',rating:4.7,price:'₹2,600/day',season:'Oct–Mar',badge:'PALACE CITY',bg:'linear-gradient(145deg,#1a1008,#2a2010,#3a2818)'},
+];
+
+/* ═══════════════════════════════════════════════════
+   RENDER DESTINATIONS
+═══════════════════════════════════════════════════ */
+function starsHTML(r){
+  const f=Math.floor(r);
+  return Array.from({length:5},(_,i)=>`<span style="color:${i<f?'#c9963a':'rgba(201,150,58,0.25)'}">★</span>`).join('');
+}
+
+function renderDests(cat){
+  const grid=document.getElementById('dest-grid');
+  const data=cat==='all'?DESTS:DESTS.filter(d=>d.cat===cat);
+  document.getElementById('dest-count').textContent=`SHOWING ${data.length} DESTINATIONS`;
+  grid.innerHTML='';
+  data.forEach((d,i)=>{
+    const card=document.createElement('div');
+    card.className='dest-card';
+    card.style.animationDelay=(i*.04)+'s';
+    card.innerHTML=`
+      <div class="dest-img" style="background:${d.bg}">
+        <span style="position:relative;z-index:1;filter:drop-shadow(0 4px 16px rgba(0,0,0,.5))">${d.emoji}</span>
+        <div class="dest-img-ov"></div>
+        <div class="dest-badge">${d.badge}</div>
+        <div class="dest-rating-badge">${d.rating} ★</div>
+      </div>
+      <div class="dest-body">
+        <div class="dest-cat">${d.cat}</div>
+        <div class="dest-name">${d.name}</div>
+        <div class="dest-loc">📍 ${d.loc}</div>
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+          <div>${starsHTML(d.rating)}</div>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:rgba(232,224,204,.35)">${d.rating}/5.0</span>
+        </div>
+        <div class="dest-meta">
+          <div><div class="dest-price">${d.price}</div><div style="font-size:9px;color:rgba(232,224,204,.3);letter-spacing:.04em;margin-top:2px">FROM</div></div>
+          <div><div class="dest-season">${d.season}</div><div style="font-size:9px;color:rgba(232,224,204,.3);letter-spacing:.04em;margin-top:2px;text-align:right">BEST TIME</div></div>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+renderDests('all');
+
+document.getElementById('dest-filter').addEventListener('click',e=>{
+  const btn=e.target.closest('.df');if(!btn)return;
+  document.querySelectorAll('.df').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderDests(btn.dataset.cat);
+});
+
+/* Footer explore links */
+const ftExplore=document.getElementById('ft-explore');
+['Taj Mahal','Goa Beaches','Spiti Valley','Kerala Backwaters','Rajasthan Heritage','Ranthambhore'].forEach(n=>{
+  const li=document.createElement('li');li.innerHTML=`<a>${n}</a>`;ftExplore.appendChild(li);
+});
+
+/* ═══════════════════════════════════════════════════
+   TRIP PLANS DATA
+═══════════════════════════════════════════════════ */
+const PLANS = {
+  '2d':[
+    {dest:'GOLDEN TRIANGLE SPRINT',sub:'Delhi · Agra · Back',days:[{t:'DELHI ARRIVAL',d:'Red Fort, Chandni Chowk, India Gate, Old Delhi food walk'},{t:'TAJ MAHAL SUNRISE',d:'Agra Fort, Taj Mahal at sunrise, return to Delhi'}],budget:'₹8,500–12,000'},
+    {dest:'GOA QUICK ESCAPE',sub:'Goa · Beaches · Nightlife',days:[{t:'NORTH GOA DAY',d:'Calangute, Baga Beach, shack lunch, Anjuna flea market'},{t:'SOUTH GOA + NIGHT',d:'Palolem beach, Fort Aguada, seafood dinner, beach party'}],budget:'₹7,000–10,000'},
+    {dest:'MYSORE WEEKEND',sub:'Bangalore · Mysore · Palace',days:[{t:'MYSORE ARRIVAL',d:'Mysore Palace (illuminated), Devaraja Market, Chamundi Hills'},{t:'BRINDAVAN + RETURN',d:'Brindavan Gardens, silk shopping, St. Philomena\'s Church'}],budget:'₹5,500–8,000'},
+    {dest:'RISHIKESH RETREAT',sub:'Haridwar · Rishikesh',days:[{t:'HARIDWAR GANGA AARTI',d:'Har Ki Pauri, Ganga Aarti ceremony, evening prayers'},{t:'RISHIKESH YOGA',d:'Yoga class, Beatles Ashram, Laxman Jhula, river rafting'}],budget:'₹4,500–7,000'},
+  ],
+  '3d':[
+    {dest:'RAJASTHAN TRIANGLE',sub:'Jaipur · Jodhpur · Pushkar',days:[{t:'JAIPUR — PINK CITY',d:'Amber Fort, Hawa Mahal, City Palace, Jantar Mantar'},{t:'JODHPUR — BLUE CITY',d:'Mehrangarh Fort, Jaswant Thada, Clock Tower market'},{t:'PUSHKAR LAKE',d:'Brahma Temple, Pushkar Lake, camel safari sunset'}],budget:'₹14,000–20,000'},
+    {dest:'KERALA HIGHLIGHTS',sub:'Kochi · Munnar · Alleppey',days:[{t:'KOCHI HERITAGE',d:'Fort Kochi, Chinese fishing nets, Mattancherry Palace, spice market'},{t:'MUNNAR TEA LAND',d:'Tea museum, Eravikulam National Park, Top Station viewpoint'},{t:'ALLEPPEY HOUSEBOAT',d:'Houseboat cruise through backwaters, village life, sunset on deck'}],budget:'₹16,000–24,000'},
+    {dest:'HIMACHAL ESCAPE',sub:'Shimla · Manali · Solang',days:[{t:'SHIMLA COLONIAL',d:'Mall Road, Christ Church, Jakhu Temple, Annadale Ground'},{t:'MANALI ADVENTURE',d:'Hadimba Temple, Van Vihar, Old Manali village, local markets'},{t:'SOLANG VALLEY',d:'Paragliding, skiing, snow tubing, Rohtang Pass permit'}],budget:'₹15,000–22,000'},
+    {dest:'GOLDEN TRIANGLE',sub:'Delhi · Agra · Jaipur',days:[{t:'DELHI DISCOVERY',d:'Qutub Minar, Humayun\'s Tomb, India Gate, Dilli Haat market'},{t:'AGRA — TAJ MAHAL',d:'Taj Mahal sunrise, Agra Fort, Fatehpur Sikri ghost city'},{t:'JAIPUR — PINK CITY',d:'Amer Fort, Hawa Mahal, City Palace, Bapu Bazaar shopping'}],budget:'₹18,000–26,000'},
+    {dest:'ANDAMAN PARADISE',sub:'Port Blair · Havelock',days:[{t:'PORT BLAIR ARRIVAL',d:'Cellular Jail, Corbyn\'s Cove, anthropology museum, light show'},{t:'HAVELOCK ISLAND',d:'Radhanagar Beach, snorkeling, Neil Island ferry, beach stay'},{t:'WATER SPORTS DAY',d:'Scuba diving, sea walk, glass bottom boat, sunset cruise'}],budget:'₹22,000–32,000'},
+  ],
+  '5d':[
+    {dest:'SOUTH INDIA GRAND',sub:'Chennai · Madurai · Ooty · Mysore',days:[{t:'CHENNAI ARRIVAL',d:'Marina Beach, Kapaleeshwarar Temple, Mahabalipuram shore temple'},{t:'MADURAI DIVINE',d:'Meenakshi Temple, Thirumalai Nayakkar Palace, street food'},{t:'OOTY HILL STATION',d:'Toy train, Botanical Gardens, Doddabetta Peak, tea estates'},{t:'COORG COFFEE',d:'Coffee plantation, Abbey Falls, Raja\'s Seat, Namdroling Monastery'},{t:'MYSORE ROYAL',d:'Mysore Palace, Chamundi Hills, Brindavan Gardens, silk shopping'}],budget:'₹28,000–40,000'},
+    {dest:'RAJASTHAN ODYSSEY',sub:'Jaipur · Jodhpur · Jaisalmer · Udaipur',days:[{t:'JAIPUR — PINK CITY',d:'Amber Fort, City Palace, Jantar Mantar, bazaars'},{t:'JODHPUR BLUE',d:'Mehrangarh Fort, Umaid Bhawan Palace, Kailana Lake'},{t:'JAISALMER DESERT',d:'Jaisalmer Fort, Sam Sand Dunes, camel safari, bonfire night'},{t:'BIKANER DETOUR',d:'Junagarh Fort, Karni Mata temple (rat temple), camel research farm'},{t:'UDAIPUR LAKES',d:'City Palace, Lake Pichola boat ride, Jagdish Temple, Saheliyon ki Bari'}],budget:'₹35,000–55,000'},
+    {dest:'NORTHEAST WONDER',sub:'Kaziranga · Shillong · Cherrapunji',days:[{t:'KAZIRANGA SAFARI',d:'Jeep safari (rhinos!), elephant safari, Kaziranga National Park'},{t:'GUWAHATI TEMPLES',d:'Kamakhya Temple, Umananda Island, Brahmaputra cruise'},{t:'SHILLONG HILLS',d:'Ward\'s Lake, Elephant Falls, Police Bazaar, Shillong Peak'},{t:'CHERRAPUNJI RAINS',d:'Seven Sisters Falls, Mawsmai Cave, living root bridges trek'},{t:'DAWKI CRYSTAL RIVER',d:'Umngot River (world\'s clearest), Shnongpdeng village, boat ride'}],budget:'₹32,000–48,000'},
+  ],
+  '7d':[
+    {dest:'KERALA COMPLETE',sub:'Kochi · Munnar · Alleppey · Varkala · Kovalam',days:[{t:'KOCHI HERITAGE',d:'Fort Kochi, Mattancherry, Jewish Synagogue, Chinese fishing nets'},{t:'MUNNAR TEA & HILLS',d:'Tea museum, Eravikulam NP, Kundala Lake, Top Station'},{t:'THEKKADY WILDLIFE',d:'Periyar Tiger Reserve boat cruise, spice garden, Ayurvedic spa'},{t:'ALLEPPEY HOUSEBOAT',d:'Traditional houseboat cruise, backwater village life, village cycling'},{t:'KOLLAM BACKWATERS',d:'Ashtamudi Lake, cashew factory, Krishnapuram Palace museum'},{t:'VARKALA CLIFFS',d:'Varkala Beach, cliff walk, Ayurvedic massage, seafood dinner'},{t:'KOVALAM FAREWELL',d:'Lighthouse Beach, Halcyon Castle, farewell Ayurvedic treatment'}],budget:'₹55,000–80,000'},
+    {dest:'HIMACHAL ADVENTURE',sub:'Delhi · Shimla · Manali · Leh · Back',days:[{t:'DELHI TRANSIT',d:'Old Delhi street food, Humayun\'s Tomb, Connaught Place'},{t:'SHIMLA CHARM',d:'Mall Road, Christ Church, Kufri ski resort, heritage hotels'},{t:'MANALI ARRIVAL',d:'Hadimba Devi Temple, Solang Valley, Van Vihar National Park'},{t:'ROHTANG PASS',d:'Rohtang Pass (3978m), panoramic snow views, yak riding'},{t:'SPITI ENTRY',d:'Key Monastery, Kibber village, Pin Valley, Chicham Bridge'},{t:'LAHAUL VALLEY',d:'Chandratal Lake trek, Kunzum Pass, ancient Buddhist culture'},{t:'RETURN JOURNEY',d:'Manali markets, Kullu shawl shopping, Manu Temple blessings'}],budget:'₹65,000–95,000'},
+  ]
+};
+
+function renderPlans(key){
+  const g=document.getElementById('pg-'+key);
+  if(!g||g.children.length)return;
+  (PLANS[key]||[]).forEach(p=>{
+    const card=document.createElement('div');card.className='plan-card';
+    card.innerHTML=`
+      <div class="plan-header">
+        <div class="plan-dest">${p.dest}</div>
+        <div class="plan-duration">${p.sub}</div>
+      </div>
+      <div class="plan-days">
+        ${p.days.map((d,i)=>`<div class="plan-day">
+          <div class="plan-day-n">D${i+1}</div>
+          <div><div class="plan-day-t">${d.t}</div><div class="plan-day-d">${d.d}</div></div>
+        </div>`).join('')}
+      </div>
+      <div class="plan-footer">
+        <div><div style="font-size:9px;color:rgba(232,224,204,.35);letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px">BUDGET RANGE</div><div class="plan-budget">${p.budget}</div></div>
+        <button class="plan-btn" onclick="sendPrompt && sendPrompt('Book the ${p.dest} trip plan')">BOOK NOW →</button>
+      </div>`;
+    g.appendChild(card);
+  });
+}
+
+window.switchPlan=function(key,btn){
+  document.querySelectorAll('.plan-tab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.plans-content').forEach(c=>c.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('plans-'+key).classList.add('on');
+  renderPlans(key);
+};
+renderPlans('2d');
+
+/* ═══════════════════════════════════════════════════
+   VIDEO CLIPS — YouTube embeds of real destinations
+═══════════════════════════════════════════════════ */
+const CLIPS=[
+  {name:'Taj Mahal at Sunrise',loc:'Agra, Uttar Pradesh',dur:'3:24',yt:'Uy-AhSGoXgo',emoji:'🕌',bg:'linear-gradient(145deg,#1a1228,#2a1a3a,#3a1228)'},
+  {name:'Kerala Backwaters',loc:'Alleppey, Kerala',dur:'4:12',yt:'kdVEI4K9s3Y',emoji:'🛥️',bg:'linear-gradient(145deg,#0a2e1e,#145a38,#2a8a5a)'},
+  {name:'Rajasthan Desert Life',loc:'Jaisalmer, Rajasthan',dur:'5:08',yt:'J3zNfABqB5k',emoji:'🏰',bg:'linear-gradient(145deg,#3a1e08,#6a3a10,#9a5a18)'},
+  {name:'Varanasi Ganga Aarti',loc:'Varanasi, UP',dur:'6:30',yt:'HbAZ5JUV1CY',emoji:'🪔',bg:'linear-gradient(145deg,#2a0808,#4a1010,#6a1818)'},
+  {name:'Himalayan Landscapes',loc:'Spiti Valley, HP',dur:'4:45',yt:'wD2hWUEMvnk',emoji:'🏔️',bg:'linear-gradient(145deg,#1a2a4a,#243859,#5a8ab8)'},
+  {name:'Goa Beach Vibes',loc:'North Goa',dur:'3:55',yt:'V0Z8X_yTrU8',emoji:'🏖️',bg:'linear-gradient(145deg,#0c3d6e,#1565a8,#c47e1a)'},
+];
+
+const cg=document.getElementById('clips-grid');
+CLIPS.forEach(c=>{
+  const card=document.createElement('div');card.className='clip-card rv';
+  card.innerHTML=`
+    <div class="clip-thumb" style="background:${c.bg}">
+      <img src="https://img.youtube.com/vi/${c.yt}/maxresdefault.jpg" alt="${c.name}"
+           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7"
+           onerror="this.style.display='none'"/>
+      <div class="clip-ov"></div>
+      <div class="clip-play"></div>
+      <div class="clip-dur">${c.dur}</div>
+    </div>
+    <div class="clip-body">
+      <div class="clip-name">${c.name}</div>
+      <div class="clip-loc">📍 ${c.loc}</div>
+    </div>`;
+  card.addEventListener('click',()=>openVid(c.yt,c.name));
+  cg.appendChild(card);
+});
+
+function openVid(yt,name){
+  document.getElementById('vid-iframe').src=`https://www.youtube.com/embed/${yt}?autoplay=1&rel=0`;
+  document.getElementById('vid-modal').classList.add('open');
+}
+window.closeVid=function(){
+  document.getElementById('vid-iframe').src='';
+  document.getElementById('vid-modal').classList.remove('open');
+};
+document.getElementById('vid-modal').addEventListener('click',e=>{
+  if(e.target===document.getElementById('vid-modal'))closeVid();
+});
+
+/* ═══════════════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════════════ */
+const FAQS=[
+  {q:'What is the best time to visit India?',a:'The best time to visit most of India is October to March when weather is cool and dry. However, it varies by region: Ladakh is best June–September, Kerala is great September–February, and Northeast India shines September–November. Avoid peak summer (April–June) in the plains.'},
+  {q:'How does the AI trip planner work?',a:'Simply enter your budget, preferred travel style, number of days, and interests. Our AI engine powered by Claude analyses thousands of travel combinations, crowd data, price trends, and seasonal patterns to create a custom day-by-day itinerary with hotel recommendations, transport options, and cost breakdowns.'},
+  {q:'Are the destination prices accurate?',a:'Prices shown are estimated averages based on mid-range traveller budgets (double room + meals + local transport + entry fees). Budget travellers can typically spend 40–50% less; luxury travellers may spend 200–300% more. Prices are updated quarterly.'},
+  {q:'How do I get a visa for India?',a:'Most nationalities can apply for an Indian e-Visa online at indianvisaonline.gov.in. The tourist e-Visa is typically valid for 90 days with multiple entries. Apply at least 4 days before travel. Citizens of some countries (Nepal, Bhutan, Maldives) may not require a visa.'},
+  {q:'Is India safe for solo female travellers?',a:'India is generally safe for solo female travellers with proper precautions. Stick to reputable guesthouses, use app-based cabs (Ola/Uber), dress modestly in religious areas, and inform someone of your itinerary. Destinations like Kerala, Rajasthan, and Himachal Pradesh are considered very traveller-friendly.'},
+  {q:'What is the currency and how should I carry money?',a:'India\'s currency is the Indian Rupee (₹). You can withdraw cash from ATMs widely available in cities. UPI payments (Google Pay, PhonePe) are accepted almost everywhere. Carry some cash for rural areas, markets, and auto-rickshaws. Credit cards are accepted in hotels and restaurants.'},
+  {q:'Which destinations are best for wildlife?',a:'For tigers: Ranthambhore (Rajasthan), Jim Corbett (Uttarakhand), Tadoba (Maharashtra). For rhinos: Kaziranga (Assam). For elephants: Periyar (Kerala), Nagarhole (Karnataka). For birds: Bharatpur (Rajasthan), Chilika (Odisha). Always book safari permits in advance as they fill up fast.'},
+  {q:'Can I customise a trip plan from the platform?',a:'Absolutely! All trip plans are starting points. You can adjust the number of days, swap destinations, change hotel categories (budget/mid-range/luxury), add or remove activities, and set a custom budget. Our AI recalculates the entire itinerary and cost breakdown in real time.'},
+  {q:'What languages are spoken in India?',a:'India has 22 officially recognised languages and hundreds of dialects. Hindi and English are widely spoken in tourist areas. South India predominantly speaks Kannada, Tamil, Telugu, and Malayalam. In tourist destinations, you will almost always find English-speaking guides and hotel staff.'},
+  {q:'How far in advance should I book India trips?',a:'For peak season (December–February), book 2–3 months in advance, especially for popular destinations like Rajasthan, Goa, and Kerala. For tiger safaris and houseboat stays, 3–4 months is advisable. Off-season trips to Himachal and Ladakh need permits booked 1–2 months ahead.'},
+];
+
+const fg=document.getElementById('faq-grid');
+FAQS.forEach((f,i)=>{
+  const item=document.createElement('div');item.className='faq-item';
+  item.innerHTML=`
+    <div class="faq-q">
+      <div class="faq-q-text">${f.q}</div>
+      <div class="faq-icon">+</div>
+    </div>
+    <div class="faq-a"><div class="faq-a-inner">${f.a}</div></div>`;
+  item.querySelector('.faq-q').addEventListener('click',()=>{
+    const isOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+  fg.appendChild(item);
+});
+
+/* ═══════════════════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════════════════ */
+(()=>{
+  const items=['TAJ MAHAL · AGRA','GOA BEACHES','SPITI VALLEY','KERALA BACKWATERS','RANTHAMBHORE TIGERS','VARANASI GHATS','RAJASTHAN FORTS','ANDAMAN ISLANDS','KAZIRANGA RHINOS','ZIRO VALLEY','GOLDEN TEMPLE · AMRITSAR','HAMPI RUINS','RISHIKESH YOGA','MUNNAR TEA ESTATES','NUBRA VALLEY · LADAKH','SUNDARBANS','COORG COFFEE','VARKALA CLIFFS'];
+  const t=document.getElementById('mq-t');
+  const h=items.map(i=>`<div class="mq-item"><div class="mq-dot"></div>${i}</div>`).join('');
+  t.innerHTML=h+h;
+})();
+
+/* ═══════════════════════════════════════════════════
+   SCROLL + UI UTILS
+═══════════════════════════════════════════════════ */
+window.scrollTo2=(id)=>document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+window.openMob=()=>document.getElementById('mob-menu').classList.add('open');
+window.closeMob=()=>document.getElementById('mob-menu').classList.remove('open');
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('prog').style.width=((scrollY/(document.body.scrollHeight-innerHeight))*100)+'%';
+},{passive:true});
+
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.07});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>io.observe(el));
+
+const cio=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=parseFloat(el.dataset.count),suf=el.dataset.suf||'',isF=String(target).includes('.');
+    let cur=0;const iv=setInterval(()=>{cur+=target/55;if(cur>=target){cur=target;clearInterval(iv);}el.textContent=(isF?cur.toFixed(1):Math.round(cur))+suf;},25);
+    cio.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// Smooth anchor nav
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
+});
+
+// Live coord update
+setInterval(()=>{
+  const now=new Date();
+  document.getElementById('nav-coord').textContent=`20°N·78°E · ${now.toLocaleTimeString('en-IN',{hour12:false})}`;
+},1000);
+
+// CTA email
+window.submitEmail=function(){
+  const v=document.getElementById('cta-email').value.trim();
+  if(!v||!v.includes('@')){document.getElementById('cta-email').style.borderColor='rgba(255,80,80,.5)';return;}
+  document.getElementById('cta-form').style.display='none';
+  document.getElementById('cta-ok').classList.add('show');
+};
+</script>
+</body>
+</html>
