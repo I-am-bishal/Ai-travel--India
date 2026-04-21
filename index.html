@@ -36,7 +36,12 @@ img{display:block;max-width:100%}
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(24px,4vw,56px);height:80px;background:transparent;transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent}
 nav.scrolled{background:rgba(10,15,10,.92);backdrop-filter:blur(20px);border-bottom-color:var(--border-g)}
 .nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo-icon{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--green),var(--green3));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 0 16px rgba(46,204,113,.25),0 2px 8px rgba(0,0,0,.3);flex-shrink:0}
+.nav-logo-icon{width:52px;height:52px;border-radius:50%;overflow:hidden;flex-shrink:0;
+  box-shadow:0 0 20px rgba(46,204,113,.3),0 2px 10px rgba(0,0,0,.4);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s;
+  background:transparent;border:2px solid rgba(46,204,113,.25);}
+.nav-logo-icon:hover{transform:scale(1.08) rotate(-2deg);box-shadow:0 0 32px rgba(46,204,113,.5);}
+.nav-logo-icon img{width:100%;height:100%;object-fit:cover;display:block;}
 .nav-logo-icon svg{width:26px;height:26px}
 .nav-logo-icon::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);pointer-events:none}
 .nav-logo-text{display:flex;flex-direction:column;line-height:1.15}
@@ -503,16 +508,7 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px clam
 <nav id="nav">
   <div class="nav-logo">
     <div class="nav-logo-icon">
-      <!-- Professional AI Brain SVG Logo -->
-      <svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="13" cy="13" r="10" stroke="#000" stroke-width="1.5" fill="none" opacity=".3"/>
-        <path d="M8 13a5 5 0 0 1 10 0" stroke="#000" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-        <circle cx="13" cy="13" r="2.5" fill="#000"/>
-        <path d="M13 8V6M13 20v-2M6 13H4M22 13h-2" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
-        <circle cx="9" cy="9" r="1.2" fill="#000"/>
-        <circle cx="17" cy="9" r="1.2" fill="#000"/>
-        <path d="M9 9 L13 13 L17 9" stroke="#000" stroke-width="1" stroke-linecap="round" fill="none" opacity=".6"/>
-      </svg>
+      <img src="travelmantra-logo.png" alt="TravelMantra AI — India Travel Logo" />
     </div>
     <div class="nav-logo-text">
       <div class="nav-logo-name">Travel<span class="india-bold">Mantra</span> AI</div>
@@ -540,9 +536,9 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:64px clam
   <div class="hero-vignette"></div>
   <div class="hero-leaf-ov"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow" id="hero-eyebrow"><div class="hero-eye-dot"></div>AI-Powered Travel Intelligence</div>
-    <h1 class="hero-h1" id="hero-h1">Discover<br><span class="accent">Incredible</span><br><span class="outline">India.</span></h1>
-    <p class="hero-desc" id="hero-desc">Where real satellite geography meets AI-powered journey planning. Explore every mountain, coastline and temple — mapped, rated and ready for your next adventure.</p>
+    <div class="hero-eyebrow" id="hero-eyebrow"><div class="hero-eye-dot"></div>AI-Powered · <strong style="color:var(--green);letter-spacing:.05em">INDIA</strong> · Travel Intelligence</div>
+    <h1 class="hero-h1" id="hero-h1">Discover<br><span class="accent">Incredible</span><br><span class="outline" style="text-shadow:0 0 40px rgba(46,204,113,.25)">India.</span></h1>
+    <p class="hero-desc" id="hero-desc">Where real satellite geography meets AI-powered journey planning. Explore every mountain, coastline and temple of <strong style="color:var(--green);font-weight:800">INDIA</strong> — mapped, rated and ready for your next adventure.</p>
     <div class="hero-btns" id="hero-btns">
       <button class="btn-primary" onclick="scrollTo2('destinations')">🌿 Explore Destinations</button>
       <button class="btn-outline" onclick="scrollTo2('plans')">View Trip Plans</button>
@@ -1342,8 +1338,8 @@ window.submitEmail=function(){const v=document.getElementById('cta-email').value
 /* ── Panel ── */
 #musafir-panel{
   position:fixed;bottom:104px;right:28px;z-index:9990;
-  width:min(420px,calc(100vw - 32px));
-  height:min(620px,calc(100vh - 140px));
+  width:min(500px,calc(100vw - 32px));
+  height:min(700px,calc(100vh - 120px));
   background:var(--mai-surface);
   border:1px solid var(--mai-border);
   border-radius:var(--mai-radius);
@@ -1434,33 +1430,19 @@ window.submitEmail=function(){const v=document.getElementById('cta-email').value
   border-color:rgba(46,204,113,.35);
   color:var(--mai-green);
 }
-.mai-voice-icon{font-size:12px;transition:transform .3s}
-.mai-voice-toggle.active .mai-voice-icon{animation:mVoiceWave .8s ease-in-out infinite alternate}
-@keyframes mVoiceWave{0%{transform:scale(1)}100%{transform:scale(1.25)}}
-
-.mai-close-btn{
+/* ── Reset Chat Button ── */
+.mai-reset-btn{
   width:30px;height:30px;border-radius:50%;
   background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
   cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:14px;color:rgba(245,245,240,.4);transition:all .25s;
+  font-size:13px;color:rgba(245,245,240,.4);transition:all .25s;flex-shrink:0;
 }
-.mai-close-btn:hover{background:rgba(255,80,80,.1);border-color:rgba(255,80,80,.2);color:rgba(255,100,100,.8)}
-.mai-head-badge{
-  margin-top:12px;display:flex;align-items:center;gap:8px;
-  font-family:'Space Mono',monospace;font-size:10px;
-  color:rgba(46,204,113,.55);letter-spacing:.1em;text-transform:uppercase;
+.mai-reset-btn:hover{background:rgba(46,204,113,.1);border-color:rgba(46,204,113,.25);color:var(--mai-green);transform:rotate(180deg);}
+.mai-suggestions{
+  padding:8px 16px 12px;display:flex;gap:6px;
+  flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.04);
+  flex-shrink:0;transition:all .4s ease;
 }
-.mai-head-badge::before{content:'';flex:0 0 16px;height:1px;background:rgba(46,204,113,.3)}
-.mai-head-badge::after{content:'';flex:1;height:1px;background:rgba(46,204,113,.15)}
-
-/* ── Messages Area ── */
-.mai-msgs{
-  flex:1;overflow-y:auto;padding:16px 16px 8px;
-  display:flex;flex-direction:column;gap:12px;
-  scroll-behavior:smooth;
-}
-.mai-msgs::-webkit-scrollbar{width:3px}
-.mai-msgs::-webkit-scrollbar-thumb{background:rgba(46,204,113,.2);border-radius:2px}
 
 /* Message Bubbles */
 .mai-msg{display:flex;gap:9px;align-items:flex-end;animation:mMsgIn .35s cubic-bezier(.23,1,.32,1) both}
@@ -1578,10 +1560,12 @@ window.submitEmail=function(){const v=document.getElementById('cta-email').value
 </style>
 
 <!-- Launcher Button -->
-<button id="musafir-launcher" onclick="musafirToggle()" title="Chat with Musafir AI" aria-label="Open Musafir AI Travel Assistant">
-  <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <text x="4" y="27" font-size="24">🧳</text>
-  </svg>
+<button id="musafir-launcher" onclick="musafirToggle()" title="Chat with Musafir AI" aria-label="Open Musafir AI Travel Assistant" style="padding:0;overflow:hidden;background:transparent">
+  <img src="musafir-ai-logo.png"
+       alt="Musafir AI"
+       style="width:64px;height:64px;border-radius:50%;object-fit:cover;display:block;
+              box-shadow:0 4px 20px rgba(46,204,113,.35);transition:transform .3s,box-shadow .3s"
+       onerror="this.style.display='none';this.parentElement.innerHTML='<span style=font-size:28px>🧭</span>'" />
 </button>
 
 <!-- Chat Panel -->
@@ -1590,12 +1574,15 @@ window.submitEmail=function(){const v=document.getElementById('cta-email').value
   <!-- Header -->
   <div class="mai-header">
     <div class="mai-head-row">
-      <div class="mai-avatar">🧭</div>
+      <div class="mai-avatar" style="overflow:hidden;background:transparent;">
+        <img src="musafir-ai-logo.png" alt="Musafir AI" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentElement.textContent='🧭'" />
+      </div>
       <div class="mai-name-col">
         <div class="mai-name">Musafir <span>AI</span></div>
         <div class="mai-status"><span class="mai-status-dot"></span>Online · India Travel Expert</div>
       </div>
       <div class="mai-head-actions">
+        <button class="mai-reset-btn" onclick="musafirReset()" title="Reset conversation">↺</button>
         <button class="mai-voice-toggle" id="mai-voice-btn" onclick="musafirVoiceToggle()" title="Toggle voice responses">
           <span class="mai-voice-icon">🔇</span>
           <span id="mai-voice-label">Voice Off</span>
@@ -1804,6 +1791,13 @@ window.submitEmail=function(){const v=document.getElementById('cta-email').value
   function processQuery(q){
     if(!q.trim())return;
 
+    // Hide suggestions permanently once user starts chatting
+    const sugs=document.getElementById('mai-suggestions');
+    if(sugs&&sugs.style.display!=='none'){
+      sugs.style.opacity='0';sugs.style.transform='translateY(8px)';
+      setTimeout(()=>{sugs.style.display='none';},350);
+    }
+
     // Append user message
     appendMsg('user',q.replace(/</g,'&lt;').replace(/>/g,'&gt;'));
 
@@ -1845,9 +1839,27 @@ window.submitEmail=function(){const v=document.getElementById('cta-email').value
       // Welcome message
       setTimeout(()=>{
         appendMsg('ai',formatResponse("🙏 **Namaste! I'm Musafir AI** — your personal India travel expert.\n\nI can help you with:\n• **Destination discovery** across all 36 states\n• **Custom itineraries** for any duration & budget\n• **Best seasons** to visit each place\n• **Visa, permits** & travel logistics\n• **Local food, culture** & insider tips\n\nWhere in India are you dreaming of exploring? ✈️"),false);
+        // Restore suggestions on fresh open
+        const sugs=document.getElementById('mai-suggestions');
+        if(sugs){sugs.style.display='flex';sugs.style.opacity='1';sugs.style.transform='none';}
       },350);
     }
     if(panelOpen)setTimeout(()=>document.getElementById('mai-input').focus(),400);
+  };
+
+  window.musafirReset=function(){
+    // Clear all messages
+    const msgs=document.getElementById('mai-msgs');
+    if(msgs)msgs.innerHTML='';
+    // Stop any voice
+    if(synth)synth.cancel();
+    // Restore suggestions
+    const sugs=document.getElementById('mai-suggestions');
+    if(sugs){sugs.style.display='flex';sugs.style.opacity='1';sugs.style.transform='none';}
+    // Show fresh greeting after brief pause
+    setTimeout(()=>{
+      appendMsg('ai',formatResponse("🔄 Chat reset! Ready for your next **India** adventure.\n\nWhat destination are you curious about? 🗺️"),false);
+    },200);
   };
 
   window.musafirVoiceToggle=function(){
@@ -1909,7 +1921,7 @@ const CITIES=[
   {name:'Mumbai',region:'West India',state:'Maharashtra',tagline:'India\'s city of dreams — Bollywood, colonial charm & coastal magic.',img:'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=700&q=85',tags:['Urban','Beaches','Food'],rating:'4.6',temp:'Oct–Feb',badge:'Max City',popular:true,emoji:'🌆'},
   {name:'Jaipur',region:'North India',state:'Rajasthan',tagline:'The Pink City — palaces, forts and bazaars draped in rose-hued India.',img:'https://images.unsplash.com/photo-1599661046289-e31897846e41?w=700&q=85',tags:['Heritage','Culture','Royal'],rating:'4.8',temp:'Oct–Mar',badge:'Pink City',popular:true,emoji:'🏰'},
   {name:'Varanasi',region:'North India',state:'Uttar Pradesh',tagline:'The spiritual soul of India — Ganga Aarti, ancient ghats, eternal light.',img:'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=700&q=85',tags:['Spiritual','Heritage','Culture'],rating:'4.7',temp:'Oct–Mar',badge:'Sacred',popular:false,emoji:'🪔'},
-  {name:'Kolkata',region:'East India',state:'West Bengal',tagline:'India\'s cultural capital — art, literature, Durga Puja and street food bliss.',img:'https://images.unsplash.com/photo-1536421469767-80559bb6f5a1?w=700&q=85',tags:['Urban','Culture','Food'],rating:'4.5',temp:'Oct–Mar',badge:'City of Joy',popular:false,emoji:'🎨'},
+  {name:'Kolkata',region:'East India',state:'West Bengal',tagline:'India\'s cultural capital — art, literature, Durga Puja and street food bliss.',img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=85',tags:['Urban','Culture','Food'],rating:'4.5',temp:'Oct–Mar',badge:'City of Joy',popular:false,emoji:'🎨'},
   {name:'Chennai',region:'South India',state:'Tamil Nadu',tagline:'Gateway to South India — temple architecture, Carnatic music & Marina Beach.',img:'https://images.unsplash.com/photo-1519046904884-53103b34b206?w=700&q=85',tags:['Beaches','Heritage','Urban'],rating:'4.4',temp:'Nov–Feb',badge:'Gateway South',popular:false,emoji:'🌊'},
   {name:'Bengaluru',region:'South India',state:'Karnataka',tagline:'India\'s Silicon Valley — garden city with craft beer, cuisine & tech vibes.',img:'https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=700&q=85',tags:['Urban','Nature','Food'],rating:'4.5',temp:'All Year',badge:'Garden City',popular:true,emoji:'🌳'},
   {name:'Udaipur',region:'North India',state:'Rajasthan',tagline:'India\'s most romantic city — shimmering lakes, white palaces & sunset royalty.',img:'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=700&q=85',tags:['Heritage','Romantic','Lakes'],rating:'4.9',temp:'Oct–Mar',badge:'Lake City',popular:true,emoji:'🏰'},
@@ -1918,7 +1930,7 @@ const CITIES=[
   {name:'Kochi',region:'South India',state:'Kerala',tagline:'Fort Kochi — colonial spice legacy meets Kerala\'s backwater gateway in India.',img:'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=700&q=85',tags:['Heritage','Backwaters','Culture'],rating:'4.7',temp:'Sep–Feb',badge:'Spice Port',popular:false,emoji:'🌴'},
   {name:'Agra',region:'North India',state:'Uttar Pradesh',tagline:'City of the Taj — India\'s monument to love stands eternal on the Yamuna.',img:'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=700&q=85',tags:['Heritage','UNESCO','Monuments'],rating:'4.8',temp:'Oct–Mar',badge:'Taj City',popular:true,emoji:'🕌'},
   {name:'Jodhpur',region:'North India',state:'Rajasthan',tagline:'The Blue City — indigo lanes, Mehrangarh Fort & India\'s finest heritage hotels.',img:'https://images.unsplash.com/photo-1548013146-72479768bada?w=700&q=85',tags:['Heritage','Culture','Royal'],rating:'4.7',temp:'Oct–Feb',badge:'Blue City',popular:false,emoji:'🔵'},
-  {name:'Mysuru',region:'South India',state:'Karnataka',tagline:'Palace City of India — royal grandeur, sandalwood, silk sarees & Dasara.',img:'https://images.unsplash.com/photo-1600627544234-2244bb039c5a?w=700&q=85',tags:['Heritage','Royal','Culture'],rating:'4.7',temp:'Oct–Mar',badge:'Palace City',popular:false,emoji:'👑'},
+  {name:'Mysuru',region:'South India',state:'Karnataka',tagline:'Palace City of India — royal grandeur, sandalwood, silk sarees & Dasara.',img:'https://images.unsplash.com/photo-1590077428593-a55bb07c4665?w=700&q=85',tags:['Heritage','Royal','Culture'],rating:'4.7',temp:'Oct–Mar',badge:'Palace City',popular:false,emoji:'👑'},
   {name:'Guwahati',region:'Northeast India',state:'Assam',tagline:'Gateway to Northeast India — Kamakhya temple, Brahmaputra & river dolphins.',img:'https://images.unsplash.com/photo-1504173010664-32509aeebb62?w=700&q=85',tags:['Nature','Spiritual','Wildlife'],rating:'4.4',temp:'Oct–Apr',badge:'Northeast Gate',popular:false,emoji:'🌿'},
   {name:'Pune',region:'West India',state:'Maharashtra',tagline:'The Oxford of India — Peshwa heritage, hill forts, cafes & film studios.',img:'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=700&q=85',tags:['Urban','Heritage','Education'],rating:'4.4',temp:'Oct–Feb',badge:'Oxford of India',popular:false,emoji:'🏛️'},
 ];
