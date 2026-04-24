@@ -3470,18 +3470,18 @@
       <p class="sec-sub rv d1">Choose your duration. AI curates every detail — hotels, transport, activities and costs.
       </p>
       <div class="plans-tabs rv d2" style="margin-top:36px">
-        <button class="plan-tab on" onclick="switchPlan('2d',this)">2 Days</button>
+        <button class="plan-tab" onclick="switchPlan('2d',this)">2 Days</button>
         <button class="plan-tab" onclick="switchPlan('3d',this)">3 Days</button>
-        <button class="plan-tab" onclick="switchPlan('5d',this)">5 Days</button>
+        <button class="plan-tab on" onclick="switchPlan('5d',this)">5 Days</button>
         <button class="plan-tab" onclick="switchPlan('7d',this)">7 Days</button>
       </div>
-      <div id="plans-2d" class="plans-content on">
+      <div id="plans-2d" class="plans-content">
         <div class="plan-grid" id="pg-2d"></div>
       </div>
       <div id="plans-3d" class="plans-content">
         <div class="plan-grid" id="pg-3d"></div>
       </div>
-      <div id="plans-5d" class="plans-content">
+      <div id="plans-5d" class="plans-content on">
         <div class="plan-grid" id="pg-5d"></div>
       </div>
       <div id="plans-7d" class="plans-content">
@@ -4024,7 +4024,7 @@
     };
     function renderPlans(key) { const g = document.getElementById('pg-' + key); if (!g || g.children.length) return; (PLANS[key] || []).forEach(p => { const card = document.createElement('div'); card.className = 'plan-card'; card.innerHTML = `<div class="plan-header"><div class="plan-dest">${p.dest}</div><div class="plan-duration">${p.sub}</div></div><div class="plan-days">${p.days.map((d, i) => `<div class="plan-day"><div class="plan-day-n">D${i + 1}</div><div><div class="plan-day-t">${d.t}</div><div class="plan-day-d">${d.d}</div></div></div>`).join('')}</div><div class="plan-footer"><div><div style="font-size:11px;color:var(--text4);margin-bottom:3px">Budget Range</div><div class="plan-budget">${p.budget}</div></div><button class="plan-btn">Book Now →</button></div>`; g.appendChild(card); }); }
     window.switchPlan = function (key, btn) { document.querySelectorAll('.plan-tab').forEach(b => b.classList.remove('on')); document.querySelectorAll('.plans-content').forEach(c => c.classList.remove('on')); btn.classList.add('on'); document.getElementById('plans-' + key).classList.add('on'); renderPlans(key); };
-    renderPlans('2d');
+    renderPlans('5d');
 
     /* ═══════════════════════════════════════════════════
        VIDEO CLIPS — Premium thumbnails
