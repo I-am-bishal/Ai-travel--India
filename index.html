@@ -3309,12 +3309,452 @@
           grid-template-columns: 1fr;
         }
       }
+
+      /* ═══════════ SKIP TO CONTENT (a11y) ═══════════ */
+      .skip-link {
+        position: absolute;
+        top: -100%;
+        left: 16px;
+        z-index: 99999;
+        background: var(--green);
+        color: #000;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: top 0.2s;
+        text-decoration: none;
+      }
+      .skip-link:focus {
+        top: 16px;
+      }
+
+      /* ═══════════ FOCUS STATES (a11y) ═══════════ */
+      :focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      /* ═══════════ LANGUAGE TOGGLE ═══════════ */
+      .lang-toggle {
+        position: relative;
+      }
+      .lang-btn {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(46, 204, 113, 0.08);
+        border: 1px solid rgba(46, 204, 113, 0.2);
+        color: var(--green);
+        border-radius: 20px;
+        padding: 7px 14px;
+        font-family: 'Space Mono', monospace;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .lang-btn:hover {
+        background: rgba(46, 204, 113, 0.16);
+        border-color: rgba(46, 204, 113, 0.4);
+      }
+      .lang-dropdown {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        background: rgba(10, 20, 10, 0.97);
+        border: 1px solid rgba(46, 204, 113, 0.2);
+        border-radius: 14px;
+        padding: 8px;
+        min-width: 170px;
+        backdrop-filter: blur(20px);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: all 0.25s;
+        z-index: 2000;
+      }
+      .lang-toggle.open .lang-dropdown {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+      }
+      .lang-opt {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 9px;
+        cursor: pointer;
+        font-size: 14px;
+        color: var(--text2);
+        transition: background 0.2s;
+      }
+      .lang-opt:hover,
+      .lang-opt.active {
+        background: rgba(46, 204, 113, 0.12);
+        color: var(--green);
+      }
+      .lang-opt .lang-flag {
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .lang-opt .lang-name {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .lang-opt .lang-native {
+        font-size: 11px;
+        color: var(--text4);
+        display: block;
+      }
+
+      /* ═══════════ HIGH CONTRAST TOGGLE ═══════════ */
+      .hc-btn {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: var(--text3);
+        border-radius: 20px;
+        padding: 7px 12px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.25s;
+        line-height: 1;
+      }
+      .hc-btn:hover {
+        background: rgba(255,255,255,0.1);
+        color: var(--text);
+      }
+      body.high-contrast {
+        --bg: #000000;
+        --bg2: #0a0a0a;
+        --bg3: #111111;
+        --surface: rgba(255,255,255,.07);
+        --text: #ffffff;
+        --text2: rgba(255,255,255,.9);
+        --text3: rgba(255,255,255,.7);
+        --text4: rgba(255,255,255,.5);
+        --green: #00ff7f;
+        --green2: #00e070;
+        --green3: #00ccaa;
+        --border: rgba(255,255,255,.2);
+        --border-g: rgba(0,255,127,.3);
+      }
+      body.high-contrast .city-card img,
+      body.high-contrast .dest-card-img,
+      body.high-contrast .clip-thumb img {
+        filter: contrast(1.2) brightness(1.1);
+      }
+
+      /* ═══════════ TRAVEL INSIGHTS SECTION ═══════════ */
+      #travel-insights {
+        background: linear-gradient(180deg, rgba(8, 14, 8, 1) 0%, rgba(6, 10, 18, .98) 50%, rgba(8, 14, 8, 1) 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .insights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 22px;
+        margin-top: 48px;
+      }
+      .insight-card {
+        background: rgba(255,255,255,.03);
+        border: 1px solid rgba(255,255,255,.07);
+        border-radius: 18px;
+        overflow: hidden;
+        transition: transform 0.4s cubic-bezier(.23,1,.32,1), border-color 0.3s, box-shadow 0.4s;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+      }
+      .insight-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(46,204,113,.25);
+        box-shadow: 0 20px 50px rgba(0,0,0,.4), 0 0 30px rgba(46,204,113,.05);
+      }
+      .insight-thumb {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .insight-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(.23,1,.32,1);
+      }
+      .insight-card:hover .insight-thumb img {
+        transform: scale(1.07);
+      }
+      .insight-thumb-ov {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(8,14,8,.85) 0%, transparent 60%);
+      }
+      .insight-cat-badge {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        font-family: 'Space Mono', monospace;
+        font-size: 9px;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        padding: 5px 12px;
+        background: var(--green);
+        color: #000;
+        border-radius: 10px;
+        font-weight: 700;
+        z-index: 2;
+      }
+      .insight-read-time {
+        position: absolute;
+        bottom: 14px;
+        right: 14px;
+        font-family: 'Space Mono', monospace;
+        font-size: 10px;
+        padding: 4px 10px;
+        background: rgba(0,0,0,.75);
+        color: rgba(255,255,255,.7);
+        border-radius: 6px;
+        backdrop-filter: blur(4px);
+        z-index: 2;
+      }
+      .insight-body {
+        padding: 22px 22px 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .insight-date {
+        font-family: 'Space Mono', monospace;
+        font-size: 10px;
+        color: var(--text4);
+        letter-spacing: .1em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .insight-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 19px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.3;
+        margin-bottom: 10px;
+        transition: color 0.25s;
+      }
+      .insight-card:hover .insight-title {
+        color: var(--green);
+      }
+      .insight-excerpt {
+        font-size: 13px;
+        color: var(--text3);
+        line-height: 1.7;
+        flex: 1;
+        margin-bottom: 16px;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .insight-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255,255,255,.06);
+      }
+      .insight-author {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .insight-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--green), var(--green3));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .insight-author-name {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text2);
+      }
+      .insight-read-more {
+        font-family: 'Space Mono', monospace;
+        font-size: 10px;
+        letter-spacing: .08em;
+        color: var(--green);
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: gap 0.25s;
+      }
+      .insight-card:hover .insight-read-more {
+        gap: 8px;
+      }
+      .insights-featured {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 22px;
+        margin-top: 48px;
+      }
+      @media (max-width: 860px) {
+        .insights-featured {
+          grid-template-columns: 1fr;
+        }
+      }
+      .insight-featured-card {
+        border-radius: 20px;
+        overflow: hidden;
+        position: relative;
+        height: 420px;
+        cursor: pointer;
+        transition: transform 0.4s, box-shadow 0.4s;
+        text-decoration: none;
+      }
+      .insight-featured-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 30px 70px rgba(0,0,0,.5);
+      }
+      .insight-featured-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s;
+      }
+      .insight-featured-card:hover img {
+        transform: scale(1.05);
+      }
+      .insight-featured-ov {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(5,12,5,.97) 0%, rgba(5,12,5,.55) 45%, rgba(5,12,5,.1) 75%, transparent 100%);
+      }
+      .insight-featured-body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 28px 28px;
+        z-index: 2;
+      }
+      .insight-featured-badge {
+        display: inline-block;
+        font-family: 'Space Mono', monospace;
+        font-size: 9px;
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        background: var(--green);
+        color: #000;
+        border-radius: 12px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      .insight-featured-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 10px;
+      }
+      .insight-featured-excerpt {
+        font-size: 14px;
+        color: rgba(245,245,240,.65);
+        line-height: 1.65;
+        margin-bottom: 14px;
+      }
+      .insight-side-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .insight-side-card {
+        background: rgba(255,255,255,.03);
+        border: 1px solid rgba(255,255,255,.07);
+        border-radius: 14px;
+        overflow: hidden;
+        display: flex;
+        gap: 0;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        transition: border-color 0.3s, transform 0.3s;
+        height: 126px;
+      }
+      .insight-side-card:hover {
+        border-color: rgba(46,204,113,.2);
+        transform: translateX(4px);
+      }
+      .insight-side-thumb {
+        width: 120px;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .insight-side-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s;
+      }
+      .insight-side-card:hover .insight-side-thumb img {
+        transform: scale(1.08);
+      }
+      .insight-side-body {
+        padding: 14px 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        min-width: 0;
+      }
+      .insight-side-cat {
+        font-family: 'Space Mono', monospace;
+        font-size: 9px;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+        color: var(--green);
+        margin-bottom: 6px;
+      }
+      .insight-side-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.35;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .insight-side-meta {
+        font-size: 11px;
+        color: var(--text4);
+        margin-top: 6px;
+        font-family: 'Space Mono', monospace;
+      }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   </head>
 
   <body>
-    <div id="prog"></div>
+    <!-- Skip to content (a11y) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <div id="prog" role="progressbar" aria-label="Page scroll progress"></div>
 
     <!-- MOBILE MENU -->
     <div class="mob-menu" id="mob-menu">
@@ -3344,23 +3784,57 @@
         </div>
       </div>
       <div class="nav-links">
-        <div class="nav-lnk on" onclick="scrollTo2('destinations')">
-          Destinations
-        </div>
-        <div class="nav-lnk" onclick="scrollTo2('city-guide')">City Guide</div>
-        <div class="nav-lnk" onclick="scrollTo2('ai-trip-builder')">
-          AI Planner
-        </div>
-        <div class="nav-lnk" onclick="scrollTo2('plans')">Trip Plans</div>
-        <div class="nav-lnk" onclick="scrollTo2('clips')">Explore</div>
-        <div class="nav-lnk" onclick="scrollTo2('faq')">FAQ</div>
+        <div class="nav-lnk on" onclick="scrollTo2('destinations')" role="button" tabindex="0" aria-label="Go to Destinations">Destinations</div>
+        <div class="nav-lnk" onclick="scrollTo2('city-guide')" role="button" tabindex="0" aria-label="Go to City Guide">City Guide</div>
+        <div class="nav-lnk" onclick="scrollTo2('ai-trip-builder')" role="button" tabindex="0" aria-label="Go to AI Planner">AI Planner</div>
+        <div class="nav-lnk" onclick="scrollTo2('plans')" role="button" tabindex="0" aria-label="Go to Trip Plans">Trip Plans</div>
+        <div class="nav-lnk" onclick="scrollTo2('clips')" role="button" tabindex="0" aria-label="Go to Explore">Explore</div>
+        <div class="nav-lnk" onclick="scrollTo2('travel-insights')" role="button" tabindex="0" aria-label="Go to Travel Insights">Insights</div>
+        <div class="nav-lnk" onclick="scrollTo2('faq')" role="button" tabindex="0" aria-label="Go to FAQ">FAQ</div>
       </div>
       <div class="nav-acts">
-        <div class="nav-coord" id="nav-coord">20°N · 78°E</div>
-        <button class="btn-nv" onclick="scrollTo2('ai-trip-builder')">
-          ✦ Plan with AI
-        </button>
-        <button class="hbg" id="hbg" onclick="openMob()">
+        <div class="nav-coord" id="nav-coord" aria-label="Coordinates">20°N · 78°E</div>
+
+        <!-- High Contrast Toggle -->
+        <button class="hc-btn" id="hc-toggle-btn" onclick="toggleHighContrast()" aria-label="Toggle high contrast mode" title="Toggle high contrast mode">◑</button>
+
+        <!-- Language Toggle -->
+        <div class="lang-toggle" id="lang-toggle">
+          <button class="lang-btn" id="lang-btn" onclick="toggleLangMenu()" aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
+            <span id="lang-flag">🇮🇳</span>
+            <span id="lang-label">EN</span>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M1 3l4 4 4-4"/></svg>
+          </button>
+          <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Available languages">
+            <div class="lang-opt active" role="option" aria-selected="true" data-lang="en" data-flag="🇮🇳" data-label="EN" onclick="setLanguage('en','🇮🇳','EN')">
+              <span class="lang-flag">🇮🇳</span>
+              <div><span class="lang-name">English</span><span class="lang-native">English</span></div>
+            </div>
+            <div class="lang-opt" role="option" aria-selected="false" data-lang="hi" data-flag="🇮🇳" data-label="हि" onclick="setLanguage('hi','🇮🇳','हि')">
+              <span class="lang-flag">🇮🇳</span>
+              <div><span class="lang-name">Hindi</span><span class="lang-native">हिन्दी</span></div>
+            </div>
+            <div class="lang-opt" role="option" aria-selected="false" data-lang="bn" data-flag="🇧🇩" data-label="বাং" onclick="setLanguage('bn','🇧🇩','বাং')">
+              <span class="lang-flag">🇧🇩</span>
+              <div><span class="lang-name">Bengali</span><span class="lang-native">বাংলা</span></div>
+            </div>
+            <div class="lang-opt" role="option" aria-selected="false" data-lang="ta" data-flag="🇮🇳" data-label="த" onclick="setLanguage('ta','🇮🇳','த')">
+              <span class="lang-flag">🇮🇳</span>
+              <div><span class="lang-name">Tamil</span><span class="lang-native">தமிழ்</span></div>
+            </div>
+            <div class="lang-opt" role="option" aria-selected="false" data-lang="te" data-flag="🇮🇳" data-label="తె" onclick="setLanguage('te','🇮🇳','తె')">
+              <span class="lang-flag">🇮🇳</span>
+              <div><span class="lang-name">Telugu</span><span class="lang-native">తెలుగు</span></div>
+            </div>
+            <div class="lang-opt" role="option" aria-selected="false" data-lang="mr" data-flag="🇮🇳" data-label="म" onclick="setLanguage('mr','🇮🇳','म')">
+              <span class="lang-flag">🇮🇳</span>
+              <div><span class="lang-name">Marathi</span><span class="lang-native">मराठी</span></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-nv" onclick="scrollTo2('ai-trip-builder')" aria-label="Plan your India trip with AI">✦ Plan with AI</button>
+        <button class="hbg" id="hbg" onclick="openMob()" aria-label="Open navigation menu" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -3963,6 +4437,135 @@
         <div class="sec-tag rv">FAQ</div>
         <h2 class="sec-h2 rv">Answers for every<br /><em>explorer</em></h2>
         <div class="faq-grid rv d1" id="faq-grid"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════ TRAVEL INSIGHTS ═══════════ -->
+    <section id="travel-insights" class="sec nature-sec" aria-labelledby="insights-heading">
+      <div class="star-field" id="star-field-insights"></div>
+      <div class="sec-inner" id="main-content">
+        <div class="sec-tag rv">Travel Insights</div>
+        <h2 class="sec-h2 rv" id="insights-heading">Stories from <strong class="india-bold">India's</strong><br><em>greatest journeys</em></h2>
+        <p class="sec-sub rv d1">Expert guides, hidden gems, cultural deep-dives and practical tips — written by travellers who've lived every road in <strong>India</strong>.</p>
+
+        <!-- Featured + Side Stack -->
+        <div class="insights-featured rv d2">
+          <a class="insight-featured-card" href="#" aria-label="Read: Top 10 Hidden Gems in Northeast India">
+            <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=900&q=80" alt="Northeast India hidden gems — misty hills of Meghalaya" loading="lazy" />
+            <div class="insight-featured-ov"></div>
+            <div class="insight-featured-body">
+              <span class="insight-featured-badge">🌿 NORTHEAST</span>
+              <div class="insight-featured-title">Top 10 Hidden Gems in Northeast India You've Never Heard Of</div>
+              <div class="insight-featured-excerpt">Beyond Shillong and Kaziranga lies a wild, unexplored India — seven sisters of culture, cuisine and jaw-dropping landscapes that most travellers miss entirely.</div>
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div class="insight-author">
+                  <div class="insight-avatar" aria-hidden="true">✍️</div>
+                  <span class="insight-author-name">Priya Sharma · 8 min read</span>
+                </div>
+                <span class="insight-read-more" aria-hidden="true">Read →</span>
+              </div>
+            </div>
+          </a>
+
+          <div class="insight-side-stack">
+            <a class="insight-side-card" href="#" aria-label="Read: How to survive the Golden Triangle">
+              <div class="insight-side-thumb">
+                <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&q=80" alt="Taj Mahal Agra — Golden Triangle" loading="lazy" />
+              </div>
+              <div class="insight-side-body">
+                <div class="insight-side-cat">Heritage</div>
+                <div class="insight-side-title">How to Survive the Golden Triangle in 5 Days</div>
+                <div class="insight-side-meta">6 min read · Apr 2026</div>
+              </div>
+            </a>
+            <a class="insight-side-card" href="#" aria-label="Read: Kerala Monsoon travel guide">
+              <div class="insight-side-thumb">
+                <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400&q=80" alt="Kerala backwaters during monsoon" loading="lazy" />
+              </div>
+              <div class="insight-side-body">
+                <div class="insight-side-cat">Backwaters</div>
+                <div class="insight-side-title">Kerala Monsoon: Why It's the Best Time to Visit</div>
+                <div class="insight-side-meta">5 min read · Mar 2026</div>
+              </div>
+            </a>
+            <a class="insight-side-card" href="#" aria-label="Read: Solo female travel in Rajasthan">
+              <div class="insight-side-thumb">
+                <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=400&q=80" alt="Jaipur Rajasthan Amber Fort" loading="lazy" />
+              </div>
+              <div class="insight-side-body">
+                <div class="insight-side-cat">Solo Travel</div>
+                <div class="insight-side-title">Solo Female Travel in Rajasthan: A Complete Safety Guide</div>
+                <div class="insight-side-meta">9 min read · Feb 2026</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article Grid -->
+        <div class="insights-grid">
+          <a class="insight-card rv d1" href="#" aria-label="Read: Budget Ladakh trip under ₹30,000">
+            <div class="insight-thumb">
+              <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80" alt="Ladakh Pangong Lake budget travel" loading="lazy" />
+              <div class="insight-thumb-ov"></div>
+              <div class="insight-cat-badge">💰 Budget</div>
+              <div class="insight-read-time">7 min</div>
+            </div>
+            <div class="insight-body">
+              <div class="insight-date">Apr 12, 2026</div>
+              <div class="insight-title">How to Do Ladakh Under ₹30,000 — A Real Budget Breakdown</div>
+              <div class="insight-excerpt">Permits, shared jeeps, homestays and dhabas — a brutally honest cost guide for every backpacker dreaming of Pangong Lake without breaking the bank.</div>
+              <div class="insight-footer">
+                <div class="insight-author">
+                  <div class="insight-avatar" aria-hidden="true">🏔️</div>
+                  <span class="insight-author-name">Arjun Mehta</span>
+                </div>
+                <span class="insight-read-more" aria-hidden="true">Read →</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="insight-card rv d2" href="#" aria-label="Read: India's best street food cities ranked">
+            <div class="insight-thumb">
+              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80" alt="Indian street food chaat" loading="lazy" />
+              <div class="insight-thumb-ov"></div>
+              <div class="insight-cat-badge">🍛 Food</div>
+              <div class="insight-read-time">5 min</div>
+            </div>
+            <div class="insight-body">
+              <div class="insight-date">Mar 28, 2026</div>
+              <div class="insight-title">India's 8 Greatest Street Food Cities, Honestly Ranked</div>
+              <div class="insight-excerpt">From Kolkata's puchkas to Delhi's parathas to Chennai's idlis at 5 AM — which city wins the ultimate street food crown? We ate our way through all of them.</div>
+              <div class="insight-footer">
+                <div class="insight-author">
+                  <div class="insight-avatar" aria-hidden="true">🍜</div>
+                  <span class="insight-author-name">Anika Roy</span>
+                </div>
+                <span class="insight-read-more" aria-hidden="true">Read →</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="insight-card rv d3" href="#" aria-label="Read: Spiritual circuit of India guide">
+            <div class="insight-thumb">
+              <img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&q=80" alt="Varanasi Ganga Aarti spiritual" loading="lazy" />
+              <div class="insight-thumb-ov"></div>
+              <div class="insight-cat-badge">🙏 Spiritual</div>
+              <div class="insight-read-time">10 min</div>
+            </div>
+            <div class="insight-body">
+              <div class="insight-date">Mar 15, 2026</div>
+              <div class="insight-title">The Great Spiritual Circuit of India — 12 Sacred Sites in One Journey</div>
+              <div class="insight-excerpt">Char Dham to Tirupati, Varanasi to Amritsar — a definitive pilgrim's route through India's most transcendent, soul-stirring sacred landscapes.</div>
+              <div class="insight-footer">
+                <div class="insight-author">
+                  <div class="insight-avatar" aria-hidden="true">🪔</div>
+                  <span class="insight-author-name">Kavita Nair</span>
+                </div>
+                <span class="insight-read-more" aria-hidden="true">Read →</span>
+              </div>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -8552,6 +9155,163 @@
           }
         };
       })();
+
+      /* ══════════════════════════════════════════════
+         LANGUAGE TOGGLE
+      ══════════════════════════════════════════════ */
+      const UI_STRINGS = {
+        en: {
+          heroEyebrow: "AI-Powered · INDIA · Travel Intelligence",
+          heroH1: "Discover<br><span class='accent'>Incredible</span><br><span class='outline' style='text-shadow:0 0 40px rgba(46,204,113,.25)'>India.</span>",
+          heroDesc: "Where real satellite geography meets AI-powered journey planning. Explore every mountain, coastline and temple of <strong style='color:var(--green);font-weight:800'>INDIA</strong> — mapped, rated and ready for your next adventure.",
+          planBtn: "✦ Plan with AI",
+          destNav: "Destinations",
+          insightsNav: "Insights",
+        },
+        hi: {
+          heroEyebrow: "AI-संचालित · भारत · यात्रा बुद्धिमत्ता",
+          heroH1: "खोजें<br><span class='accent'>अविश्वसनीय</span><br><span class='outline' style='text-shadow:0 0 40px rgba(46,204,113,.25)'>भारत।</span>",
+          heroDesc: "जहाँ वास्तविक उपग्रह भूगोल AI-संचालित यात्रा योजना से मिलता है। <strong style='color:var(--green);font-weight:800'>भारत</strong> के हर पहाड़, समुद्र तट और मंदिर को खोजें।",
+          planBtn: "✦ AI से योजना बनाएं",
+          destNav: "गंतव्य",
+          insightsNav: "अंतर्दृष्टि",
+        },
+        bn: {
+          heroEyebrow: "AI-চালিত · ভারত · ভ্রমণ বুদ্ধিমত্তা",
+          heroH1: "আবিষ্কার করুন<br><span class='accent'>অবিশ্বাস্য</span><br><span class='outline' style='text-shadow:0 0 40px rgba(46,204,113,.25)'>ভারত।</span>",
+          heroDesc: "যেখানে প্রকৃত স্যাটেলাইট ভূগোল AI-চালিত ভ্রমণ পরিকল্পনার সাথে মিলিত হয়। <strong style='color:var(--green);font-weight:800'>ভারত</strong> এর প্রতিটি পর্বত, উপকূল এবং মন্দির অন্বেষণ করুন।",
+          planBtn: "✦ AI দিয়ে পরিকল্পনা করুন",
+          destNav: "গন্তব্য",
+          insightsNav: "অন্তর্দৃষ্টি",
+        },
+        ta: {
+          heroEyebrow: "AI-இயக்கப்படும் · இந்தியா · பயண நுண்ணறிவு",
+          heroH1: "கண்டுபிடிக்க<br><span class='accent'>அற்புதமான</span><br><span class='outline' style='text-shadow:0 0 40px rgba(46,204,113,.25)'>இந்தியா.</span>",
+          heroDesc: "உண்மையான செயற்கைக்கோள் புவியியல் AI-இயக்கப்படும் பயணத் திட்டமிடலுடன் சந்திக்கும் இடம். <strong style='color:var(--green);font-weight:800'>இந்தியாவின்</strong> ஒவ்வொரு மலை, கடற்கரை மற்றும் கோயிலை ஆராயுங்கள்.",
+          planBtn: "✦ AI மூலம் திட்டமிடுங்கள்",
+          destNav: "இடங்கள்",
+          insightsNav: "நுண்ணறிவு",
+        },
+        te: {
+          heroEyebrow: "AI-శక్తితో · భారతదేశం · ప్రయాణ మేధస్సు",
+          heroH1: "కనుగొనండి<br><span class='accent'>అద్భుతమైన</span><br><span class='outline' style='text-shadow:0 0 40px rgba(46,204,113,.25)'>భారతదేశం.</span>",
+          heroDesc: "నిజమైన ఉపగ్రహ భూగోళం AI-శక్తితో కూడిన ప్రయాణ ప్రణాళికను కలిసే చోట. <strong style='color:var(--green);font-weight:800'>భారతదేశంలోని</strong> ప్రతి పర్వతం, తీరం మరియు దేవాలయాన్ని అన్వేషించండి.",
+          planBtn: "✦ AI తో ప్రణాళిక చేయండి",
+          destNav: "గమ్యాలు",
+          insightsNav: "అంతర్దృష్టులు",
+        },
+        mr: {
+          heroEyebrow: "AI-चालित · भारत · प्रवास बुद्धिमत्ता",
+          heroH1: "शोधा<br><span class='accent'>अविश्वसनीय</span><br><span class='outline' style='text-shadow:0 0 40px rgba(46,204,113,.25)'>भारत.</span>",
+          heroDesc: "जिथे खऱ्या उपग्रह भूगोलाची भेट AI-चालित प्रवास नियोजनाशी होते. <strong style='color:var(--green);font-weight:800'>भारताचा</strong> प्रत्येक पर्वत, किनारा आणि मंदिर शोधा.",
+          planBtn: "✦ AI सह योजना करा",
+          destNav: "गंतव्ये",
+          insightsNav: "अंतर्दृष्टी",
+        },
+      };
+
+      let currentLang = localStorage.getItem("tm-lang") || "en";
+
+      function applyLanguage(lang) {
+        const s = UI_STRINGS[lang];
+        if (!s) return;
+        document.documentElement.setAttribute("lang", lang);
+        const eyebrow = document.getElementById("hero-eyebrow");
+        if (eyebrow) eyebrow.innerHTML = '<div class="hero-eye-dot"></div>' + s.heroEyebrow;
+        const h1 = document.getElementById("hero-h1");
+        if (h1) h1.innerHTML = s.heroH1;
+        const desc = document.getElementById("hero-desc");
+        if (desc) desc.innerHTML = s.heroDesc;
+        document.querySelectorAll(".btn-nv").forEach(b => { if (b.textContent.includes("Plan")) b.textContent = s.planBtn; });
+        localStorage.setItem("tm-lang", lang);
+        currentLang = lang;
+      }
+
+      window.setLanguage = function(lang, flag, label) {
+        document.getElementById("lang-flag").textContent = flag;
+        document.getElementById("lang-label").textContent = label;
+        document.querySelectorAll(".lang-opt").forEach(o => {
+          o.classList.toggle("active", o.dataset.lang === lang);
+          o.setAttribute("aria-selected", o.dataset.lang === lang ? "true" : "false");
+        });
+        applyLanguage(lang);
+        closeLangMenu();
+      };
+
+      window.toggleLangMenu = function() {
+        const lt = document.getElementById("lang-toggle");
+        const btn = document.getElementById("lang-btn");
+        const isOpen = lt.classList.toggle("open");
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      };
+
+      function closeLangMenu() {
+        const lt = document.getElementById("lang-toggle");
+        const btn = document.getElementById("lang-btn");
+        if (lt) { lt.classList.remove("open"); btn.setAttribute("aria-expanded", "false"); }
+      }
+
+      // Close lang dropdown when clicking outside
+      document.addEventListener("click", e => {
+        if (!e.target.closest("#lang-toggle")) closeLangMenu();
+      });
+
+      // Apply saved language on load
+      if (currentLang !== "en") {
+        const saved = UI_STRINGS[currentLang];
+        if (saved) {
+          const opt = document.querySelector(`.lang-opt[data-lang="${currentLang}"]`);
+          if (opt) {
+            document.getElementById("lang-flag").textContent = opt.dataset.flag;
+            document.getElementById("lang-label").textContent = opt.dataset.label;
+            opt.classList.add("active");
+          }
+          applyLanguage(currentLang);
+        }
+      }
+
+      /* ══════════════════════════════════════════════
+         HIGH CONTRAST MODE
+      ══════════════════════════════════════════════ */
+      window.toggleHighContrast = function() {
+        const isHC = document.body.classList.toggle("high-contrast");
+        localStorage.setItem("tm-hc", isHC ? "1" : "0");
+        const btn = document.getElementById("hc-toggle-btn");
+        if (btn) btn.setAttribute("aria-pressed", isHC ? "true" : "false");
+      };
+
+      // Restore HC preference
+      if (localStorage.getItem("tm-hc") === "1") {
+        document.body.classList.add("high-contrast");
+        const btn = document.getElementById("hc-toggle-btn");
+        if (btn) btn.setAttribute("aria-pressed", "true");
+      }
+
+      /* ══════════════════════════════════════════════
+         STAR FIELD — INSIGHTS SECTION
+      ══════════════════════════════════════════════ */
+      (function() {
+        const sf = document.getElementById("star-field-insights");
+        if (!sf) return;
+        for (let i = 0; i < 40; i++) {
+          const s = document.createElement("div");
+          s.className = "star";
+          s.style.left = Math.random() * 100 + "%";
+          s.style.top = Math.random() * 100 + "%";
+          s.style.width = s.style.height = (1 + Math.random() * 2) + "px";
+          s.style.animationDuration = (3 + Math.random() * 5) + "s";
+          s.style.animationDelay = Math.random() * 4 + "s";
+          sf.appendChild(s);
+        }
+      })();
+
+      /* ══════════════════════════════════════════════
+         KEYBOARD: nav-lnk items accessible via Enter
+      ══════════════════════════════════════════════ */
+      document.querySelectorAll(".nav-lnk[tabindex='0']").forEach(el => {
+        el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); } });
+      });
+
     </script>
   </body>
 </html>
