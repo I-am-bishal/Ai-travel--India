@@ -141,3 +141,46 @@
         el.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); } });
       });
 
+/* ══════════════════════════════════════════════
+         SCROLL SPY: Update active nav link
+      ══════════════════════════════════════════════ */
+      document.addEventListener('DOMContentLoaded', () => {
+        const sections = [
+          { id: 'destinations', hookId: 'event-hook-8' },
+          { id: 'city-guide', hookId: 'event-hook-9' },
+          { id: 'ai-trip-builder', hookId: 'event-hook-10' },
+          { id: 'plans', hookId: 'event-hook-11' },
+          { id: 'clips', hookId: 'event-hook-12' },
+          { id: 'travel-insights', hookId: 'event-hook-13' },
+          { id: 'faq', hookId: 'event-hook-14' }
+        ];
+
+        const observerOptions = {
+          root: null,
+          rootMargin: '-20% 0px -60% 0px',
+          threshold: 0
+        };
+
+        const navLinks = document.querySelectorAll('.nav-lnk');
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const currentId = entry.target.id;
+              const activeSection = sections.find(s => s.id === currentId);
+              if (activeSection) {
+                navLinks.forEach(link => link.classList.remove('on'));
+                const activeLink = document.getElementById(activeSection.hookId);
+                if (activeLink) activeLink.classList.add('on');
+              }
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach(section => {
+          const el = document.getElementById(section.id);
+          if (el) observer.observe(el);
+        });
+      });
+
+
