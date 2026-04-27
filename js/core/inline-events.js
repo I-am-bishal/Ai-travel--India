@@ -1,18 +1,7 @@
 
 // Extracted Inline Events
 document.addEventListener('DOMContentLoaded', () => {
-  const el_event_hook_1_tent = document.getElementById('event-hook-1');
-  if(el_event_hook_1_tent) {
-    el_event_hook_1_tent.addEventListener('tent', function(event) {
-      width=device-width,initial-scale=1.0;
-    });
-  }
-  const el_event_hook_2_tent = document.getElementById('event-hook-2');
-  if(el_event_hook_2_tent) {
-    el_event_hook_2_tent.addEventListener('tent', function(event) {
-      AI-powered geographic travel platform for India. Explore 847+ destinations with real satellite cartography and AI trip planning.;
-    });
-  }
+
   const el_event_hook_3_click = document.getElementById('event-hook-3');
   if(el_event_hook_3_click) {
     el_event_hook_3_click.addEventListener('click', function(event) {

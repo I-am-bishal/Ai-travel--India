@@ -101,20 +101,7 @@
           popular: true,
           emoji: "🌳",
         },
-        {
-          name: "Udaipur",
-          region: "North India",
-          state: "Rajasthan",
-          tagline:
-            "India's most romantic city — shimmering lakes, white palaces & sunset royalty.",
-          img: "assets/images/udaipur_lake.png",
-          tags: ["Heritage", "Honeymoon", "Lakes"],
-          rating: "4.9",
-          temp: "Oct–Mar",
-          badge: "Lake City",
-          popular: true,
-          emoji: "🏰",
-        },
+
         {
           name: "Rishikesh",
           region: "North India",
