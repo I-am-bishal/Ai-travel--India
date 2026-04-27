@@ -1,0 +1,566 @@
+﻿      /* â”€â”€ Musafir AI Root Variables â”€â”€ */
+      :root {
+        --mai-bg: #0d1a0d;
+        --mai-surface: rgba(15, 25, 15, 0.97);
+        --mai-panel: rgba(13, 20, 13, 0.98);
+        --mai-border: rgba(46, 204, 113, 0.18);
+        --mai-green: #2ecc71;
+        --mai-green2: #27ae60;
+        --mai-green3: #1abc9c;
+        --mai-gold: #d4a843;
+        --mai-radius: 20px;
+        --mai-shadow:
+          0 24px 80px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(46, 204, 113, 0.12),
+          0 0 60px rgba(46, 204, 113, 0.05);
+      }
+
+      /* â”€â”€ Launcher Button â”€â”€ */
+      #musafir-launcher {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 9990;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          var(--mai-green),
+          var(--mai-green3)
+        );
+        border: none;
+        cursor: pointer;
+        box-shadow:
+          0 8px 32px rgba(46, 204, 113, 0.4),
+          0 2px 8px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.3s;
+        animation: mPulseRing 3s ease-in-out infinite;
+      }
+
+      #musafir-launcher:hover {
+        transform: scale(1.1) translateY(-3px);
+        box-shadow:
+          0 16px 48px rgba(46, 204, 113, 0.55),
+          0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      #musafir-launcher.open {
+        transform: scale(0.9);
+        animation: none;
+      }
+
+      #musafir-launcher svg {
+        width: 30px;
+        height: 30px;
+        transition: transform 0.3s;
+      }
+
+      @keyframes mPulseRing {
+        0%,
+        100% {
+          box-shadow:
+            0 8px 32px rgba(46, 204, 113, 0.4),
+            0 0 0 0 rgba(46, 204, 113, 0.4);
+        }
+
+        50% {
+          box-shadow:
+            0 8px 32px rgba(46, 204, 113, 0.4),
+            0 0 0 10px rgba(46, 204, 113, 0);
+        }
+      }
+
+      /* â”€â”€ Panel â”€â”€ */
+      #musafir-panel {
+        position: fixed;
+        bottom: 104px;
+        right: 28px;
+        z-index: 9990;
+        width: min(500px, calc(100vw - 32px));
+        height: min(700px, calc(100vh - 120px));
+        background: var(--mai-surface);
+        border: 1px solid var(--mai-border);
+        border-radius: var(--mai-radius);
+        box-shadow: var(--mai-shadow);
+        display: flex;
+        flex-direction: column;
+        transform: scale(0.88) translateY(20px);
+        transform-origin: bottom right;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+          opacity 0.3s;
+        backdrop-filter: blur(24px);
+        overflow: hidden;
+      }
+
+      #musafir-panel.open {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      /* â”€â”€ Header â”€â”€ */
+      .mai-header {
+        background: linear-gradient(
+          135deg,
+          rgba(10, 24, 10, 0.95),
+          rgba(16, 32, 16, 0.95)
+        );
+        border-bottom: 1px solid var(--mai-border);
+        padding: 18px 20px 16px;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .mai-header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 80% 20%,
+          rgba(46, 204, 113, 0.08),
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+
+      .mai-head-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .mai-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background: linear-gradient(
+          135deg,
+          var(--mai-green),
+          var(--mai-green3)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        position: relative;
+        box-shadow: 0 0 16px rgba(46, 204, 113, 0.3);
+      }
+
+      .mai-avatar::after {
+        content: "";
+        position: absolute;
+        bottom: 1px;
+        right: 1px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--mai-green);
+        border: 2px solid var(--mai-panel);
+        box-shadow: 0 0 6px var(--mai-green);
+      }
+
+      .mai-name-col {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .mai-name {
+        font-family: "Playfair Display", serif;
+        font-size: 17px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+      }
+
+      .mai-name span {
+        color: var(--mai-green);
+      }
+
+      .mai-status {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        color: rgba(46, 204, 113, 0.7);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-top: 3px;
+      }
+
+      .mai-status-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--mai-green);
+        box-shadow: 0 0 6px var(--mai-green);
+        animation: mDotPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes mDotPulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      .mai-head-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+      }
+
+      /* Voice Toggle */
+      .mai-voice-toggle {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 6px 10px;
+        cursor: pointer;
+        transition: all 0.25s;
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        color: rgba(245, 245, 240, 0.5);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .mai-voice-toggle:hover {
+        background: rgba(46, 204, 113, 0.08);
+        border-color: rgba(46, 204, 113, 0.25);
+        color: var(--mai-green);
+      }
+
+      .mai-voice-toggle.active {
+        background: rgba(46, 204, 113, 0.12);
+        border-color: rgba(46, 204, 113, 0.35);
+        color: var(--mai-green);
+      }
+
+      /* â”€â”€ Reset Chat Button â”€â”€ */
+      .mai-reset-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        color: rgba(245, 245, 240, 0.4);
+        transition: all 0.25s;
+        flex-shrink: 0;
+      }
+
+      .mai-reset-btn:hover {
+        background: rgba(46, 204, 113, 0.1);
+        border-color: rgba(46, 204, 113, 0.25);
+        color: var(--mai-green);
+        transform: rotate(180deg);
+      }
+
+      .mai-suggestions {
+        padding: 8px 16px 12px;
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+        flex-shrink: 0;
+        transition: all 0.4s ease;
+      }
+
+      /* â”€â”€ Messages Container â”€â”€ */
+      .mai-msgs {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--mai-green2) transparent;
+        scroll-behavior: smooth;
+      }
+
+      .mai-msgs::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      .mai-msgs::-webkit-scrollbar-thumb {
+        background: var(--mai-green2);
+        border-radius: 2px;
+      }
+
+      /* Message Bubbles */
+
+      .mai-msg {
+        display: flex;
+        gap: 9px;
+        align-items: flex-end;
+        animation: mMsgIn 0.35s cubic-bezier(0.23, 1, 0.32, 1) both;
+      }
+
+      @keyframes mMsgIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .mai-msg-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background: linear-gradient(
+          135deg,
+          var(--mai-green),
+          var(--mai-green3)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        margin-bottom: 2px;
+      }
+
+      .mai-bubble {
+        max-width: 78%;
+        padding: 11px 14px;
+        border-radius: 16px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .mai-bubble.ai {
+        background: rgba(20, 35, 20, 0.9);
+        border: 1px solid rgba(46, 204, 113, 0.12);
+        color: rgba(245, 245, 240, 0.88);
+        border-bottom-left-radius: 4px;
+      }
+
+      .mai-bubble.user {
+        background: linear-gradient(
+          135deg,
+          var(--mai-green),
+          var(--mai-green3)
+        );
+        color: #000;
+        font-weight: 500;
+        border-bottom-right-radius: 4px;
+        margin-left: auto;
+      }
+
+      .mai-msg.user-msg {
+        flex-direction: row-reverse;
+      }
+
+      .mai-msg-time {
+        font-family: "Space Mono", monospace;
+        font-size: 9px;
+        color: rgba(245, 245, 240, 0.25);
+        margin-top: 4px;
+        text-align: right;
+        display: block;
+      }
+
+      .mai-msg.user-msg .mai-msg-time {
+        text-align: right;
+      }
+
+      /* Typing indicator */
+      .mai-typing {
+        display: flex;
+        gap: 5px;
+        padding: 11px 16px;
+        align-items: center;
+      }
+
+      .mai-typing span {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--mai-green);
+        opacity: 0.4;
+        animation: mTypeDot 1.2s ease-in-out infinite;
+      }
+
+      .mai-typing span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .mai-typing span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes mTypeDot {
+        0%,
+        80%,
+        100% {
+          transform: scale(0.6);
+          opacity: 0.2;
+        }
+
+        40% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+      }
+
+      /* â”€â”€ Quick Suggestions â”€â”€ */
+      .mai-suggestions {
+        padding: 8px 16px 12px;
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+        flex-shrink: 0;
+      }
+
+      .mai-sug {
+        padding: 6px 12px;
+        border-radius: 16px;
+        background: rgba(46, 204, 113, 0.07);
+        border: 1px solid rgba(46, 204, 113, 0.15);
+        font-size: 12px;
+        color: rgba(46, 204, 113, 0.85);
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      .mai-sug:hover {
+        background: rgba(46, 204, 113, 0.15);
+        border-color: rgba(46, 204, 113, 0.35);
+        color: var(--mai-green);
+        transform: translateY(-1px);
+      }
+
+      /* â”€â”€ Input Row â”€â”€ */
+      .mai-input-row {
+        padding: 12px 14px 14px;
+        border-top: 1px solid var(--mai-border);
+        display: flex;
+        gap: 8px;
+        align-items: flex-end;
+        flex-shrink: 0;
+        background: rgba(10, 16, 10, 0.6);
+      }
+
+      .mai-input-wrap {
+        flex: 1;
+        position: relative;
+      }
+
+      .mai-input {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1.5px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 12px 14px;
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        outline: none;
+        resize: none;
+        max-height: 96px;
+        min-height: 44px;
+        transition:
+          border-color 0.25s,
+          box-shadow 0.25s;
+        line-height: 1.4;
+        scrollbar-width: none;
+      }
+
+      .mai-input::placeholder {
+        color: rgba(245, 245, 240, 0.25);
+      }
+
+      .mai-input:focus {
+        border-color: rgba(46, 204, 113, 0.35);
+        box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.06);
+      }
+
+      .mai-send {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        flex-shrink: 0;
+        background: linear-gradient(
+          135deg,
+          var(--mai-green),
+          var(--mai-green3)
+        );
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.25s;
+        box-shadow: 0 4px 16px rgba(46, 204, 113, 0.25);
+      }
+
+      .mai-send:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 24px rgba(46, 204, 113, 0.4);
+      }
+
+      .mai-send:active {
+        transform: scale(0.93);
+      }
+
+      .mai-send svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: #000;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* â”€â”€ Disclaimer strip â”€â”€ */
+      .mai-disclaimer {
+        padding: 6px 14px 8px;
+        text-align: center;
+        font-family: "Space Mono", monospace;
+        font-size: 9px;
+        color: rgba(245, 245, 240, 0.15);
+        letter-spacing: 0.06em;
+        flex-shrink: 0;
+      }
+
+      /* â”€â”€ Off-topic notice â”€â”€ */
+      .mai-bubble.off {
+        background: rgba(212, 168, 67, 0.06);
+        border-color: rgba(212, 168, 67, 0.18);
+        color: rgba(212, 168, 67, 0.75);
+      }
