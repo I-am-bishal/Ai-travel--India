@@ -1,0 +1,228 @@
+/* ═══════════ SECTION BASE ═══════════ */
+
+      .sec {
+        padding: clamp(70px, 10vw, 130px) clamp(24px, 6vw, 80px);
+        position: relative;
+      }
+
+      .sec-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 5;
+      }
+
+      .sec-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--green);
+        margin-bottom: 16px;
+      }
+
+      .sec-tag::before {
+        content: "";
+        width: 20px;
+        height: 2px;
+        background: var(--green);
+        flex-shrink: 0;
+        border-radius: 1px;
+      }
+
+      .sec-h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(34px, 5vw, 64px);
+        font-weight: 700;
+        line-height: 1.08;
+        margin-bottom: 16px;
+        letter-spacing: -0.01em;
+        color: #fff;
+      }
+
+      .sec-h2 em {
+        font-style: italic;
+        color: var(--green);
+      }
+
+      .sec-sub {
+        font-size: 17px;
+        color: var(--text3);
+        line-height: 1.75;
+        max-width: 520px;
+      }
+
+      .rv {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      .rv.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      .rv-l {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      .rv-l.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      .rv-r {
+        opacity: 0;
+        transform: translateX(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      .rv-r.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      .d1 {
+        transition-delay: 0.1s;
+      }
+
+      .d2 {
+        transition-delay: 0.18s;
+      }
+
+      .d3 {
+        transition-delay: 0.26s;
+      }
+
+      .d4 {
+        transition-delay: 0.34s;
+      }
+
+      
+/* ═══════════ CTA — Aurora Biome ═══════════ */
+
+      #cta-sec {
+        background: linear-gradient(
+          180deg,
+          rgba(18, 14, 8, 0.97) 0%,
+          rgba(5, 12, 8, 0.95) 40%,
+          var(--bg2) 100%
+        );
+        border-top: 1px solid var(--border-g);
+        border-bottom: 1px solid var(--border-g);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-inner {
+        max-width: 780px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 90px 24px;
+        position: relative;
+        z-index: 5;
+      }
+
+      .cta-eye {
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-bottom: 22px;
+      }
+
+      .cta-eye::before,
+      .cta-eye::after {
+        content: "";
+        flex: 0 0 28px;
+        height: 1.5px;
+        background: var(--green);
+        border-radius: 1px;
+      }
+
+      .cta-h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(42px, 6vw, 72px);
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+
+      .cta-h2 em {
+        color: var(--green);
+        font-style: italic;
+      }
+
+      .cta-p {
+        font-size: 17px;
+        color: var(--text3);
+        line-height: 1.75;
+        margin-bottom: 40px;
+      }
+
+      .cta-form {
+        display: flex;
+        gap: 10px;
+        max-width: 480px;
+        margin: 0 auto 0;
+      }
+
+      .cta-input {
+        flex: 1;
+        background: var(--surface);
+        border: 1px solid var(--border-g);
+        padding: 16px 22px;
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        outline: none;
+        border-radius: 28px;
+        transition: border-color 0.3s;
+      }
+
+      .cta-input:focus {
+        border-color: var(--green);
+        box-shadow: 0 0 16px rgba(46, 204, 113, 0.1);
+      }
+
+      .cta-input::placeholder {
+        color: var(--text4);
+      }
+
+      .cta-ok {
+        display: none;
+        background: var(--green-dim);
+        border: 1px solid var(--border-g);
+        color: var(--green);
+        padding: 14px 28px;
+        font-size: 15px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-top: 18px;
+        border-radius: 12px;
+      }
+
+      .cta-ok.show {
+        display: block;
+      }
+
+      

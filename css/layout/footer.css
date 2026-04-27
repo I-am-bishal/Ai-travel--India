@@ -1,0 +1,133 @@
+/* ═══════════ FOOTER ═══════════ */
+
+      footer {
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        padding: 64px clamp(24px, 6vw, 80px) 36px;
+      }
+
+      .ft-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+        gap: clamp(20px, 4vw, 60px);
+        margin-bottom: 52px;
+      }
+
+      .ft-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+
+      .ft-logo span {
+        color: var(--green);
+      }
+
+      .ft-sub {
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        color: var(--green3);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        opacity: 0.6;
+      }
+
+      .ft-tag {
+        font-size: 14px;
+        color: var(--text4);
+        line-height: 1.7;
+        max-width: 280px;
+        margin-bottom: 22px;
+      }
+
+      .ft-soc {
+        display: flex;
+        gap: 10px;
+      }
+
+      .ft-s {
+        width: 38px;
+        height: 38px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text4);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .ft-s:hover {
+        border-color: var(--green);
+        color: var(--green);
+        box-shadow: 0 0 12px rgba(46, 204, 113, 0.1);
+      }
+
+      .ft-col-t {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--text4);
+        margin-bottom: 18px;
+        font-weight: 700;
+      }
+
+      .ft-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .ft-links li a {
+        font-size: 15px;
+        color: var(--text4);
+        transition: color 0.2s;
+        cursor: pointer;
+      }
+
+      .ft-links li a:hover {
+        color: var(--green);
+      }
+
+      .ft-bot {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        padding-top: 28px;
+        border-top: 1px solid var(--border);
+      }
+
+      .ft-copy {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        color: var(--text4);
+        letter-spacing: 0.06em;
+      }
+
+      .ft-badges {
+        display: flex;
+        gap: 10px;
+      }
+
+      .ft-badge {
+        padding: 5px 14px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        font-family: "Space Mono", monospace;
+        font-size: 10px;
+        color: var(--text4);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      

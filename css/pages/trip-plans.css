@@ -1,0 +1,185 @@
+/* ═══════════ TRIP PLANS — Mountain Biome ═══════════ */
+
+      #plans {
+        background: linear-gradient(
+          180deg,
+          var(--bg) 0%,
+          rgba(10, 15, 25, 0.95) 30%,
+          rgba(8, 12, 22, 0.98) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .plans-tabs {
+        display: flex;
+        gap: 3px;
+        margin-bottom: 44px;
+        width: fit-content;
+        background: var(--surface);
+        border-radius: 28px;
+        padding: 4px;
+      }
+
+      .plan-tab {
+        padding: 12px 30px;
+        font-family: "Space Mono", monospace;
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text3);
+        cursor: pointer;
+        transition: all 0.25s;
+        background: transparent;
+        border: none;
+        border-radius: 24px;
+        font-weight: 500;
+      }
+
+      .plan-tab.on {
+        background: var(--green);
+        color: #000;
+        box-shadow: 0 0 16px rgba(46, 204, 113, 0.2);
+        font-weight: 700;
+      }
+
+      .plans-content {
+        display: none;
+      }
+
+      .plans-content.on {
+        display: block;
+      }
+
+      .plan-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 20px;
+      }
+
+      .plan-card {
+        background: rgba(10, 15, 25, 0.6);
+        backdrop-filter: blur(8px);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+      }
+
+      .plan-card:hover {
+        border-color: rgba(46, 204, 113, 0.3);
+        transform: translateY(-4px);
+      }
+
+      .plan-header {
+        padding: 20px 22px;
+        border-bottom: 1px solid var(--border);
+        background: var(--green-dim);
+      }
+
+      .plan-dest {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 5px;
+      }
+
+      .plan-duration {
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--green);
+        opacity: 0.8;
+      }
+
+      .plan-days {
+        padding: 18px 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .plan-day {
+        display: flex;
+        gap: 14px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .plan-day:last-child {
+        border-bottom: none;
+      }
+
+      .plan-day-n {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: var(--green-dim);
+        border: 1px solid var(--border-g);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        color: var(--green);
+        flex-shrink: 0;
+        font-weight: 700;
+      }
+
+      .plan-day-t {
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin-bottom: 3px;
+      }
+
+      .plan-day-d {
+        font-size: 14px;
+        color: var(--text3);
+        line-height: 1.5;
+      }
+
+      .plan-footer {
+        padding: 16px 22px;
+        border-top: 1px solid var(--border);
+        background: rgba(46, 204, 113, 0.03);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .plan-budget {
+        font-family: "Space Mono", monospace;
+        font-size: 16px;
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      .plan-btn {
+        padding: 10px 22px;
+        background: transparent;
+        border: 1px solid var(--border-g);
+        color: var(--green);
+        font-family: "Space Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 20px;
+        transition: all 0.3s;
+        font-weight: 700;
+      }
+
+      .plan-btn:hover {
+        background: var(--green);
+        color: #000;
+        box-shadow: 0 0 16px rgba(46, 204, 113, 0.2);
+      }
+
+      

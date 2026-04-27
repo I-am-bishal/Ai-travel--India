@@ -783,7 +783,7 @@
           season: "Oct–Mar",
           badge: "LAKE CITY",
           bg: "linear-gradient(145deg,#0a1830,#1a2848)",
-          img: "udaipur_lake.png",
+          img: "assets/images/udaipur_lake.png",
           desc: "India's most romantic city—City Palace, serene Lake Pichola, and the floating Taj Lake Palace create a fairy tale setting.",
           highlights: [
             "City Palace",
@@ -846,7 +846,7 @@
           season: "Oct–Mar",
           badge: "PALACE CITY",
           bg: "linear-gradient(145deg,#1a1008,#2a2010)",
-          img: "mysuru_palace.png",
+          img: "assets/images/mysuru_palace.png",
           desc: "The City of Palaces—regal heritage, silk sarees, sandalwood, and the Dasara festival. The illuminated Palace is one of India's most visited monuments.",
           highlights: [
             "Mysore Palace",

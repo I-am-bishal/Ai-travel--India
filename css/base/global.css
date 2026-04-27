@@ -1,0 +1,274 @@
+*,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        overflow-x: hidden;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      ::selection {
+        background: var(--green);
+        color: #000;
+      }
+
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--green2);
+        border-radius: 3px;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      button {
+        font-family: "DM Sans", sans-serif;
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-size: inherit;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      #prog {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 3px;
+        width: 0;
+        background: linear-gradient(
+          90deg,
+          var(--green),
+          var(--lime),
+          var(--green3)
+        );
+        z-index: 9999;
+        transition: width 0.1s;
+      }
+
+      
+/* ═══════════ SKIP TO CONTENT (a11y) ═══════════ */
+
+      .skip-link {
+        position: absolute;
+        top: -100%;
+        left: 16px;
+        z-index: 99999;
+        background: var(--green);
+        color: #000;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition: top 0.2s;
+        text-decoration: none;
+      }
+      .skip-link:focus {
+        top: 16px;
+      }
+
+      
+/* ═══════════ FOCUS STATES (a11y) ═══════════ */
+
+      :focus-visible {
+        outline: 2px solid var(--green);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      
+/* ═══════════ HIGH CONTRAST TOGGLE ═══════════ */
+
+      .hc-btn {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: var(--text3);
+        border-radius: 20px;
+        padding: 7px 12px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.25s;
+        line-height: 1;
+      }
+      .hc-btn:hover {
+        background: rgba(255,255,255,0.1);
+        color: var(--text);
+      }
+      body.high-contrast {
+        --bg: #000000;
+        --bg2: #0a0a0a;
+        --bg3: #111111;
+        --surface: rgba(255,255,255,.07);
+        --text: #ffffff;
+        --text2: rgba(255,255,255,.9);
+        --text3: rgba(255,255,255,.7);
+        --text4: rgba(255,255,255,.5);
+        --green: #00ff7f;
+        --green2: #00e070;
+        --green3: #00ccaa;
+        --border: rgba(255,255,255,.2);
+        --border-g: rgba(0,255,127,.3);
+      }
+      body.high-contrast .city-card img,
+      body.high-contrast .dest-card-img,
+      body.high-contrast .clip-thumb img {
+        filter: contrast(1.2) brightness(1.1);
+      }
+
+      
+
+/* Extracted Inline Styles */
+.util-style-1 {
+  width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          object-fit: cover;
+          display: block;
+          box-shadow: 0 4px 20px rgba(46, 204, 113, 0.35);
+          transition:
+            transform 0.3s,
+            box-shadow 0.3s;
+}
+.util-style-2 {
+  background: var(--green-dim);
+                    border: 1px solid var(--green);
+                    color: var(--green);
+                    border-radius: 50%;
+                    width: 32px;
+                    height: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: all 0.3s;
+}
+.util-style-3 {
+  color: var(--green); font-weight: 800;
+}
+.util-style-4 {
+  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+}
+.util-style-5 {
+  height: 140px;
+}
+.util-style-6 {
+  font-family: &quot;Space Mono&quot;, monospace;
+              font-size: 13px;
+              color: var(--green);
+              letter-spacing: 0.08em;
+}
+.util-style-7 {
+  opacity: 0.015;
+}
+.util-style-8 {
+  opacity: 0.08;
+}
+.util-style-9 {
+  display:flex;align-items:center;gap:14px;
+}
+.util-style-10 {
+  margin-top: 36px;
+}
+.util-style-11 {
+  display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 0;
+}
+.util-style-12 {
+  display: none; flex-direction: column; gap: 16px;
+}
+.util-style-13 {
+  color: var(--green); letter-spacing: 0.05em;
+}
+.util-style-14 {
+  width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
+}
+.util-style-15 {
+  display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 36px;
+}
+.util-style-16 {
+  resize: none; padding-right: 16px;
+}
+.util-style-17 {
+  height: 180px;
+}
+.util-style-18 {
+  opacity: 0.018;
+}
+.util-style-19 {
+  text-shadow: 0 0 40px rgba(46, 204, 113, 0.25);
+}
+.util-style-20 {
+  padding: 0; overflow: hidden; background: transparent;
+}
+.util-style-21 {
+  display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 28px;
+}
+.util-style-22 {
+  opacity: 0.02;
+}
+.util-style-23 {
+  display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+}
+.util-style-24 {
+  opacity: 0.03;
+}
+.util-style-25 {
+  opacity: 0.06;
+}
+.util-style-26 {
+  overflow: hidden; background: transparent;
+}
+.util-style-27 {
+  height: 200px;
+}
+.util-style-28 {
+  margin-bottom: 24px;
+}

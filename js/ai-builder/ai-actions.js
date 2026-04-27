@@ -307,7 +307,7 @@
           t.className = "mai-msg";
           t.id = "mai-typing";
           t.innerHTML = `<div class="mai-msg-avatar" style="overflow:hidden;background:transparent;padding:0;flex-shrink:0">
-        <img src="musafir-ai-logo.png" alt="Musafir AI" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentElement.style.background='var(--mai-green3)';this.style.display='none';this.parentElement.textContent='\u{1F9ED}'" />
+        <img src="assets/logos/musafir-ai-logo.png" alt="Musafir AI" style="width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.parentElement.style.background='var(--mai-green3)';this.style.display='none';this.parentElement.textContent='\u{1F9ED}'" />
       </div>
       <div class="mai-bubble ai" style="padding:2px 4px">
         <div class="mai-typing"><span></span><span></span><span></span></div>

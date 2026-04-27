@@ -1,0 +1,54 @@
+/* ═══════════ MARQUEE ═══════════ */
+
+      .mq-wrap {
+        overflow: hidden;
+        border-top: 1px solid var(--border-g);
+        border-bottom: 1px solid var(--border-g);
+        background: var(--bg2);
+        padding: 16px 0;
+      }
+
+      .mq-track {
+        display: flex;
+        gap: 48px;
+        white-space: nowrap;
+        animation: mq 32s linear infinite;
+        width: max-content;
+      }
+
+      .mq-track:hover {
+        animation-play-state: paused;
+      }
+
+      .mq-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Space Mono", monospace;
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text4);
+        flex-shrink: 0;
+      }
+
+      .mq-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 6px var(--green);
+        flex-shrink: 0;
+      }
+
+      @keyframes mq {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      
