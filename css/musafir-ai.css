@@ -1,4 +1,4 @@
-﻿      /* â”€â”€ Musafir AI Root Variables â”€â”€ */
+      /* ── Musafir AI Root Variables ── */
       :root {
         --mai-bg: #0d1a0d;
         --mai-surface: rgba(15, 25, 15, 0.97);
@@ -14,7 +14,7 @@
           0 0 60px rgba(46, 204, 113, 0.05);
       }
 
-      /* â”€â”€ Launcher Button â”€â”€ */
+      /* ── Launcher Button ── */
       #musafir-launcher {
         position: fixed;
         bottom: 28px;
@@ -75,7 +75,7 @@
         }
       }
 
-      /* â”€â”€ Panel â”€â”€ */
+      /* ── Panel ── */
       #musafir-panel {
         position: fixed;
         bottom: 104px;
@@ -106,7 +106,7 @@
         pointer-events: all;
       }
 
-      /* â”€â”€ Header â”€â”€ */
+      /* ── Header ── */
       .mai-header {
         background: linear-gradient(
           135deg,
@@ -257,7 +257,7 @@
         color: var(--mai-green);
       }
 
-      /* â”€â”€ Reset Chat Button â”€â”€ */
+      /* ── Reset Chat Button ── */
       .mai-reset-btn {
         width: 30px;
         height: 30px;
@@ -291,7 +291,7 @@
         transition: all 0.4s ease;
       }
 
-      /* â”€â”€ Messages Container â”€â”€ */
+      /* ── Messages Container ── */
       .mai-msgs {
         flex: 1;
         overflow-y: auto;
@@ -434,7 +434,7 @@
         }
       }
 
-      /* â”€â”€ Quick Suggestions â”€â”€ */
+      /* ── Quick Suggestions ── */
       .mai-suggestions {
         padding: 8px 16px 12px;
         display: flex;
@@ -464,7 +464,7 @@
         transform: translateY(-1px);
       }
 
-      /* â”€â”€ Input Row â”€â”€ */
+      /* ── Input Row ── */
       .mai-input-row {
         padding: 12px 14px 14px;
         border-top: 1px solid var(--mai-border);
@@ -547,7 +547,7 @@
         stroke-linejoin: round;
       }
 
-      /* â”€â”€ Disclaimer strip â”€â”€ */
+      /* ── Disclaimer strip ── */
       .mai-disclaimer {
         padding: 6px 14px 8px;
         text-align: center;
@@ -558,7 +558,7 @@
         flex-shrink: 0;
       }
 
-      /* â”€â”€ Off-topic notice â”€â”€ */
+      /* ── Off-topic notice ── */
       .mai-bubble.off {
         background: rgba(212, 168, 67, 0.06);
         border-color: rgba(212, 168, 67, 0.18);

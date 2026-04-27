@@ -1,6 +1,6 @@
-﻿      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-       HERO GLOBE â€” UNTOUCHED (Exact original)
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+      /* ═══════════════════════════════════════════════════
+       HERO GLOBE — UNTOUCHED (Exact original)
+    ═══════════════════════════════════════════════════ */
       (function initGlobe() {
         const canvas = document.getElementById("hero-canvas");
         const scene = new THREE.Scene();
@@ -215,15 +215,15 @@
         });
       })();
 
-      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+      /* ═══════════════════════════════════════════════════
        NATURE BACKGROUND ANIMATIONS
-       â€” Living things, geological features, weather, biomes
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+       — Living things, geological features, weather, biomes
+    ═══════════════════════════════════════════════════ */
       (function initNatureBackgrounds() {
-        // â”€â”€â”€ FOREST BIOME: Falling leaves + Fireflies â”€â”€â”€
+        // ─── FOREST BIOME: Falling leaves + Fireflies ───
         const leafC = document.getElementById("leaf-container");
         if (leafC) {
-          const leafEmojis = ["ðŸƒ", "ðŸŒ¿", "ðŸ‚", "ðŸŒ±", "ðŸ€", "ðŸª·", "ðŸŒº"];
+          const leafEmojis = ["🍃", "🌿", "🍂", "🌱", "🍀", "🪷", "🌺"];
           for (let i = 0; i < 18; i++) {
             const leaf = document.createElement("span");
             leaf.className = "falling-leaf";
@@ -271,7 +271,7 @@
           }
         }
 
-        // â”€â”€â”€ MOUNTAIN BIOME: Stars + Clouds (plans section) â”€â”€â”€
+        // ─── MOUNTAIN BIOME: Stars + Clouds (plans section) ───
         const starP = document.getElementById("star-field-plans");
         if (starP) {
           for (let i = 0; i < 60; i++) {
@@ -300,7 +300,7 @@
           }
         }
 
-        // â”€â”€â”€ OCEAN BIOME: Rain + Bubbles (clips section) â”€â”€â”€
+        // ─── OCEAN BIOME: Rain + Bubbles (clips section) ───
         const rainC = document.getElementById("rain-clips");
         if (rainC) {
           for (let i = 0; i < 40; i++) {
@@ -327,7 +327,7 @@
           }
         }
 
-        // â”€â”€â”€ DESERT BIOME: Sand particles (FAQ section) â”€â”€â”€
+        // ─── DESERT BIOME: Sand particles (FAQ section) ───
         const sandF = document.getElementById("sand-faq");
         if (sandF) {
           for (let i = 0; i < 30; i++) {
@@ -341,7 +341,7 @@
           }
         }
 
-        // â”€â”€â”€ CTA: Stars â”€â”€â”€
+        // ─── CTA: Stars ───
         const starC = document.getElementById("star-field-cta");
         if (starC) {
           for (let i = 0; i < 40; i++) {
@@ -357,7 +357,7 @@
           }
         }
 
-        // â”€â”€â”€ THREE.JS CANVAS PARTICLES (wildlife organisms, minerals, water) â”€â”€â”€
+        // ─── THREE.JS CANVAS PARTICLES (wildlife organisms, minerals, water) ───
         function initSectionCanvas(canvasId, opts) {
           const canvas = document.getElementById(canvasId);
           if (!canvas || !canvas.parentElement) return;
@@ -558,19 +558,19 @@
         { passive: true },
       );
 
-      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-       DESTINATION DATA â€” with proper name-wise thumbnails
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+      /* ═══════════════════════════════════════════════════
+       DESTINATION DATA — with proper name-wise thumbnails
+    ═══════════════════════════════════════════════════ */
       const DESTS = [
-        // â”€â”€ MOST VISITED FIRST (sorted by annual visitor count) â”€â”€
+        // ── MOST VISITED FIRST (sorted by annual visitor count) ──
         {
           name: "Taj Mahal",
           loc: "Agra, Uttar Pradesh",
           cat: "Heritage",
-          emoji: "ðŸ•Œ",
+          emoji: "🕌",
           rating: 4.9,
-          price: "â‚¹1,100",
-          season: "Octâ€“Mar",
+          price: "₹1,100",
+          season: "Oct–Mar",
           badge: "UNESCO",
           bg: "linear-gradient(145deg,#1a1228,#2a1a3a)",
           img: "https://images.unsplash.com/photo-1564507592333-c60657eea523?w=600&q=80",
@@ -588,10 +588,10 @@
           name: "Golden Temple",
           loc: "Amritsar, Punjab",
           cat: "Spiritual",
-          emoji: "â­",
+          emoji: "⭐",
           rating: 4.9,
-          price: "â‚¹1,000/day",
-          season: "Octâ€“Mar",
+          price: "₹1,000/day",
+          season: "Oct–Mar",
           badge: "ICONIC",
           bg: "linear-gradient(145deg,#1a1208,#3a2a08)",
           img: "https://images.unsplash.com/photo-1514222134-b57cbb8ce073?w=600&q=80",
@@ -609,14 +609,14 @@
           name: "Varanasi Ghats",
           loc: "Uttar Pradesh",
           cat: "Spiritual",
-          emoji: "ðŸª”",
+          emoji: "🪔",
           rating: 4.6,
-          price: "â‚¹2,000/day",
-          season: "Octâ€“Mar",
+          price: "₹2,000/day",
+          season: "Oct–Mar",
           badge: "SACRED",
           bg: "linear-gradient(145deg,#1a0a0a,#3a1a08)",
           img: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&q=80",
-          desc: "The spiritual capitalâ€”one of the world's oldest continuously inhabited cities. Ghats along the Ganges and the evening Ganga Aarti create a moving experience.",
+          desc: "The spiritual capital—one of the world's oldest continuously inhabited cities. Ghats along the Ganges and the evening Ganga Aarti create a moving experience.",
           highlights: [
             "Ganga Aarti",
             "Boat Ride at Sunrise",
@@ -630,14 +630,14 @@
           name: "Tirupati",
           loc: "Andhra Pradesh",
           cat: "Spiritual",
-          emoji: "ðŸ™",
+          emoji: "🙏",
           rating: 4.8,
-          price: "â‚¹1,500/day",
+          price: "₹1,500/day",
           season: "All Year",
           badge: "DIVINE",
           bg: "linear-gradient(145deg,#1a1208,#3a2210)",
           img: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&q=80",
-          desc: "Sri Venkateswara Temple atop seven hillsâ€”the most visited religious site in the world with 50,000+ daily pilgrims. Pure divine energy.",
+          desc: "Sri Venkateswara Temple atop seven hills—the most visited religious site in the world with 50,000+ daily pilgrims. Pure divine energy.",
           highlights: [
             "Tirumala Darshan",
             "Talakona Waterfalls",
@@ -645,20 +645,20 @@
             "Akasaganga Teertham",
             "TTD Laddu",
           ],
-          tips: "Book darshan online weeks ahead. â‚¹300 special entry saves 8+ hrs. Carry minimal belongings.",
+          tips: "Book darshan online weeks ahead. ₹300 special entry saves 8+ hrs. Carry minimal belongings.",
         },
         {
           name: "Red Fort",
           loc: "Delhi",
           cat: "Heritage",
-          emoji: "ðŸ¯",
+          emoji: "🏯",
           rating: 4.5,
-          price: "â‚¹35",
-          season: "Octâ€“Mar",
+          price: "₹35",
+          season: "Oct–Mar",
           badge: "ICONIC",
           bg: "linear-gradient(145deg,#2a0808,#4a1010)",
           img: "https://images.unsplash.com/photo-1585506942812-e72b29cef752?w=600&q=80",
-          desc: "The magnificent Red Fortâ€”residence of Mughal emperors for 200 years. Where India's PM hoists the national flag on Independence Day.",
+          desc: "The magnificent Red Fort—residence of Mughal emperors for 200 years. Where India's PM hoists the national flag on Independence Day.",
           highlights: [
             "Diwan-i-Am",
             "Diwan-i-Khas",
@@ -672,10 +672,10 @@
           name: "Qutub Minar",
           loc: "Delhi",
           cat: "Heritage",
-          emoji: "ðŸ•",
+          emoji: "🕍",
           rating: 4.6,
-          price: "â‚¹300",
-          season: "Novâ€“Mar",
+          price: "₹300",
+          season: "Nov–Mar",
           badge: "UNESCO",
           bg: "linear-gradient(145deg,#1a1a1a,#2a2210)",
           img: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80",
@@ -693,14 +693,14 @@
           name: "Kedarnath",
           loc: "Uttarakhand",
           cat: "Spiritual",
-          emoji: "â›°ï¸",
+          emoji: "⛰️",
           rating: 4.9,
-          price: "â‚¹3,500/day",
-          season: "Mayâ€“Nov",
+          price: "₹3,500/day",
+          season: "May–Nov",
           badge: "DIVINE",
           bg: "linear-gradient(145deg,#0a1220,#1a2230)",
           img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80",
-          desc: "At 3,583m among snow-capped Himalayasâ€”one of the twelve Jyotirlingas. The 16 km trek is itself a spiritual journey through stunning mountains.",
+          desc: "At 3,583m among snow-capped Himalayas—one of the twelve Jyotirlingas. The 16 km trek is itself a spiritual journey through stunning mountains.",
           highlights: [
             "Kedarnath Temple",
             "16km Trek",
@@ -708,16 +708,16 @@
             "Bhairavnath Temple",
             "Helicopter Darshan",
           ],
-          tips: "Trek or helicopter (book well in advance). Season Mayâ€“Nov only. Carry warm clothes even in summer.",
+          tips: "Trek or helicopter (book well in advance). Season May–Nov only. Carry warm clothes even in summer.",
         },
         {
           name: "Amer Fort",
           loc: "Jaipur, Rajasthan",
           cat: "Heritage",
-          emoji: "ðŸ°",
+          emoji: "🏰",
           rating: 4.8,
-          price: "â‚¹550",
-          season: "Octâ€“Feb",
+          price: "₹550",
+          season: "Oct–Feb",
           badge: "ICONIC",
           bg: "linear-gradient(145deg,#2a1a08,#4a2a10)",
           img: "https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&q=80",
@@ -735,14 +735,14 @@
           name: "Calangute Beach",
           loc: "North Goa",
           cat: "Beaches",
-          emoji: "ðŸ–ï¸",
+          emoji: "🏖️",
           rating: 4.7,
-          price: "â‚¹3,500/day",
-          season: "Novâ€“Feb",
+          price: "₹3,500/day",
+          season: "Nov–Feb",
           badge: "POPULAR",
           bg: "linear-gradient(145deg,#0c3d6e,#1565a8)",
           img: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600&q=80",
-          desc: 'The "Queen of Beaches"â€”Goa\'s largest and most popular beach with water sports, beach shacks, and buzzing nightlife.',
+          desc: 'The "Queen of Beaches"—Goa\'s largest and most popular beach with water sports, beach shacks, and buzzing nightlife.',
           highlights: [
             "Water Sports",
             "Beach Shacks",
@@ -756,14 +756,14 @@
           name: "Rishikesh",
           loc: "Uttarakhand",
           cat: "Spiritual",
-          emoji: "ðŸ§˜",
+          emoji: "🧘",
           rating: 4.8,
-          price: "â‚¹2,200/day",
-          season: "Sepâ€“Jun",
+          price: "₹2,200/day",
+          season: "Sep–Jun",
           badge: "YOGA CAPITAL",
           bg: "linear-gradient(145deg,#0a1e1a,#1a3e2a)",
           img: "https://images.unsplash.com/photo-1545389336-cf090694435e?w=600&q=80",
-          desc: "The Yoga Capital of the World on the holy Ganges amidst Himalayan foothills. Yoga ashrams to white-water raftingâ€”spirituality meets adventure.",
+          desc: "The Yoga Capital of the World on the holy Ganges amidst Himalayan foothills. Yoga ashrams to white-water rafting—spirituality meets adventure.",
           highlights: [
             "Yoga Ashrams",
             "White Water Rafting",
@@ -777,14 +777,14 @@
           name: "Udaipur",
           loc: "Rajasthan",
           cat: "Urban",
-          emoji: "ðŸ°",
+          emoji: "🏰",
           rating: 4.8,
-          price: "â‚¹4,000/day",
-          season: "Octâ€“Mar",
+          price: "₹4,000/day",
+          season: "Oct–Mar",
           badge: "LAKE CITY",
           bg: "linear-gradient(145deg,#0a1830,#1a2848)",
           img: "udaipur_lake.png",
-          desc: "India's most romantic cityâ€”City Palace, serene Lake Pichola, and the floating Taj Lake Palace create a fairy tale setting.",
+          desc: "India's most romantic city—City Palace, serene Lake Pichola, and the floating Taj Lake Palace create a fairy tale setting.",
           highlights: [
             "City Palace",
             "Lake Pichola Boat",
@@ -798,14 +798,14 @@
           name: "Mumbai",
           loc: "Maharashtra",
           cat: "Urban",
-          emoji: "ðŸŒ†",
+          emoji: "🌆",
           rating: 4.5,
-          price: "â‚¹4,800/day",
-          season: "Octâ€“Mar",
+          price: "₹4,800/day",
+          season: "Oct–Mar",
           badge: "MAX CITY",
           bg: "linear-gradient(145deg,#1a0a2e,#3a1550)",
           img: "https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=600&q=80",
-          desc: "The city of dreamsâ€”Bollywood, colonial heritage, street-food culture. From Gateway of India to local trains, Mumbai pulses with unique energy.",
+          desc: "The city of dreams—Bollywood, colonial heritage, street-food culture. From Gateway of India to local trains, Mumbai pulses with unique energy.",
           highlights: [
             "Gateway of India",
             "Marine Drive Sunset",
@@ -819,10 +819,10 @@
           name: "Old Delhi",
           loc: "Delhi",
           cat: "Urban",
-          emoji: "ðŸ•Œ",
+          emoji: "🕌",
           rating: 4.6,
-          price: "â‚¹2,500/day",
-          season: "Octâ€“Mar",
+          price: "₹2,500/day",
+          season: "Oct–Mar",
           badge: "CHAOTIC BEAUTY",
           bg: "linear-gradient(145deg,#1a1010,#2a1a18)",
           img: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80",
@@ -840,14 +840,14 @@
           name: "Mysore",
           loc: "Karnataka",
           cat: "Urban",
-          emoji: "ðŸ‘‘",
+          emoji: "👑",
           rating: 4.7,
-          price: "â‚¹2,600/day",
-          season: "Octâ€“Mar",
+          price: "₹2,600/day",
+          season: "Oct–Mar",
           badge: "PALACE CITY",
           bg: "linear-gradient(145deg,#1a1008,#2a2010)",
           img: "mysuru_palace.png",
-          desc: "The City of Palacesâ€”regal heritage, silk sarees, sandalwood, and the Dasara festival. The illuminated Palace is one of India's most visited monuments.",
+          desc: "The City of Palaces—regal heritage, silk sarees, sandalwood, and the Dasara festival. The illuminated Palace is one of India's most visited monuments.",
           highlights: [
             "Mysore Palace",
             "Chamundi Hills",
@@ -855,16 +855,16 @@
             "Devaraja Market",
             "Silk Shopping",
           ],
-          tips: "Sunday eveningsâ€”97,000 bulbs light the palace. Dasara in October is unforgettable. Buy silk from Cauvery Emporium.",
+          tips: "Sunday evenings—97,000 bulbs light the palace. Dasara in October is unforgettable. Buy silk from Cauvery Emporium.",
         },
         {
           name: "Hampi Ruins",
           loc: "Karnataka",
           cat: "Heritage",
-          emoji: "ðŸ—¿",
+          emoji: "🗿",
           rating: 4.8,
-          price: "â‚¹500",
-          season: "Octâ€“Mar",
+          price: "₹500",
+          season: "Oct–Mar",
           badge: "UNESCO",
           bg: "linear-gradient(145deg,#2a1a08,#3a2010)",
           img: "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?w=600&q=80",
@@ -876,20 +876,20 @@
             "Matanga Hill Sunset",
             "Royal Enclosure",
           ],
-          tips: "Rent a bicycle to explore. Stay on Hippie Island for budget. Best over 2â€“3 days.",
+          tips: "Rent a bicycle to explore. Stay on Hippie Island for budget. Best over 2–3 days.",
         },
         {
           name: "Ajanta Caves",
           loc: "Aurangabad, Maharashtra",
           cat: "Heritage",
-          emoji: "ðŸ™ï¸",
+          emoji: "🏙️",
           rating: 4.8,
-          price: "â‚¹250",
-          season: "Novâ€“Mar",
+          price: "₹250",
+          season: "Nov–Mar",
           badge: "UNESCO",
           bg: "linear-gradient(145deg,#1a1208,#2a1c10)",
           img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80",
-          desc: "30 rock-cut Buddhist cave monuments from 2nd century BCE featuring extraordinary paintingsâ€”the finest surviving examples of ancient Indian art.",
+          desc: "30 rock-cut Buddhist cave monuments from 2nd century BCE featuring extraordinary paintings—the finest surviving examples of ancient Indian art.",
           highlights: [
             "Cave 1 Paintings",
             "Cave 26 Buddha",
@@ -903,10 +903,10 @@
           name: "Ellora Caves",
           loc: "Aurangabad, Maharashtra",
           cat: "Heritage",
-          emoji: "â›©ï¸",
+          emoji: "⛩️",
           rating: 4.8,
-          price: "â‚¹250",
-          season: "Novâ€“Mar",
+          price: "₹250",
+          season: "Nov–Mar",
           badge: "UNESCO",
           bg: "linear-gradient(145deg,#181220,#281a30)",
           img: "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=600&q=80",
@@ -924,10 +924,10 @@
           name: "Konark Temple",
           loc: "Puri, Odisha",
           cat: "Heritage",
-          emoji: "ðŸŒ…",
+          emoji: "🌅",
           rating: 4.7,
-          price: "â‚¹40",
-          season: "Octâ€“Mar",
+          price: "₹40",
+          season: "Oct–Mar",
           badge: "UNESCO",
           bg: "linear-gradient(145deg,#201808,#3a2810)",
           img: "https://images.unsplash.com/photo-1558618047-3bcd21db5a0f?w=600&q=80",
@@ -945,14 +945,14 @@
           name: "Alleppey",
           loc: "Kerala",
           cat: "Backwaters",
-          emoji: "ðŸ›¥ï¸",
+          emoji: "🛥️",
           rating: 4.8,
-          price: "â‚¹8,500/2nights",
-          season: "Sepâ€“Feb",
+          price: "₹8,500/2nights",
+          season: "Sep–Feb",
           badge: "BACKWATERS",
           bg: "linear-gradient(145deg,#0a2e1e,#145a38)",
           img: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600&q=80",
-          desc: "Venice of the Eastâ€”palm-fringed canals explored on traditional Kettuvallam houseboats. Wake to misty mornings and sleep to gentle rocking.",
+          desc: "Venice of the East—palm-fringed canals explored on traditional Kettuvallam houseboats. Wake to misty mornings and sleep to gentle rocking.",
           highlights: [
             "Houseboat Stay",
             "Backwater Cruise",
@@ -966,14 +966,14 @@
           name: "Jodhpur",
           loc: "Rajasthan",
           cat: "Urban",
-          emoji: "ðŸ”µ",
+          emoji: "🔵",
           rating: 4.7,
-          price: "â‚¹3,200/day",
-          season: "Octâ€“Feb",
+          price: "₹3,200/day",
+          season: "Oct–Feb",
           badge: "BLUE CITY",
           bg: "linear-gradient(145deg,#0a1040,#1a2060)",
           img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80",
-          desc: "The Blue Cityâ€”indigo-washed houses surrounding Mehrangarh Fort. One of India's most photogenic cities blending royal history and street life.",
+          desc: "The Blue City—indigo-washed houses surrounding Mehrangarh Fort. One of India's most photogenic cities blending royal history and street life.",
           highlights: [
             "Mehrangarh Fort",
             "Blue City Walk",
@@ -987,14 +987,14 @@
           name: "Kolkata",
           loc: "West Bengal",
           cat: "Urban",
-          emoji: "ðŸŽ¨",
+          emoji: "🎨",
           rating: 4.6,
-          price: "â‚¹2,800/day",
-          season: "Octâ€“Mar",
+          price: "₹2,800/day",
+          season: "Oct–Mar",
           badge: "CITY OF JOY",
           bg: "linear-gradient(145deg,#1a1028,#2a1a38)",
           img: "https://images.unsplash.com/photo-1558431382-27e303142255?w=600&q=80",
-          desc: "The cultural capitalâ€”literary festivals, art galleries, Durga Puja pandals, and the best street food in the country. The iconic Howrah Bridge spans the Hooghly River.",
+          desc: "The cultural capital—literary festivals, art galleries, Durga Puja pandals, and the best street food in the country. The iconic Howrah Bridge spans the Hooghly River.",
           highlights: [
             "Victoria Memorial",
             "Howrah Bridge",
@@ -1008,10 +1008,10 @@
           name: "Ranthambhore",
           loc: "Rajasthan",
           cat: "Wildlife",
-          emoji: "ðŸ…",
+          emoji: "🐅",
           rating: 4.8,
-          price: "â‚¹8,000/day",
-          season: "Octâ€“Jun",
+          price: "₹8,000/day",
+          season: "Oct–Jun",
           badge: "TIGER RESERVE",
           bg: "linear-gradient(145deg,#1a1008,#2a2010)",
           img: "https://images.unsplash.com/photo-1549366021-9f761d450615?w=600&q=80",
@@ -1023,16 +1023,16 @@
             "Crocodile Spotting",
             "Birdwatching",
           ],
-          tips: "Book zone 1â€“5 for best sightings. Carry binoculars and telephoto lens. Morning safaris best.",
+          tips: "Book zone 1–5 for best sightings. Carry binoculars and telephoto lens. Morning safaris best.",
         },
         {
           name: "Jim Corbett",
           loc: "Nainital, Uttarakhand",
           cat: "Wildlife",
-          emoji: "ðŸ¦",
+          emoji: "🦁",
           rating: 4.7,
-          price: "â‚¹7,500/day",
-          season: "Novâ€“Jun",
+          price: "₹7,500/day",
+          season: "Nov–Jun",
           badge: "TIGER RESERVE",
           bg: "linear-gradient(145deg,#0a1e08,#1a3e10)",
           img: "https://images.unsplash.com/photo-1615824996195-f780bba7cfab?w=600&q=80",
@@ -1050,10 +1050,10 @@
           name: "Kaziranga",
           loc: "Assam",
           cat: "Wildlife",
-          emoji: "ðŸ¦",
+          emoji: "🦏",
           rating: 4.9,
-          price: "â‚¹6,000/day",
-          season: "Novâ€“Apr",
+          price: "₹6,000/day",
+          season: "Nov–Apr",
           badge: "UNESCO",
           bg: "linear-gradient(145deg,#0a2010,#1a4020)",
           img: "https://images.unsplash.com/photo-1504173010664-32509aeebb62?w=600&q=80",
@@ -1065,20 +1065,20 @@
             "Tea Garden Visit",
             "Birdwatching",
           ],
-          tips: "Elephant safaris at dawnâ€”book day before. Central and Western ranges best for rhinos.",
+          tips: "Elephant safaris at dawn—book day before. Central and Western ranges best for rhinos.",
         },
         {
           name: "Radhanagar Beach",
           loc: "Andaman",
           cat: "Beaches",
-          emoji: "ðŸ ",
+          emoji: "🐠",
           rating: 4.9,
-          price: "â‚¹4,000/day",
-          season: "Novâ€“Apr",
+          price: "₹4,000/day",
+          season: "Nov–Apr",
           badge: "TOP RATED",
           bg: "linear-gradient(145deg,#0a2a4a,#1a5a8a)",
           img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80",
-          desc: "Consistently ranked among Asia's bestâ€”powdery white sand, turquoise waters, and pristine tropical forest backdrop.",
+          desc: "Consistently ranked among Asia's best—powdery white sand, turquoise waters, and pristine tropical forest backdrop.",
           highlights: [
             "Crystal Clear Water",
             "Snorkeling",
@@ -1092,14 +1092,14 @@
           name: "Spiti Valley",
           loc: "Himachal Pradesh",
           cat: "Mountains",
-          emoji: "ðŸ”ï¸",
+          emoji: "🏔️",
           rating: 4.9,
-          price: "â‚¹4,200/day",
-          season: "Junâ€“Sep",
+          price: "₹4,200/day",
+          season: "Jun–Sep",
           badge: "REMOTE",
           bg: "linear-gradient(145deg,#1a2a4a,#243859)",
           img: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80",
-          desc: "A cold desert at 12,500 feetâ€”stark landscapes, ancient monasteries, and starlit skies make it a dream for adventurers.",
+          desc: "A cold desert at 12,500 feet—stark landscapes, ancient monasteries, and starlit skies make it a dream for adventurers.",
           highlights: [
             "Key Monastery",
             "Chandratal Lake",
@@ -1107,16 +1107,16 @@
             "Kibber Village",
             "Stargazing",
           ],
-          tips: "Acclimatize before heading up. Carry altitude sickness meds. Roads open Junâ€“Oct only.",
+          tips: "Acclimatize before heading up. Carry altitude sickness meds. Roads open Jun–Oct only.",
         },
         {
           name: "Nubra Valley",
           loc: "Ladakh",
           cat: "Mountains",
-          emoji: "ðŸª",
+          emoji: "🐪",
           rating: 4.9,
-          price: "â‚¹5,000/day",
-          season: "Junâ€“Sep",
+          price: "₹5,000/day",
+          season: "Jun–Sep",
           badge: "HIGH ALT.",
           bg: "linear-gradient(145deg,#1a1830,#2a2840)",
           img: "https://images.unsplash.com/photo-1512100356356-de1b84283e18?w=600&q=80",
@@ -1128,20 +1128,20 @@
             "Khardung La Pass",
             "Hot Springs",
           ],
-          tips: "Carry cashâ€”ATMs unreliable. Acclimatize in Leh first (2+ days). Permits required.",
+          tips: "Carry cash—ATMs unreliable. Acclimatize in Leh first (2+ days). Permits required.",
         },
         {
           name: "Palolem Beach",
           loc: "South Goa",
           cat: "Beaches",
-          emoji: "ðŸ›¶",
+          emoji: "🛶",
           rating: 4.8,
-          price: "â‚¹3,200/day",
-          season: "Novâ€“Feb",
+          price: "₹3,200/day",
+          season: "Nov–Feb",
           badge: "SERENE",
           bg: "linear-gradient(145deg,#0a3040,#1a6080)",
           img: "https://images.unsplash.com/photo-1468413253725-0d5181091126?w=600&q=80",
-          desc: "A crescent-shaped bay fringed with coconut palms. South Goa's crown jewelâ€”kayak to Butterfly Beach or spot dolphins at dawn.",
+          desc: "A crescent-shaped bay fringed with coconut palms. South Goa's crown jewel—kayak to Butterfly Beach or spot dolphins at dawn.",
           highlights: [
             "Kayaking",
             "Dolphin Spotting",
@@ -1155,10 +1155,10 @@
           name: "Ajmer Sharif",
           loc: "Rajasthan",
           cat: "Spiritual",
-          emoji: "ðŸ•Œ",
+          emoji: "🕌",
           rating: 4.6,
-          price: "â‚¹1,200/day",
-          season: "Octâ€“Mar",
+          price: "₹1,200/day",
+          season: "Oct–Mar",
           badge: "SUFI",
           bg: "linear-gradient(145deg,#1a0808,#2a1010)",
           img: "https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80",
@@ -1176,14 +1176,14 @@
           name: "Rohtang Pass",
           loc: "Manali, HP",
           cat: "Mountains",
-          emoji: "â„ï¸",
+          emoji: "❄️",
           rating: 4.7,
-          price: "â‚¹3,500/day",
-          season: "Mayâ€“Oct",
+          price: "₹3,500/day",
+          season: "May–Oct",
           badge: "SCENIC",
           bg: "linear-gradient(145deg,#1a2848,#2a3868)",
           img: "https://images.unsplash.com/photo-1585409677983-0f6c41ca9c3b?w=600&q=80",
-          desc: "At 3,978 metersâ€”a gateway between Kullu Valley and Lahaul-Spiti with snow-covered peaks, glaciers, and panoramic views.",
+          desc: "At 3,978 meters—a gateway between Kullu Valley and Lahaul-Spiti with snow-covered peaks, glaciers, and panoramic views.",
           highlights: [
             "Snow Activities",
             "Panoramic Views",
@@ -1191,16 +1191,16 @@
             "Atal Tunnel",
             "Glacier Walk",
           ],
-          tips: "Permits requiredâ€”book online. Weather changes quickly; carry warm layers. Avoid weekends.",
+          tips: "Permits required—book online. Weather changes quickly; carry warm layers. Avoid weekends.",
         },
         {
           name: "Varkala Cliffs",
           loc: "Kerala",
           cat: "Beaches",
-          emoji: "ðŸª¨",
+          emoji: "🪨",
           rating: 4.7,
-          price: "â‚¹2,500/day",
-          season: "Octâ€“Mar",
+          price: "₹2,500/day",
+          season: "Oct–Mar",
           badge: "SCENIC",
           bg: "linear-gradient(145deg,#1a0c0a,#3a1a10)",
           img: "https://images.unsplash.com/photo-1476673160081-cf065607f449?w=600&q=80",
@@ -1218,14 +1218,14 @@
           name: "Chopta Valley",
           loc: "Uttarakhand",
           cat: "Mountains",
-          emoji: "ðŸ¦Œ",
+          emoji: "🦌",
           rating: 4.8,
-          price: "â‚¹2,800/day",
-          season: "Aprâ€“Jun",
+          price: "₹2,800/day",
+          season: "Apr–Jun",
           badge: "MINI SWISS",
           bg: "linear-gradient(145deg,#0a1e1a,#1a3e2a)",
           img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=600&q=80",
-          desc: '"Mini Switzerland of India"â€”a pristine meadow surrounded by forests of pine, deodar, and rhododendron. Base for Tungnath trek.',
+          desc: '"Mini Switzerland of India"—a pristine meadow surrounded by forests of pine, deodar, and rhododendron. Base for Tungnath trek.',
           highlights: [
             "Tungnath Trek",
             "Chandrashila Summit",
@@ -1239,14 +1239,14 @@
           name: "Coorg",
           loc: "Karnataka",
           cat: "Mountains",
-          emoji: "â˜•",
+          emoji: "☕",
           rating: 4.7,
-          price: "â‚¹3,800/day",
-          season: "Octâ€“Mar",
+          price: "₹3,800/day",
+          season: "Oct–Mar",
           badge: "COFFEE LAND",
           bg: "linear-gradient(145deg,#0a1e0a,#1a3e1a)",
           img: "https://images.unsplash.com/photo-1596178065887-1198b6148b2b?w=600&q=80",
-          desc: '"Scotland of India"â€”Coorg is famous for coffee plantations, waterfalls, and the warm hospitality of the Kodava people.',
+          desc: '"Scotland of India"—Coorg is famous for coffee plantations, waterfalls, and the warm hospitality of the Kodava people.',
           highlights: [
             "Coffee Plantation Tour",
             "Abbey Falls",
@@ -1260,10 +1260,10 @@
           name: "Periyar",
           loc: "Kerala",
           cat: "Wildlife",
-          emoji: "ðŸ˜",
+          emoji: "🐘",
           rating: 4.7,
-          price: "â‚¹4,500/day",
-          season: "Octâ€“Mar",
+          price: "₹4,500/day",
+          season: "Oct–Mar",
           badge: "BIOSPHERE",
           bg: "linear-gradient(145deg,#0a1e18,#1a3e28)",
           img: "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=600&q=80",
@@ -1281,10 +1281,10 @@
           name: "Sundarbans",
           loc: "West Bengal",
           cat: "Wildlife",
-          emoji: "ðŸŠ",
+          emoji: "🐊",
           rating: 4.6,
-          price: "â‚¹5,000/day",
-          season: "Octâ€“Mar",
+          price: "₹5,000/day",
+          season: "Oct–Mar",
           badge: "UNESCO",
           bg: "linear-gradient(145deg,#081818,#183030)",
           img: "https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?w=600&q=80",
@@ -1302,14 +1302,14 @@
           name: "Kumarakom",
           loc: "Kerala",
           cat: "Backwaters",
-          emoji: "ðŸ¦",
+          emoji: "🐦",
           rating: 4.8,
-          price: "â‚¹9,000/2nights",
-          season: "Octâ€“Feb",
+          price: "₹9,000/2nights",
+          season: "Oct–Feb",
           badge: "BIRD SANCTUARY",
           bg: "linear-gradient(145deg,#081e18,#143830)",
           img: "https://images.unsplash.com/photo-1593693411515-c20261bcad6e?w=600&q=80",
-          desc: "On the banks of Vembanad Lake, famous for its bird sanctuary and luxury resorts. Migratory birds from Siberia visit Novâ€“Feb.",
+          desc: "On the banks of Vembanad Lake, famous for its bird sanctuary and luxury resorts. Migratory birds from Siberia visit Nov–Feb.",
           highlights: [
             "Bird Sanctuary",
             "Vembanad Lake Cruise",
@@ -1323,10 +1323,10 @@
           name: "Kollam Backwaters",
           loc: "Kerala",
           cat: "Backwaters",
-          emoji: "ðŸŒ´",
+          emoji: "🌴",
           rating: 4.6,
-          price: "â‚¹7,000/2nights",
-          season: "Octâ€“Feb",
+          price: "₹7,000/2nights",
+          season: "Oct–Feb",
           badge: "SERENE",
           bg: "linear-gradient(145deg,#0a2a1a,#1a4a2a)",
           img: "https://images.unsplash.com/photo-1593693411515-c20261bcad6e?w=600&q=80",
@@ -1344,10 +1344,10 @@
           name: "Marina Beach",
           loc: "Chennai, TN",
           cat: "Beaches",
-          emoji: "ðŸŒŠ",
+          emoji: "🌊",
           rating: 4.4,
-          price: "â‚¹500/day",
-          season: "Novâ€“Mar",
+          price: "₹500/day",
+          season: "Nov–Mar",
           badge: "LARGEST",
           bg: "linear-gradient(145deg,#0a1a3a,#1a3a6a)",
           img: "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80",
@@ -1359,16 +1359,16 @@
             "MGR Memorial",
             "Sunrise Walk",
           ],
-          tips: "Visit evenings for street food. Don't swimâ€”currents strong. Great sunrise photography.",
+          tips: "Visit evenings for street food. Don't swim—currents strong. Great sunrise photography.",
         },
         {
           name: "Gokarna Beach",
           loc: "Karnataka",
           cat: "Beaches",
-          emoji: "ðŸ•‰ï¸",
+          emoji: "🕉️",
           rating: 4.7,
-          price: "â‚¹1,800/day",
-          season: "Octâ€“Mar",
+          price: "₹1,800/day",
+          season: "Oct–Mar",
           badge: "HIDDEN GEM",
           bg: "linear-gradient(145deg,#0a2a1a,#1a5a3a)",
           img: "https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=600&q=80",
@@ -1386,14 +1386,14 @@
           name: "Ziro Valley",
           loc: "Arunachal Pradesh",
           cat: "Mountains",
-          emoji: "ðŸŒ¾",
+          emoji: "🌾",
           rating: 4.8,
-          price: "â‚¹3,000/day",
-          season: "Sepâ€“Oct",
+          price: "₹3,000/day",
+          season: "Sep–Oct",
           badge: "UNESCO NOM.",
           bg: "linear-gradient(145deg,#0a1a0a,#1a3a1a)",
           img: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600&q=80",
-          desc: "Home to the Apatani tribeâ€”lush green valley with rice fields, bamboo groves, and pine-clad hills. The Ziro Music Festival is Gen Z legend.",
+          desc: "Home to the Apatani tribe—lush green valley with rice fields, bamboo groves, and pine-clad hills. The Ziro Music Festival is Gen Z legend.",
           highlights: [
             "Ziro Music Festival",
             "Apatani Villages",
@@ -1401,13 +1401,13 @@
             "Tarin Fish Farm",
             "Talley Valley",
           ],
-          tips: "Music fest in late Septemberâ€”book months ahead. Inner Line Permit required.",
+          tips: "Music fest in late September—book months ahead. Inner Line Permit required.",
         },
       ];
 
-      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+      /* ═══════════════════════════════════════════════════
        RENDER DESTINATIONS
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    ═══════════════════════════════════════════════════ */
       let showAllDestsFlag = false;
       const INITIAL_COUNT = 8;
 
@@ -1416,7 +1416,7 @@
         return Array.from(
           { length: 5 },
           (_, i) =>
-            `<span style="color:${i < f ? "var(--green)" : "rgba(46,204,113,0.2)"};font-size:16px">â˜…</span>`,
+            `<span style="color:${i < f ? "var(--green)" : "rgba(46,204,113,0.2)"};font-size:16px">★</span>`,
         ).join("");
       }
 
@@ -1438,18 +1438,18 @@
         ${d.img ? `<img src="${d.img}" alt="${d.name}" loading="lazy" onerror="this.style.display='none'"/>` : ""}
         <div class="dest-img-ov"></div>
         <div class="dest-badge">${d.badge}</div>
-        <div class="dest-rating-badge">${d.rating} â˜…</div>
+        <div class="dest-rating-badge">${d.rating} ★</div>
       </div>
       <div class="dest-body">
         <div class="dest-cat">${d.cat}</div>
         <div class="dest-name">${d.name}</div>
-        <div class="dest-loc">ðŸ“ ${d.loc}</div>
+        <div class="dest-loc">📍 ${d.loc}</div>
         <div class="dest-desc-preview">${d.desc || ""}</div>
         <div class="dest-meta">
           <div><div class="dest-price">${d.price}</div><div style="font-size:11px;color:var(--text4);margin-top:2px">From</div></div>
           <div><div class="dest-season">${d.season}</div><div style="font-size:11px;color:var(--text4);margin-top:2px;text-align:right">Best Time</div></div>
         </div>
-        <div class="dest-view-btn">Explore Details â†’</div>
+        <div class="dest-view-btn">Explore Details →</div>
       </div>`;
           card.addEventListener("click", () => openDestModal(d));
           grid.appendChild(card);
@@ -1459,7 +1459,7 @@
         if (isAll && data.length > INITIAL_COUNT) {
           wrap.style.display = "flex";
           if (showAllDestsFlag) {
-            btn.innerHTML = 'Show Less <span class="arrow">â†‘</span>';
+            btn.innerHTML = 'Show Less <span class="arrow">↑</span>';
             btn.onclick = () => {
               showAllDestsFlag = false;
               renderDests("all");
@@ -1469,7 +1469,7 @@
               });
             };
           } else {
-            btn.innerHTML = `See All ${data.length} Destinations <span class="arrow">â†“</span>`;
+            btn.innerHTML = `See All ${data.length} Destinations <span class="arrow">↓</span>`;
             btn.onclick = () => {
               showAllDestsFlag = true;
               renderDests("all");
@@ -1501,7 +1501,7 @@
         document.getElementById("dm-badge").textContent = d.badge;
         document.getElementById("dm-cat").textContent = d.cat;
         document.getElementById("dm-name").textContent = d.name;
-        document.getElementById("dm-loc").textContent = "ðŸ“ " + d.loc;
+        document.getElementById("dm-loc").textContent = "📍 " + d.loc;
         document.getElementById("dm-desc").textContent =
           d.desc || "Explore this stunning Indian destination...";
         document.getElementById("dm-info-grid").innerHTML = `
@@ -1571,14 +1571,14 @@
         ftExplore.appendChild(li);
       });
 
-      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+      /* ═══════════════════════════════════════════════════
        TRIP PLANS
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    ═══════════════════════════════════════════════════ */
       const PLANS = {
         "2d": [
           {
             dest: "Golden Triangle Sprint",
-            sub: "Delhi Â· Agra Â· Back",
+            sub: "Delhi · Agra · Back",
             days: [
               {
                 t: "Delhi Arrival",
@@ -1589,11 +1589,11 @@
                 d: "Agra Fort, Taj Mahal at sunrise, return to Delhi",
               },
             ],
-            budget: "â‚¹8,500â€“12,000",
+            budget: "₹8,500–12,000",
           },
           {
             dest: "Goa Quick Escape",
-            sub: "Goa Â· Beaches Â· Nightlife",
+            sub: "Goa · Beaches · Nightlife",
             days: [
               {
                 t: "North Goa Day",
@@ -1604,11 +1604,11 @@
                 d: "Palolem beach, Fort Aguada, seafood dinner, beach party",
               },
             ],
-            budget: "â‚¹7,000â€“10,000",
+            budget: "₹7,000–10,000",
           },
           {
             dest: "Mysore Weekend",
-            sub: "Bangalore Â· Mysore Â· Palace",
+            sub: "Bangalore · Mysore · Palace",
             days: [
               {
                 t: "Mysore Arrival",
@@ -1619,11 +1619,11 @@
                 d: "Brindavan Gardens, silk shopping, St. Philomena's Church",
               },
             ],
-            budget: "â‚¹5,500â€“8,000",
+            budget: "₹5,500–8,000",
           },
           {
             dest: "Rishikesh Retreat",
-            sub: "Haridwar Â· Rishikesh",
+            sub: "Haridwar · Rishikesh",
             days: [
               {
                 t: "Haridwar Ganga Aarti",
@@ -1634,20 +1634,20 @@
                 d: "Yoga class, Beatles Ashram, Laxman Jhula, river rafting",
               },
             ],
-            budget: "â‚¹4,500â€“7,000",
+            budget: "₹4,500–7,000",
           },
         ],
         "3d": [
           {
             dest: "Rajasthan Triangle",
-            sub: "Jaipur Â· Jodhpur Â· Pushkar",
+            sub: "Jaipur · Jodhpur · Pushkar",
             days: [
               {
-                t: "Jaipur â€” Pink City",
+                t: "Jaipur — Pink City",
                 d: "Amber Fort, Hawa Mahal, City Palace, Jantar Mantar",
               },
               {
-                t: "Jodhpur â€” Blue City",
+                t: "Jodhpur — Blue City",
                 d: "Mehrangarh Fort, Jaswant Thada, Clock Tower market",
               },
               {
@@ -1655,11 +1655,11 @@
                 d: "Brahma Temple, Pushkar Lake, camel safari sunset",
               },
             ],
-            budget: "â‚¹14,000â€“20,000",
+            budget: "₹14,000–20,000",
           },
           {
             dest: "Kerala Highlights",
-            sub: "Kochi Â· Munnar Â· Alleppey",
+            sub: "Kochi · Munnar · Alleppey",
             days: [
               {
                 t: "Kochi Heritage",
@@ -1674,11 +1674,11 @@
                 d: "Houseboat cruise, backwater village life, sunset on deck",
               },
             ],
-            budget: "â‚¹16,000â€“24,000",
+            budget: "₹16,000–24,000",
           },
           {
             dest: "Himachal Escape",
-            sub: "Shimla Â· Manali Â· Solang",
+            sub: "Shimla · Manali · Solang",
             days: [
               {
                 t: "Shimla Colonial",
@@ -1693,30 +1693,30 @@
                 d: "Paragliding, skiing, snow tubing, Rohtang Pass",
               },
             ],
-            budget: "â‚¹15,000â€“22,000",
+            budget: "₹15,000–22,000",
           },
           {
             dest: "Golden Triangle",
-            sub: "Delhi Â· Agra Â· Jaipur",
+            sub: "Delhi · Agra · Jaipur",
             days: [
               {
                 t: "Delhi Discovery",
                 d: "Qutub Minar, Humayun's Tomb, India Gate, Dilli Haat",
               },
               {
-                t: "Agra â€” Taj",
+                t: "Agra — Taj",
                 d: "Taj Mahal sunrise, Agra Fort, Fatehpur Sikri",
               },
               {
-                t: "Jaipur â€” Pink",
+                t: "Jaipur — Pink",
                 d: "Amer Fort, Hawa Mahal, City Palace, Bapu Bazaar",
               },
             ],
-            budget: "â‚¹18,000â€“26,000",
+            budget: "₹18,000–26,000",
           },
           {
             dest: "Andaman Paradise",
-            sub: "Port Blair Â· Havelock",
+            sub: "Port Blair · Havelock",
             days: [
               {
                 t: "Port Blair",
@@ -1731,13 +1731,13 @@
                 d: "Scuba diving, sea walk, glass bottom boat, sunset cruise",
               },
             ],
-            budget: "â‚¹22,000â€“32,000",
+            budget: "₹22,000–32,000",
           },
         ],
         "5d": [
           {
             dest: "South India Grand",
-            sub: "Chennai Â· Madurai Â· Ooty Â· Mysore",
+            sub: "Chennai · Madurai · Ooty · Mysore",
             days: [
               {
                 t: "Chennai",
@@ -1757,11 +1757,11 @@
                 d: "Mysore Palace, Chamundi Hills, Brindavan Gardens",
               },
             ],
-            budget: "â‚¹28,000â€“40,000",
+            budget: "₹28,000–40,000",
           },
           {
             dest: "Rajasthan Odyssey",
-            sub: "Jaipur Â· Jodhpur Â· Jaisalmer Â· Udaipur",
+            sub: "Jaipur · Jodhpur · Jaisalmer · Udaipur",
             days: [
               {
                 t: "Jaipur",
@@ -1784,11 +1784,11 @@
                 d: "City Palace, Lake Pichola boat, Jagdish Temple",
               },
             ],
-            budget: "â‚¹35,000â€“55,000",
+            budget: "₹35,000–55,000",
           },
           {
             dest: "Northeast Wonder",
-            sub: "Kaziranga Â· Shillong Â· Cherrapunji",
+            sub: "Kaziranga · Shillong · Cherrapunji",
             days: [
               {
                 t: "Kaziranga Safari",
@@ -1808,13 +1808,13 @@
               },
               { t: "Dawki", d: "Umngot River, Shnongpdeng village, boat ride" },
             ],
-            budget: "â‚¹32,000â€“48,000",
+            budget: "₹32,000–48,000",
           },
         ],
         "7d": [
           {
             dest: "Kerala Complete",
-            sub: "Kochi Â· Munnar Â· Alleppey Â· Varkala Â· Kovalam",
+            sub: "Kochi · Munnar · Alleppey · Varkala · Kovalam",
             days: [
               {
                 t: "Kochi",
@@ -1842,11 +1842,11 @@
                 d: "Lighthouse Beach, Halcyon Castle, Ayurvedic treatment",
               },
             ],
-            budget: "â‚¹55,000â€“80,000",
+            budget: "₹55,000–80,000",
           },
           {
             dest: "Himachal Adventure",
-            sub: "Delhi Â· Shimla Â· Manali Â· Spiti Â· Back",
+            sub: "Delhi · Shimla · Manali · Spiti · Back",
             days: [
               {
                 t: "Delhi",
@@ -1877,7 +1877,7 @@
                 d: "Manali markets, Kullu shawl shopping, Manu Temple",
               },
             ],
-            budget: "â‚¹65,000â€“95,000",
+            budget: "₹65,000–95,000",
           },
         ],
       };
@@ -1915,7 +1915,7 @@
         (PLANS[key] || []).forEach((p) => {
           const card = document.createElement("div");
           card.className = "plan-card";
-          card.innerHTML = `<div class="plan-header"><div class="plan-dest">${p.dest}</div><div class="plan-duration">${p.sub}</div></div><div class="plan-days">${p.days.map((d, i) => `<div class="plan-day"><div class="plan-day-n">D${i + 1}</div><div><div class="plan-day-t">${d.t}</div><div class="plan-day-d">${d.d}</div></div></div>`).join("")}</div><div class="plan-footer"><div><div style="font-size:11px;color:var(--text4);margin-bottom:3px">Budget Range</div><div class="plan-budget">${p.budget}</div></div><div style="display:flex;gap:8px"><button class="plan-btn" style="background:transparent;border:1px solid var(--green);color:var(--green)" onclick="shareTrip(this, '${p.dest}')">Share PDF</button><button class="plan-btn">Book Now â†’</button></div></div>`;
+          card.innerHTML = `<div class="plan-header"><div class="plan-dest">${p.dest}</div><div class="plan-duration">${p.sub}</div></div><div class="plan-days">${p.days.map((d, i) => `<div class="plan-day"><div class="plan-day-n">D${i + 1}</div><div><div class="plan-day-t">${d.t}</div><div class="plan-day-d">${d.d}</div></div></div>`).join("")}</div><div class="plan-footer"><div><div style="font-size:11px;color:var(--text4);margin-bottom:3px">Budget Range</div><div class="plan-budget">${p.budget}</div></div><div style="display:flex;gap:8px"><button class="plan-btn" style="background:transparent;border:1px solid var(--green);color:var(--green)" onclick="shareTrip(this, '${p.dest}')">Share PDF</button><button class="plan-btn">Book Now →</button></div></div>`;
           g.appendChild(card);
         });
       }
@@ -1932,9 +1932,9 @@
       };
       renderPlans("5d");
 
-      /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-       VIDEO CLIPS â€” Premium thumbnails
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+      /* ═══════════════════════════════════════════════════
+       VIDEO CLIPS — Premium thumbnails
+    ═══════════════════════════════════════════════════ */
       const CLIPS = [
         {
           name: "Taj Mahal at Sunrise",
@@ -2001,7 +2001,7 @@
       CLIPS.forEach((c) => {
         const card = document.createElement("div");
         card.className = "clip-card rv";
-        card.innerHTML = `<div class="clip-thumb"><img src="${c.thumb}" alt="${c.name}" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(145deg,#1a2a1a,#2a3a2a)';this.style.display='none';"/><div class="clip-ov"></div><div class="clip-play"></div><div class="clip-dur">${c.dur}</div><div class="clip-cat-badge">${c.cat}</div></div><div class="clip-body"><div class="clip-name">${c.name}</div><div class="clip-loc">ðŸ“ ${c.loc}</div><div class="clip-views">â–¶ ${c.views}</div></div>`;
+        card.innerHTML = `<div class="clip-thumb"><img src="${c.thumb}" alt="${c.name}" loading="lazy" onerror="this.parentElement.style.background='linear-gradient(145deg,#1a2a1a,#2a3a2a)';this.style.display='none';"/><div class="clip-ov"></div><div class="clip-play"></div><div class="clip-dur">${c.dur}</div><div class="clip-cat-badge">${c.cat}</div></div><div class="clip-body"><div class="clip-name">${c.name}</div><div class="clip-loc">📍 ${c.loc}</div><div class="clip-views">▶ ${c.views}</div></div>`;
         card.addEventListener("click", () => openVid(c.yt));
         cg.appendChild(card);
       });
@@ -2022,7 +2022,7 @@
       const FAQS = [
         {
           q: "What is the best time to visit India?",
-          a: "Octâ€“Mar for most regions. Ladakh: Junâ€“Sep. Kerala: Sepâ€“Feb. Northeast: Sepâ€“Nov.",
+          a: "Oct–Mar for most regions. Ladakh: Jun–Sep. Kerala: Sep–Feb. Northeast: Sep–Nov.",
         },
         {
           q: "How does the AI trip planner work?",
@@ -2030,7 +2030,7 @@
         },
         {
           q: "Are the destination prices accurate?",
-          a: "Estimated mid-range averages. Budget travellers spend 40â€“50% less; luxury 200â€“300% more. Updated quarterly.",
+          a: "Estimated mid-range averages. Budget travellers spend 40–50% less; luxury 200–300% more. Updated quarterly.",
         },
         {
           q: "How do I get a visa for India?",
@@ -2042,7 +2042,7 @@
         },
         {
           q: "What currency and payment methods?",
-          a: "Indian Rupee (â‚¹). ATMs everywhere. UPI (Google Pay, PhonePe) widely accepted. Carry cash for rural areas.",
+          a: "Indian Rupee (₹). ATMs everywhere. UPI (Google Pay, PhonePe) widely accepted. Carry cash for rural areas.",
         },
         {
           q: "Best destinations for wildlife?",
@@ -2058,7 +2058,7 @@
         },
         {
           q: "How far in advance should I book?",
-          a: "Peak season: 2â€“3 months. Tiger safaris: 3â€“4 months. Ladakh permits: 1â€“2 months.",
+          a: "Peak season: 2–3 months. Tiger safaris: 3–4 months. Ladakh permits: 1–2 months.",
         },
       ];
       const fg = document.getElementById("faq-grid");
@@ -2079,7 +2079,7 @@
       /* MARQUEE */
       (() => {
         const items = [
-          "Taj Mahal Â· Agra",
+          "Taj Mahal · Agra",
           "Goa Beaches",
           "Spiti Valley",
           "Kerala Backwaters",
@@ -2089,11 +2089,11 @@
           "Andaman Islands",
           "Kaziranga Rhinos",
           "Ziro Valley",
-          "Golden Temple Â· Amritsar",
+          "Golden Temple · Amritsar",
           "Hampi Ruins",
           "Rishikesh Yoga",
           "Munnar Tea Estates",
-          "Nubra Valley Â· Ladakh",
+          "Nubra Valley · Ladakh",
           "Sundarbans",
           "Coorg Coffee",
           "Varkala Cliffs",
@@ -2161,7 +2161,7 @@
       setInterval(() => {
         const now = new Date();
         document.getElementById("nav-coord").textContent =
-          `20Â°NÂ·78Â°E Â· ${now.toLocaleTimeString("en-IN", { hour12: false })}`;
+          `20°N·78°E · ${now.toLocaleTimeString("en-IN", { hour12: false })}`;
       }, 1000);
       window.submitEmail = function () {
         const v = document.getElementById("cta-email").value.trim();
