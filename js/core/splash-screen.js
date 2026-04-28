@@ -403,8 +403,8 @@
     // Hero globe ratio = 3.84 distance / 1.5 radius = 2.56. Splash radius = 2.0. Target dist = 5.12.
     gsap.to(camState, {
       radius: 5.12, 
-      rotY: -1.75, // Spin the globe slightly as we leave
-      duration: 1.0,
+      rotY: camState.rotY - (Math.PI * 2), // Quick 360-degree spin as we zoom out
+      duration: 1.2, // Slightly longer to let the spin complete smoothly
       ease: 'power2.inOut',
       onUpdate: function() {
         updateCamera();
