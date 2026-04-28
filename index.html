@@ -39,29 +39,56 @@
 </head>
 
 <body class="splash-active">
-  <!-- ═══════════ SPLASH SCREEN — Globe Zoom Intro ═══════════ -->
+  <!-- ═══════════ SPLASH SCREEN — Real 3D NASA Globe ═══════════ -->
   <div id="splash-screen" aria-hidden="true">
-    <div class="splash-stars"></div>
-    <div class="splash-scanline"></div>
+    <!-- Three.js 3D Globe Canvas -->
+    <canvas id="splash-canvas"></canvas>
 
-    <div class="splash-coord splash-coord-tl">20.5937°N</div>
-    <div class="splash-coord splash-coord-tr">78.9629°E</div>
-    <div class="splash-coord splash-coord-bl">SYS:INIT</div>
-    <div class="splash-coord splash-coord-br">v2.0</div>
+    <!-- HUD Overlay -->
+    <div class="splash-hud">
+      <!-- Corner data readouts -->
+      <div class="splash-hud-tl">
+        <div class="splash-hud-label">TARGET</div>
+        <div class="splash-hud-val" id="splash-lat">20.5937°N</div>
+        <div class="splash-hud-val" id="splash-lon">78.9629°E</div>
+      </div>
+      <div class="splash-hud-tr">
+        <div class="splash-hud-label">ALTITUDE</div>
+        <div class="splash-hud-val" id="splash-alt">35,786 km</div>
+        <div class="splash-hud-sub">GEOSTATIONARY</div>
+      </div>
+      <div class="splash-hud-bl">
+        <div class="splash-hud-label">SYSTEM</div>
+        <div class="splash-hud-val">TravelMantra AI v2.0</div>
+        <div class="splash-hud-sub" id="splash-status">INITIALIZING...</div>
+      </div>
+      <div class="splash-hud-br">
+        <div class="splash-hud-label">LOADING</div>
+        <div class="splash-hud-val" id="splash-pct">0%</div>
+      </div>
 
-    <div class="splash-globe-container">
-      <div class="splash-orbit-ring"></div>
-      <div class="splash-orbit-ring-2"></div>
-      <div class="splash-globe"></div>
+      <!-- Targeting reticle (center) -->
+      <div class="splash-reticle" id="splash-reticle">
+        <svg viewBox="0 0 100 100" width="80" height="80">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(46,204,113,0.2)" stroke-width="0.5"/>
+          <circle cx="50" cy="50" r="25" fill="none" stroke="rgba(46,204,113,0.15)" stroke-width="0.5"/>
+          <line x1="50" y1="5" x2="50" y2="20" stroke="rgba(46,204,113,0.3)" stroke-width="0.5"/>
+          <line x1="50" y1="80" x2="50" y2="95" stroke="rgba(46,204,113,0.3)" stroke-width="0.5"/>
+          <line x1="5" y1="50" x2="20" y2="50" stroke="rgba(46,204,113,0.3)" stroke-width="0.5"/>
+          <line x1="80" y1="50" x2="95" y2="50" stroke="rgba(46,204,113,0.3)" stroke-width="0.5"/>
+        </svg>
+      </div>
     </div>
 
-    <div class="splash-brand">
+    <!-- Brand text (fades during zoom) -->
+    <div class="splash-brand" id="splash-brand">
       <div class="splash-brand-name">Travel<span>Mantra</span> AI</div>
       <div class="splash-brand-sub">Discovering Incredible India</div>
     </div>
 
+    <!-- Progress bar -->
     <div class="splash-progress">
-      <div class="splash-progress-bar"></div>
+      <div class="splash-progress-bar" id="splash-progress-bar"></div>
     </div>
   </div>
 
