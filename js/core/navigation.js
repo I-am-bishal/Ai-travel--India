@@ -162,21 +162,25 @@
           // Check middle of the viewport
           const scrollPosition = window.scrollY + window.innerHeight * 0.4;
 
-          sections.forEach(section => {
-            const el = document.getElementById(section.id);
-            if (el) {
-              const elTop = el.getBoundingClientRect().top + window.scrollY;
-              if (scrollPosition >= elTop) {
-                currentId = section.id;
-              }
+          // Get valid sections and sort them dynamically by their vertical position
+          const validSections = sections
+            .map(s => {
+              const el = document.getElementById(s.id);
+              return el ? { id: s.id, hookId: s.hookId, top: el.getBoundingClientRect().top + window.scrollY } : null;
+            })
+            .filter(Boolean)
+            .sort((a, b) => a.top - b.top);
+
+          validSections.forEach(section => {
+            if (scrollPosition >= section.top - 50) {
+              currentId = section.id;
             }
           });
 
           // Edge case: if user scrolled to the absolute bottom of the page
           if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight - 100) {
-            // Force select the last section (FAQ)
-            const lastValidSection = [...sections].reverse().find(s => document.getElementById(s.id));
-            if (lastValidSection) currentId = lastValidSection.id;
+            // Force select the last section
+            if (validSections.length > 0) currentId = validSections[validSections.length - 1].id;
           }
 
           if (currentId) {
