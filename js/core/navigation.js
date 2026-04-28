@@ -155,32 +155,43 @@
           { id: 'faq', hookId: 'event-hook-14' }
         ];
 
-        const observerOptions = {
-          root: null,
-          rootMargin: '-20% 0px -60% 0px',
-          threshold: 0
-        };
-
         const navLinks = document.querySelectorAll('.nav-lnk');
 
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const currentId = entry.target.id;
-              const activeSection = sections.find(s => s.id === currentId);
-              if (activeSection) {
-                navLinks.forEach(link => link.classList.remove('on'));
-                const activeLink = document.getElementById(activeSection.hookId);
-                if (activeLink) activeLink.classList.add('on');
+        function updateNav() {
+          let currentId = '';
+          // Check middle of the viewport
+          const scrollPosition = window.scrollY + window.innerHeight * 0.4;
+
+          sections.forEach(section => {
+            const el = document.getElementById(section.id);
+            if (el) {
+              const elTop = el.getBoundingClientRect().top + window.scrollY;
+              if (scrollPosition >= elTop) {
+                currentId = section.id;
               }
             }
           });
-        }, observerOptions);
 
-        sections.forEach(section => {
-          const el = document.getElementById(section.id);
-          if (el) observer.observe(el);
-        });
+          // Edge case: if user scrolled to the absolute bottom of the page
+          if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight - 100) {
+            // Force select the last section (FAQ)
+            const lastValidSection = [...sections].reverse().find(s => document.getElementById(s.id));
+            if (lastValidSection) currentId = lastValidSection.id;
+          }
+
+          if (currentId) {
+            const activeSection = sections.find(s => s.id === currentId);
+            if (activeSection) {
+              navLinks.forEach(link => link.classList.remove('on'));
+              const activeLink = document.getElementById(activeSection.hookId);
+              if (activeLink) activeLink.classList.add('on');
+            }
+          }
+        }
+
+        window.addEventListener('scroll', updateNav, { passive: true });
+        // Initial check
+        setTimeout(updateNav, 500);
       });
 
 
