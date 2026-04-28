@@ -1,1089 +1,993 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta id="event-hook-1" name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>TravelMantra AI — Discover Incredible India</title>
-    <meta
- id="event-hook-2"   name="description"
-   content="AI-powered geographic travel platform for India. Explore 847+ destinations with real satellite cartography and AI trip planning."
-  />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- External Libraries (CDN) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <!-- Project Stylesheets -->
-    <link rel="stylesheet" href="css/base/reset.css" />
-    <link rel="stylesheet" href="css/base/variables.css" />
-    <link rel="stylesheet" href="css/base/typography.css" />
-    <link rel="stylesheet" href="css/base/global.css" />
-    <link rel="stylesheet" href="css/layout/navbar.css" />
-    <link rel="stylesheet" href="css/layout/hero.css" />
-    <link rel="stylesheet" href="css/layout/sections.css" />
-    <link rel="stylesheet" href="css/layout/footer.css" />
-    <link rel="stylesheet" href="css/layout/responsive.css" />
-    <link rel="stylesheet" href="css/pages/destinations.css" />
-    <link rel="stylesheet" href="css/pages/city-guide.css" />
-    <link rel="stylesheet" href="css/pages/ai-trip-builder.css" />
-    <link rel="stylesheet" href="css/pages/trip-plans.css" />
-    <link rel="stylesheet" href="css/pages/destination-modal.css" />
-    <link rel="stylesheet" href="css/pages/booking.css" />
-    <link rel="stylesheet" href="css/effects/animations.css" />
-    <link rel="stylesheet" href="css/effects/nature-effects.css" />
-    <link rel="stylesheet" href="css/effects/marquee.css" />
-    <link rel="stylesheet" href="css/effects/loaders.css" />
-  </head>
-  <body>
-    <!-- Skip to content (a11y) -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <div id="prog" role="progressbar" aria-label="Page scroll progress"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta id="event-hook-1" name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>TravelMantra AI — Discover Incredible India</title>
+  <meta id="event-hook-2" name="description"
+    content="AI-powered geographic travel platform for India. Explore 847+ destinations with real satellite cartography and AI trip planning." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <!-- External Libraries (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- Project Stylesheets -->
+  <link rel="stylesheet" href="css/base/reset.css" />
+  <link rel="stylesheet" href="css/base/variables.css" />
+  <link rel="stylesheet" href="css/base/typography.css" />
+  <link rel="stylesheet" href="css/base/global.css" />
+  <link rel="stylesheet" href="css/layout/navbar.css" />
+  <link rel="stylesheet" href="css/layout/hero.css" />
+  <link rel="stylesheet" href="css/layout/sections.css" />
+  <link rel="stylesheet" href="css/layout/footer.css" />
+  <link rel="stylesheet" href="css/layout/responsive.css" />
+  <link rel="stylesheet" href="css/pages/destinations.css" />
+  <link rel="stylesheet" href="css/pages/city-guide.css" />
+  <link rel="stylesheet" href="css/pages/ai-trip-builder.css" />
+  <link rel="stylesheet" href="css/pages/trip-plans.css" />
+  <link rel="stylesheet" href="css/pages/destination-modal.css" />
+  <link rel="stylesheet" href="css/pages/booking.css" />
+  <link rel="stylesheet" href="css/effects/animations.css" />
+  <link rel="stylesheet" href="css/effects/nature-effects.css" />
+  <link rel="stylesheet" href="css/effects/marquee.css" />
+  <link rel="stylesheet" href="css/effects/loaders.css" />
+</head>
 
-    <!-- MOBILE MENU -->
-    <div class="mob-menu" id="mob-menu">
-      <button id="event-hook-3" class="mob-x">✕</button>
-      <a id="event-hook-4" href="#destinations">Destinations</a>
-      <a id="event-hook-5" href="#plans">Trip Plans</a>
-      <a id="event-hook-6" href="#clips">Explore</a>
-      <a id="event-hook-7" href="#faq">FAQ</a>
+<body class="splash-active">
+  <!-- ═══════════ SPLASH SCREEN — Globe Zoom Intro ═══════════ -->
+  <div id="splash-screen" aria-hidden="true">
+    <div class="splash-stars"></div>
+    <div class="splash-scanline"></div>
+
+    <div class="splash-coord splash-coord-tl">20.5937°N</div>
+    <div class="splash-coord splash-coord-tr">78.9629°E</div>
+    <div class="splash-coord splash-coord-bl">SYS:INIT</div>
+    <div class="splash-coord splash-coord-br">v2.0</div>
+
+    <div class="splash-globe-container">
+      <div class="splash-orbit-ring"></div>
+      <div class="splash-orbit-ring-2"></div>
+      <div class="splash-globe"></div>
     </div>
 
-    <!-- NAV -->
-    <nav id="nav">
-      <div class="nav-logo">
-        <div class="nav-logo-icon">
-          <img
-            src="assets/logos/travelmantra-logo.png"
-            alt="TravelMantra AI — India Travel Logo"
-          />
-        </div>
-        <div class="nav-logo-text">
-          <div class="nav-logo-name">
-            Travel<span class="india-bold">Mantra</span> AI
-          </div>
-          <div class="nav-logo-sub">
-            <strong>INDIA</strong> —
-          </div>
-        </div>
-      </div>
-      <div class="nav-links">
-        <div id="event-hook-8" class="nav-lnk on"  role="button" tabindex="0" aria-label="Go to Destinations">Destinations</div>
-        <div id="event-hook-9" class="nav-lnk"  role="button" tabindex="0" aria-label="Go to City Guide">City Guide</div>
-        <div id="event-hook-10" class="nav-lnk"  role="button" tabindex="0" aria-label="Go to AI Planner">AI Planner</div>
-        <div id="event-hook-11" class="nav-lnk"  role="button" tabindex="0" aria-label="Go to Trip Plans">Trip Plans</div>
-        <div id="event-hook-12" class="nav-lnk"  role="button" tabindex="0" aria-label="Go to Explore">Explore</div>
-        <div id="event-hook-13" class="nav-lnk"  role="button" tabindex="0" aria-label="Go to Travel Insights">Insights</div>
-        <div id="event-hook-14" class="nav-lnk"  role="button" tabindex="0" aria-label="Go to FAQ">FAQ</div>
-      </div>
-      <div class="nav-acts">
-        <div class="nav-coord" id="nav-coord" aria-label="Coordinates">20°N · 78°E</div>
-
-        <!-- High Contrast Toggle -->
-        <button class="hc-btn" id="hc-toggle-btn"  aria-label="Toggle high contrast mode" title="Toggle high contrast mode">◑</button>
-
-        <!-- Language Toggle -->
-        <div class="lang-toggle" id="lang-toggle">
-          <button class="lang-btn" id="lang-btn"  aria-haspopup="listbox" aria-expanded="false" aria-label="Select language">
-            <span id="lang-flag">🇮🇳</span>
-            <span id="lang-label">EN</span>
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d="M1 3l4 4 4-4"/></svg>
-          </button>
-          <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Available languages">
-            <div id="event-hook-15" class="lang-opt active" role="option" aria-selected="true" data-lang="en" data-flag="🇮🇳" data-label="EN">
-              <span class="lang-flag">🇮🇳</span>
-              <div><span class="lang-name">English</span><span class="lang-native">English</span></div>
-            </div>
-            <div id="event-hook-16" class="lang-opt" role="option" aria-selected="false" data-lang="hi" data-flag="🇮🇳" data-label="हि">
-              <span class="lang-flag">🇮🇳</span>
-              <div><span class="lang-name">Hindi</span><span class="lang-native">हिन्दी</span></div>
-            </div>
-            <div id="event-hook-17" class="lang-opt" role="option" aria-selected="false" data-lang="bn" data-flag="🇧🇩" data-label="বাং">
-              <span class="lang-flag">🇧🇩</span>
-              <div><span class="lang-name">Bengali</span><span class="lang-native">বাংলা</span></div>
-            </div>
-            <div id="event-hook-18" class="lang-opt" role="option" aria-selected="false" data-lang="ta" data-flag="🇮🇳" data-label="த">
-              <span class="lang-flag">🇮🇳</span>
-              <div><span class="lang-name">Tamil</span><span class="lang-native">தமிழ்</span></div>
-            </div>
-            <div id="event-hook-19" class="lang-opt" role="option" aria-selected="false" data-lang="te" data-flag="🇮🇳" data-label="తె">
-              <span class="lang-flag">🇮🇳</span>
-              <div><span class="lang-name">Telugu</span><span class="lang-native">తెలుగు</span></div>
-            </div>
-            <div id="event-hook-20" class="lang-opt" role="option" aria-selected="false" data-lang="mr" data-flag="🇮🇳" data-label="म">
-              <span class="lang-flag">🇮🇳</span>
-              <div><span class="lang-name">Marathi</span><span class="lang-native">मराठी</span></div>
-            </div>
-          </div>
-        </div>
-
-        <button id="event-hook-21" class="btn-nv"  aria-label="Plan your India trip with AI">✦ Plan with AI</button>
-        <button class="hbg" id="hbg"  aria-label="Open navigation menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
-
-    <!-- ═══════════ HERO — 3D GLOBE (UNTOUCHED) ═══════════ -->
-    <section id="hero">
-      <canvas id="hero-canvas"></canvas>
-      <div class="hero-vignette"></div>
-      <div class="hero-leaf-ov"></div>
-      <div class="hero-content">
-        <div class="hero-eyebrow" id="hero-eyebrow">
-          <div class="hero-eye-dot"></div>
-          AI-Powered ·
-          <strong class="util-style-13" 
-     >INDIA</strong
-         >
-          · Travel Intelligence
-        </div>
-        <h1 class="hero-h1" id="hero-h1">
-          Discover<br /><span class="accent">Incredible</span><br /><span
-            class="util-style-19 outline"
-            
-           >India.</span
-         >
-        </h1>
-        <p class="hero-desc" id="hero-desc">
-          Where real satellite geography meets AI-powered journey planning.
-          Explore every mountain, coastline and temple of
-          <strong class="util-style-3">INDIA</strong> —
-          mapped, rated and ready for your next adventure.
-        </p>
-        <div class="hero-btns" id="hero-btns">
-          <button id="event-hook-22" class="btn-primary">
-            🌿 Explore Destinations
-          </button>
-          <button id="event-hook-23" class="btn-outline">
-            View Trip Plans
-          </button>
-        </div>
-        <div class="hero-stats" id="hero-stats">
-          <div class="hero-stat">
-            <div class="hero-stat-n" data-count="36" data-suf="+">0</div>
-            <div class="hero-stat-l">States & UTs</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-n" data-count="847" data-suf="+">0</div>
-            <div class="hero-stat-l">Destinations</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-n" data-count="42" data-suf="+">0</div>
-            <div class="hero-stat-l">UNESCO Sites</div>
-          </div>
-          <div class="hero-stat">
-            <div class="hero-stat-n" data-count="2.4" data-suf="M">0</div>
-            <div class="hero-stat-l">Trips Planned</div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-orbital-info" id="hero-orbital-info">
-        <div class="orbital-badge" id="ob-1">
-          <div class="orbital-badge-title">Live Mapping</div>
-          <div class="orbital-badge-val">
-            <span class="badge-dot"></span>3.28M km²
-          </div>
-          <div class="orbital-badge-sub">Full Indian Subcontinent</div>
-        </div>
-        <div class="orbital-badge" id="ob-2">
-          <div class="orbital-badge-title">AI Accuracy</div>
-          <div class="orbital-badge-val">
-            <span class="badge-dot"></span>98.7%
-          </div>
-          <div class="orbital-badge-sub">Trip Planning Precision</div>
-        </div>
-        <div class="orbital-badge" id="ob-3">
-          <div class="orbital-badge-title">Eco Score</div>
-          <div class="orbital-badge-val"><span class="badge-dot"></span>A+</div>
-          <div class="orbital-badge-sub">Sustainable Travel Rated</div>
-        </div>
-      </div>
-      <div class="scroll-ind">
-        <div class="scroll-ind-line"></div>
-        <div class="scroll-ind-text">Scroll</div>
-      </div>
-    </section>
-
-    <!-- MARQUEE -->
-    <div class="mq-wrap" aria-hidden="true">
-      <div class="mq-track" id="mq-t"></div>
+    <div class="splash-brand">
+      <div class="splash-brand-name">Travel<span>Mantra</span> AI</div>
+      <div class="splash-brand-sub">Discovering Incredible India</div>
     </div>
 
-    <!-- ═══════════ CITY-WISE DESTINATION GUIDE ═══════════ -->
-    <section id="city-guide" class="sec nature-sec">
-      <div class="util-style-18 topo-contours util-style-18"></div>
-      <div class="firefly-container" id="firefly-cities"></div>
-
-      <div class="sec-inner">
-        <div class="util-style-21"
-     
-   >
-          <div>
-            <div class="sec-tag rv">City-Wise Guide</div>
-            <h2 class="sec-h2 rv">
-              <strong class="india-bold">India's</strong> Greatest<br /><em
-               >Cities to Explore</em
-             >
-            </h2>
-            <p class="sec-sub rv d1">
-              From ancient capitals to coastal gems — every legendary city of
-              <strong>India</strong> curated with insider knowledge, seasonal
-              tips &amp; cultural depth.
-            </p>
-          </div>
-        </div>
-
-        <!-- City Filters -->
-        <div class="city-filters rv d2" id="city-filters">
-          <button class="cf on" data-tag="all">All Cities</button>
-          <button class="cf" data-tag="Mountain">Mountain</button>
-          <button class="cf" data-tag="Beach">Beach</button>
-          <button class="cf" data-tag="Heritage">Heritage</button>
-          <button class="cf" data-tag="Honeymoon">Honeymoon</button>
-          <button class="cf" data-tag="Solo Travel">Solo Travel</button>
-        </div>
-
-        <div class="city-grid" id="city-grid"></div>
-      </div>
-    </section>
-
-    <!-- ═══════════ AI TRIP BUILDER ═══════════ -->
-    <section id="ai-trip-builder" class="sec nature-sec">
-      <div class="star-field" id="star-field-ai"></div>
-      <div class="util-style-24 aurora util-style-24"></div>
-
-      <div class="ai-builder-inner">
-        <div class="sec-tag rv">Powered by AI</div>
-        <h2 class="sec-h2 rv">
-          Plan your <strong class="india-bold">India</strong><br /><em
-           >trip in seconds</em
-         >
-        </h2>
-        <p class="sec-sub rv d1">
-          Describe your dream journey across <strong>India</strong> — our AI
-          builds a complete day-by-day itinerary with budgets, routes and local
-          tips instantly.
-        </p>
-
-        <div class="ai-builder-grid rv d2">
-          <!-- ─── Form Panel ─── -->
-          <div class="ai-builder-form">
-            <div class="ai-form-title">
-              <span>🤖</span> Tell the AI your plan
-              <span class="ai-chip">Live</span>
-            </div>
-
-            <div class="util-style-28 ai-field util-style-28">
-              <label class="util-style-4"
-        
-      >
-                <span>🎤 Voice Search (Beta)</span>
-                <button class="util-style-2"
-         id="ai-mic-btn"
-         type="button"
-         
-       >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                 >
-                    <path
-                      d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"
-                   ></path>
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                    <line x1="12" y1="19" x2="12" y2="22"></line>
-                  </svg>
-                </button>
-              </label>
-              <textarea
-                class="util-style-16 ai-input"
-                id="ai-voice-prompt"
-                placeholder="Click the mic and say: 'Plan a 5-day honeymoon in Kerala under 50k'"
-                rows="2"
-                
-             ></textarea>
-            </div>
-
-            <div class="ai-field">
-              <label>📍 Destination in <strong>India</strong></label>
-              <input
-                class="ai-input"
-                id="ai-dest"
-                placeholder="e.g. Rajasthan, Kerala, Ladakh…"
-              />
-            </div>
-
-            <div class="ai-row">
-              <div class="ai-field">
-                <label>📅 Duration</label>
-                <select class="ai-select" id="ai-days">
-                  <option value="2">2 Days</option>
-                  <option value="3">3 Days</option>
-                  <option value="5" selected>5 Days</option>
-                  <option value="7">7 Days</option>
-                  <option value="10">10 Days</option>
-                  <option value="14">14 Days</option>
-                </select>
-              </div>
-              <div class="ai-field">
-                <label>💰 Budget Style</label>
-                <select class="ai-select" id="ai-budget">
-                  <option value="budget">Budget (₹1k–2k/day)</option>
-                  <option value="mid" selected>Mid-range (₹3k–7k/day)</option>
-                  <option value="luxury">Luxury (₹15k+/day)</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="ai-field">
-              <label>👥 Travellers</label>
-              <select class="ai-select" id="ai-group">
-                <option value="solo">Solo Explorer</option>
-                <option value="couple" selected>Couple</option>
-                <option value="family">Family with Kids</option>
-                <option value="friends">Group of Friends</option>
-              </select>
-            </div>
-
-            <span class="ai-chips-label"
-             >✦ Travel Interests (select all that apply)</span
-           >
-            <div class="ai-chips" id="ai-interests">
-              <button class="ai-chip-btn sel" data-i="Heritage">
-                🏛️ Heritage
-              </button>
-              <button class="ai-chip-btn" data-i="Nature">🌿 Nature</button>
-              <button class="ai-chip-btn sel" data-i="Food">🍛 Food</button>
-              <button class="ai-chip-btn" data-i="Adventure">
-                ⛰️ Adventure
-              </button>
-              <button class="ai-chip-btn" data-i="Spiritual">
-                🙏 Spiritual
-              </button>
-              <button class="ai-chip-btn" data-i="Wildlife">🐅 Wildlife</button>
-              <button class="ai-chip-btn" data-i="Beaches">🏖️ Beaches</button>
-              <button class="ai-chip-btn" data-i="Luxury">✨ Luxury</button>
-            </div>
-
-            <button
-              class="ai-generate-btn"
-              id="ai-gen-btn"
-              
-           >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#000"
-                stroke-width="2.5"
-                stroke-linecap="round"
-             >
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-              </svg>
-              Generate My <strong>India</strong> Itinerary
-            </button>
-          </div>
-
-          <!-- ─── Result Panel ─── -->
-          <div>
-            <div class="ai-result-panel" id="ai-result-panel">
-              <div class="ai-result-idle" id="ai-result-idle">
-                <div class="ai-orb">🗺️</div>
-                <h3>
-                  Your <strong class="india-bold">India</strong> Plan Awaits
-                </h3>
-                <p>
-                  Fill in your preferences and let AI craft a perfect itinerary
-                  — destinations, daily activities, costs and local tips across
-                  <strong>India</strong>.
-                </p>
-              </div>
-              <div class="util-style-12"
-        id="ai-result-content"
-        
-      ></div>
-            </div>
-
-            <!-- Feature highlights below result -->
-            <div class="ai-builder-features">
-              <div class="ai-feat">
-                <span class="ai-feat-icon">⚡</span>
-                <div>
-                  <div class="ai-feat-t">Instant Generation</div>
-                  <div class="ai-feat-d">
-                    Complete <strong>India</strong> itinerary in under 2 seconds
-                  </div>
-                </div>
-              </div>
-              <div class="ai-feat">
-                <span class="ai-feat-icon">💰</span>
-                <div>
-                  <div class="ai-feat-t">Accurate Budgets</div>
-                  <div class="ai-feat-d">
-                    Real ₹ costs for every <strong>India</strong> destination
-                  </div>
-                </div>
-              </div>
-              <div class="ai-feat">
-                <span class="ai-feat-icon">🗺️</span>
-                <div>
-                  <div class="ai-feat-t">Route Optimised</div>
-                  <div class="ai-feat-d">
-                    Smart sequencing across <strong>India</strong>'s geography
-                  </div>
-                </div>
-              </div>
-              <div class="ai-feat">
-                <span class="ai-feat-icon">🏨</span>
-                <div>
-                  <div class="ai-feat-t">Stay Included</div>
-                  <div class="ai-feat-d">
-                    Hotel tiers matched to your style in <strong>India</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ DESTINATIONS — Forest Biome ═══════════ -->
-    <section id="destinations" class="sec nature-sec">
-      <!-- Nature layers: Leaves, Fireflies, Mountain silhouettes, Topo -->
-      <div class="topo-contours"></div>
-      <div class="leaf-container" id="leaf-container"></div>
-      <div class="firefly-container" id="firefly-dest"></div>
-      <canvas class="nature-canvas" id="nc-dest"></canvas>
-      <div class="util-style-25 mountain-layer util-style-25">
-        <svg class="util-style-17"
-     viewBox="0 0 1440 200"
-     preserveAspectRatio="none"
-     
-   >
-          <path
-            d="M0,200 L0,140 Q120,60 240,100 Q360,30 480,80 Q600,10 720,60 Q840,30 960,90 Q1080,40 1200,70 Q1320,20 1440,80 L1440,200Z"
-            fill="rgba(27,94,32,.4)"
-          />
-          <path
-            d="M0,200 L0,160 Q180,100 360,130 Q540,70 720,110 Q900,60 1080,100 Q1260,80 1440,120 L1440,200Z"
-            fill="rgba(46,204,113,.15)"
-          />
-        </svg>
-      </div>
-
-      <div class="sec-inner">
-        <div class="util-style-15"
-     
-   >
-          <div>
-            <div class="sec-tag rv">All Destinations</div>
-            <h2 class="sec-h2 rv">
-              Every corner of<br /><em>incredible India</em>
-            </h2>
-            <p class="sec-sub rv d1">
-              From Himalayan peaks to tropical backwaters — all 36 states and
-              UTs mapped, rated and priced for your journey.
-            </p>
-          </div>
-          <div
-            class="util-style-6 rv d2"
-            id="dest-count"
-            
-         ></div>
-        </div>
-        <div class="dest-filter rv d2" id="dest-filter">
-          <button class="df on" data-cat="all">All</button>
-          <button class="df" data-cat="Heritage">Heritage</button>
-          <button class="df" data-cat="Beaches">Beaches</button>
-          <button class="df" data-cat="Mountains">Mountains</button>
-          <button class="df" data-cat="Spiritual">Spiritual</button>
-          <button class="df" data-cat="Wildlife">Wildlife</button>
-          <button class="df" data-cat="Backwaters">Backwaters</button>
-          <button class="df" data-cat="Urban">Urban</button>
-        </div>
-        <div class="dest-grid" id="dest-grid"></div>
-        <div class="see-more-wrap rv" id="see-more-wrap">
-          <button
-            class="btn-see-more"
-            id="btn-see-more"
-            
-         >
-            See All Destinations <span class="arrow">↓</span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ TRIP PLANS — Mountain/Sky Biome ═══════════ -->
-    <section id="plans" class="sec nature-sec">
-      <div class="star-field" id="star-field-plans"></div>
-      <div class="cloud-container" id="cloud-plans"></div>
-      <div class="util-style-7 topo-contours util-style-7"></div>
-      <canvas class="nature-canvas" id="nc-plans"></canvas>
-      <div class="util-style-8 mountain-layer util-style-8">
-        <svg class="util-style-27"
-     viewBox="0 0 1440 220"
-     preserveAspectRatio="none"
-     
-   >
-          <path
-            d="M0,220 L0,100 Q100,20 200,70 Q300,10 420,50 Q500,0 600,40 Q720,15 840,60 Q960,5 1080,45 Q1200,25 1320,55 Q1380,10 1440,50 L1440,220Z"
-            fill="rgba(20,30,50,.6)"
-          />
-          <path
-            d="M0,220 L0,140 Q200,80 400,120 Q600,60 800,100 Q1000,70 1200,110 Q1340,80 1440,100 L1440,220Z"
-            fill="rgba(30,40,60,.4)"
-          />
-        </svg>
-      </div>
-
-      <div class="sec-inner">
-        <div class="sec-tag rv">Curated Itineraries</div>
-        <h2 class="sec-h2 rv">Ready-made<br /><em>trip plans</em></h2>
-        <p class="sec-sub rv d1">
-          Choose your duration. AI curates every detail — hotels, transport,
-          activities and costs.
-        </p>
-        <div class="util-style-10 plans-tabs rv d2 util-style-10">
-          <button id="event-hook-24" class="plan-tab">
-            2 Days
-          </button>
-          <button id="event-hook-25" class="plan-tab">
-            3 Days
-          </button>
-          <button id="event-hook-26" class="plan-tab on">
-            5 Days
-          </button>
-          <button id="event-hook-27" class="plan-tab">
-            7 Days
-          </button>
-        </div>
-        <div id="plans-2d" class="plans-content">
-          <div class="plan-grid" id="pg-2d"></div>
-        </div>
-        <div id="plans-3d" class="plans-content">
-          <div class="plan-grid" id="pg-3d"></div>
-        </div>
-        <div id="plans-5d" class="plans-content on">
-          <div class="plan-grid" id="pg-5d"></div>
-        </div>
-        <div id="plans-7d" class="plans-content">
-          <div class="plan-grid" id="pg-7d"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ VIDEO CLIPS — Ocean Biome ═══════════ -->
-    <section id="clips" class="sec nature-sec">
-      <div class="rain-container" id="rain-clips"></div>
-      <div class="lightning-flash"></div>
-      <canvas class="nature-canvas" id="nc-clips"></canvas>
-
-      <div class="sec-inner">
-        <div class="util-style-11"
-     
-   >
-          <div>
-            <div class="sec-tag rv">Destination Reels</div>
-            <h2 class="sec-h2 rv">See it before<br /><em>you go</em></h2>
-            <p class="sec-sub rv d1">
-              Cinematic clips from India's most breathtaking destinations. Hit
-              play and let India speak.
-            </p>
-          </div>
-        </div>
-        <div class="clips-grid" id="clips-grid"></div>
-      </div>
-    </section>
-
-    <!-- VIDEO MODAL -->
-    <div class="vid-modal" id="vid-modal">
-      <div class="vid-inner">
-        <button id="event-hook-28" class="vid-close">✕ Close</button>
-        <iframe
-          id="vid-iframe"
-          src=""
-          allow="autoplay; fullscreen"
-          allowfullscreen
-       ></iframe>
-      </div>
+    <div class="splash-progress">
+      <div class="splash-progress-bar"></div>
     </div>
+  </div>
 
-    <!-- DESTINATION DETAIL MODAL -->
-    <div class="dest-modal-overlay" id="dest-modal-overlay">
-      <div class="dest-modal" id="dest-modal">
-        <button id="event-hook-29" class="dm-close">✕</button>
-        <div class="dm-hero" id="dm-hero">
-          <div class="dm-hero-ov"></div>
-          <div class="dm-hero-emoji" id="dm-emoji"></div>
-          <div class="dm-hero-badge" id="dm-badge"></div>
+  <!-- Skip to content (a11y) -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div id="prog" role="progressbar" aria-label="Page scroll progress"></div>
+
+  <!-- MOBILE MENU -->
+  <div class="mob-menu" id="mob-menu">
+    <button id="event-hook-3" class="mob-x">✕</button>
+    <a id="event-hook-4" href="#destinations">Destinations</a>
+    <a id="event-hook-5" href="#plans">Trip Plans</a>
+    <a id="event-hook-6" href="#clips">Explore</a>
+    <a id="event-hook-7" href="#faq">FAQ</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nav-logo">
+      <div class="nav-logo-icon">
+        <img src="assets/logos/travelmantra-logo.png" alt="TravelMantra AI — India Travel Logo" />
+      </div>
+      <div class="nav-logo-text">
+        <div class="nav-logo-name">
+          Travel<span class="india-bold">Mantra</span> AI
         </div>
-        <div class="dm-body">
-          <div class="dm-cat" id="dm-cat"></div>
-          <div class="dm-name" id="dm-name"></div>
-          <div class="dm-loc" id="dm-loc"></div>
-          <div class="dm-desc" id="dm-desc"></div>
-          <div class="dm-info-grid" id="dm-info-grid"></div>
-          <div class="dm-highlights" id="dm-highlights">
-            <div class="dm-highlights-title">✨ Highlights & Attractions</div>
-            <div class="dm-hl-grid" id="dm-hl-grid"></div>
-          </div>
-          <div class="dm-tips" id="dm-tips">
-            <div class="dm-tips-title">💡 Travel Tips</div>
-            <div class="dm-tips-text" id="dm-tips-text"></div>
-          </div>
-          <div class="dm-cta">
-            <button
- id="event-hook-30"       class="btn-primary"
-       onclick="
-        closeDestModal();
-        scrollTo2('plans');
-       "
-     >
-              🗺️ Plan a Trip Here
-            </button>
-            <button id="event-hook-31" class="btn-outline">
-              Back to Destinations
-            </button>
-          </div>
+        <div class="nav-logo-sub">
+          <strong>INDIA</strong> —
         </div>
       </div>
     </div>
-
-    <!-- ═══════════ FAQ — Desert Biome ═══════════ -->
-    <section id="faq" class="sec nature-sec">
-      <div class="sand-container" id="sand-faq"></div>
-      <div class="util-style-22 topo-contours util-style-22"></div>
-      <canvas class="nature-canvas" id="nc-faq"></canvas>
-      <div class="util-style-25 mountain-layer util-style-25">
-        <svg class="util-style-5"
-     viewBox="0 0 1440 160"
-     preserveAspectRatio="none"
-     
-   >
-          <path
-            d="M0,160 L0,120 Q200,60 400,100 Q600,40 800,80 Q1000,50 1200,90 Q1350,60 1440,80 L1440,160Z"
-            fill="rgba(40,30,15,.4)"
-          />
-        </svg>
+    <div class="nav-links">
+      <div id="event-hook-8" class="nav-lnk on" role="button" tabindex="0" aria-label="Go to Destinations">Destinations
       </div>
-
-      <div class="sec-inner">
-        <div class="sec-tag rv">FAQ</div>
-        <h2 class="sec-h2 rv">Answers for every<br /><em>explorer</em></h2>
-        <div class="faq-grid rv d1" id="faq-grid"></div>
+      <div id="event-hook-9" class="nav-lnk" role="button" tabindex="0" aria-label="Go to City Guide">City Guide</div>
+      <div id="event-hook-10" class="nav-lnk" role="button" tabindex="0" aria-label="Go to AI Planner">AI Planner</div>
+      <div id="event-hook-11" class="nav-lnk" role="button" tabindex="0" aria-label="Go to Trip Plans">Trip Plans</div>
+      <div id="event-hook-12" class="nav-lnk" role="button" tabindex="0" aria-label="Go to Explore">Explore</div>
+      <div id="event-hook-13" class="nav-lnk" role="button" tabindex="0" aria-label="Go to Travel Insights">Insights
       </div>
-    </section>
+      <div id="event-hook-14" class="nav-lnk" role="button" tabindex="0" aria-label="Go to FAQ">FAQ</div>
+    </div>
+    <div class="nav-acts">
+      <div class="nav-coord" id="nav-coord" aria-label="Coordinates">20°N · 78°E</div>
 
-    <!-- ═══════════ TRAVEL INSIGHTS ═══════════ -->
-    <section id="travel-insights" class="sec nature-sec" aria-labelledby="insights-heading">
-      <div class="star-field" id="star-field-insights"></div>
-      <div class="sec-inner" id="main-content">
-        <div class="sec-tag rv">Travel Insights</div>
-        <h2 class="sec-h2 rv" id="insights-heading">Stories from <strong class="india-bold">India's</strong><br><em>greatest journeys</em></h2>
-        <p class="sec-sub rv d1">Expert guides, hidden gems, cultural deep-dives and practical tips — written by travellers who've lived every road in <strong>India</strong>.</p>
+      <!-- High Contrast Toggle -->
+      <button class="hc-btn" id="hc-toggle-btn" aria-label="Toggle high contrast mode"
+        title="Toggle high contrast mode">◑</button>
 
-        <!-- Featured + Side Stack -->
-        <div class="insights-featured rv d2">
-          <a class="insight-featured-card" href="#" aria-label="Read: Top 10 Hidden Gems in Northeast India">
-            <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=900&q=80" alt="Northeast India hidden gems — misty hills of Meghalaya" loading="lazy" />
-            <div class="insight-featured-ov"></div>
-            <div class="insight-featured-body">
-              <span class="insight-featured-badge">🌿 NORTHEAST</span>
-              <div class="insight-featured-title">Top 10 Hidden Gems in Northeast India You've Never Heard Of</div>
-              <div class="insight-featured-excerpt">Beyond Shillong and Kaziranga lies a wild, unexplored India — seven sisters of culture, cuisine and jaw-dropping landscapes that most travellers miss entirely.</div>
-              <div class="util-style-9">
-                <div class="insight-author">
-                  <div class="insight-avatar" aria-hidden="true">✍️</div>
-                  <span class="insight-author-name">Priya Sharma · 8 min read</span>
-                </div>
-                <span class="insight-read-more" aria-hidden="true">Read →</span>
-              </div>
-            </div>
-          </a>
-
-          <div class="insight-side-stack">
-            <a class="insight-side-card" href="#" aria-label="Read: How to survive the Golden Triangle">
-              <div class="insight-side-thumb">
-                <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&q=80" alt="Taj Mahal Agra — Golden Triangle" loading="lazy" />
-              </div>
-              <div class="insight-side-body">
-                <div class="insight-side-cat">Heritage</div>
-                <div class="insight-side-title">How to Survive the Golden Triangle in 5 Days</div>
-                <div class="insight-side-meta">6 min read · Apr 2026</div>
-              </div>
-            </a>
-            <a class="insight-side-card" href="#" aria-label="Read: Kerala Monsoon travel guide">
-              <div class="insight-side-thumb">
-                <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400&q=80" alt="Kerala backwaters during monsoon" loading="lazy" />
-              </div>
-              <div class="insight-side-body">
-                <div class="insight-side-cat">Backwaters</div>
-                <div class="insight-side-title">Kerala Monsoon: Why It's the Best Time to Visit</div>
-                <div class="insight-side-meta">5 min read · Mar 2026</div>
-              </div>
-            </a>
-            <a class="insight-side-card" href="#" aria-label="Read: Solo female travel in Rajasthan">
-              <div class="insight-side-thumb">
-                <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=400&q=80" alt="Jaipur Rajasthan Amber Fort" loading="lazy" />
-              </div>
-              <div class="insight-side-body">
-                <div class="insight-side-cat">Solo Travel</div>
-                <div class="insight-side-title">Solo Female Travel in Rajasthan: A Complete Safety Guide</div>
-                <div class="insight-side-meta">9 min read · Feb 2026</div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <!-- Article Grid -->
-        <div class="insights-grid">
-          <a class="insight-card rv d1" href="#" aria-label="Read: Budget Ladakh trip under ₹30,000">
-            <div class="insight-thumb">
-              <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80" alt="Ladakh Pangong Lake budget travel" loading="lazy" />
-              <div class="insight-thumb-ov"></div>
-              <div class="insight-cat-badge">💰 Budget</div>
-              <div class="insight-read-time">7 min</div>
-            </div>
-            <div class="insight-body">
-              <div class="insight-date">Apr 12, 2026</div>
-              <div class="insight-title">How to Do Ladakh Under ₹30,000 — A Real Budget Breakdown</div>
-              <div class="insight-excerpt">Permits, shared jeeps, homestays and dhabas — a brutally honest cost guide for every backpacker dreaming of Pangong Lake without breaking the bank.</div>
-              <div class="insight-footer">
-                <div class="insight-author">
-                  <div class="insight-avatar" aria-hidden="true">🏔️</div>
-                  <span class="insight-author-name">Arjun Mehta</span>
-                </div>
-                <span class="insight-read-more" aria-hidden="true">Read →</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="insight-card rv d2" href="#" aria-label="Read: India's best street food cities ranked">
-            <div class="insight-thumb">
-              <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80" alt="Indian street food chaat" loading="lazy" />
-              <div class="insight-thumb-ov"></div>
-              <div class="insight-cat-badge">🍛 Food</div>
-              <div class="insight-read-time">5 min</div>
-            </div>
-            <div class="insight-body">
-              <div class="insight-date">Mar 28, 2026</div>
-              <div class="insight-title">India's 8 Greatest Street Food Cities, Honestly Ranked</div>
-              <div class="insight-excerpt">From Kolkata's puchkas to Delhi's parathas to Chennai's idlis at 5 AM — which city wins the ultimate street food crown? We ate our way through all of them.</div>
-              <div class="insight-footer">
-                <div class="insight-author">
-                  <div class="insight-avatar" aria-hidden="true">🍜</div>
-                  <span class="insight-author-name">Anika Roy</span>
-                </div>
-                <span class="insight-read-more" aria-hidden="true">Read →</span>
-              </div>
-            </div>
-          </a>
-
-          <a class="insight-card rv d3" href="#" aria-label="Read: Spiritual circuit of India guide">
-            <div class="insight-thumb">
-              <img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&q=80" alt="Varanasi Ganga Aarti spiritual" loading="lazy" />
-              <div class="insight-thumb-ov"></div>
-              <div class="insight-cat-badge">🙏 Spiritual</div>
-              <div class="insight-read-time">10 min</div>
-            </div>
-            <div class="insight-body">
-              <div class="insight-date">Mar 15, 2026</div>
-              <div class="insight-title">The Great Spiritual Circuit of India — 12 Sacred Sites in One Journey</div>
-              <div class="insight-excerpt">Char Dham to Tirupati, Varanasi to Amritsar — a definitive pilgrim's route through India's most transcendent, soul-stirring sacred landscapes.</div>
-              <div class="insight-footer">
-                <div class="insight-author">
-                  <div class="insight-avatar" aria-hidden="true">🪔</div>
-                  <span class="insight-author-name">Kavita Nair</span>
-                </div>
-                <span class="insight-read-more" aria-hidden="true">Read →</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ CTA — Aurora Biome ═══════════ -->
-    <section id="cta-sec" class="nature-sec">
-      <div class="aurora"></div>
-      <div class="star-field" id="star-field-cta"></div>
-      <div class="firefly-container" id="firefly-cta"></div>
-
-      <div class="cta-inner">
-        <div class="cta-eye rv">Start Your Journey</div>
-        <h2 class="cta-h2 rv">India is<br /><em>calling you.</em></h2>
-        <p class="cta-p rv d1">
-          Join 2.4 million travellers who let AI build their perfect Indian
-          adventure. Free to start. No credit card required.
-        </p>
-        <div
-          
-          class="util-style-23 rv d2"
-       >
-          <button id="event-hook-32" class="btn-primary">
-            🌿 Explore Destinations
-          </button>
-          <button id="event-hook-33" class="btn-outline">
-            View Trip Plans
-          </button>
-        </div>
-        <div class="cta-form rv d3" id="cta-form">
-          <input
-            class="cta-input"
-            type="email"
-            id="cta-email"
-            placeholder="your@email.com — Get notified at launch"
-          />
-          <button id="event-hook-34" class="btn-primary">Notify Me</button>
-        </div>
-        <div class="cta-ok" id="cta-ok">
-          🎉 You're on the list! We'll reach you at launch.
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="ft-top">
-        <div>
-          <div class="ft-logo">Travel<span>Mantra</span> AI</div>
-          <div class="ft-sub">Explore · Discover · Wander</div>
-          <p class="ft-tag">
-            India's first AI-powered geographic travel platform. Explore
-            sustainably, travel smart.
-          </p>
-          <div class="ft-soc">
-            <div class="ft-s">𝕏</div>
-            <div class="ft-s">IG</div>
-            <div class="ft-s">IN</div>
-            <div class="ft-s">YT</div>
-          </div>
-        </div>
-        <div>
-          <div class="ft-col-t">Explore</div>
-          <ul class="ft-links" id="ft-explore"></ul>
-        </div>
-        <div>
-          <div class="ft-col-t">Platform</div>
-          <ul class="ft-links">
-            <li><a>AI Trip Builder</a></li>
-            <li><a>Price Predictor</a></li>
-            <li><a>Crowd Insights</a></li>
-            <li><a>Weather AI</a></li>
-            <li><a>Travel Rewards</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="ft-col-t">Company</div>
-          <ul class="ft-links">
-            <li><a>About TravelMantra</a></li>
-            <li><a>Blog</a></li>
-            <li><a>Careers</a></li>
-            <li><a>Press Kit</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="ft-col-t">Legal</div>
-          <ul class="ft-links">
-            <li><a>Privacy Policy</a></li>
-            <li><a>Terms of Service</a></li>
-            <li><a>Cookie Policy</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="ft-bot">
-        <div class="ft-copy">
-          © 2025 TravelMantra AI · Made with ❤️ in India
-        </div>
-        <div class="ft-badges">
-          <span class="ft-badge">🔒 SSL</span
-         ><span class="ft-badge">🇮🇳 India</span
-         ><span class="ft-badge">🌿 Eco Travel</span>
-        </div>
-      </div>
-    </footer>
-
-
-    <!-- ═══════════ MUSAFIR AI — Travel Assistant Widget ═══════════ -->
-    <!-- Launcher Button -->
-    <button class="util-style-20"
-   id="musafir-launcher"
-   
-   title="Chat with Musafir AI"
-   aria-label="Open Musafir AI Travel Assistant"
-   
- >
-      <img id="event-hook-35" class="util-style-1"
-  src="assets/logos/musafir-ai-logo.png"
-  alt="Musafir AI"
-
-  onerror="
-   this.style.display = 'none';
-   this.parentElement.innerHTML = '<span style=font-size:28px>🧭</span>';
-    "
-   />
-    </button>
-
-    <!-- Chat Panel -->
-    <div
-      id="musafir-panel"
-      role="dialog"
-      aria-label="Musafir AI Travel Assistant"
-   >
-      <!-- Header -->
-      <div class="mai-header">
-        <div class="mai-head-row">
-          <div
-            class="util-style-26 mai-avatar"
-            
-         >
-            <img id="event-hook-36" class="util-style-14"
-    src="assets/logos/musafir-ai-logo.png"
-    alt="Musafir AI"
-   />
-          </div>
-          <div class="mai-name-col">
-            <div class="mai-name">Musafir <span>AI</span></div>
-            <div class="mai-status">
-              <span class="mai-status-dot"></span>Online · India Travel Expert
-            </div>
-          </div>
-          <div class="mai-head-actions">
-            <button
- id="event-hook-37"       class="mai-reset-btn"
-       
-       title="Reset conversation"
-     >
-              ↺
-            </button>
-            <button
-              class="mai-voice-toggle"
-              id="mai-voice-btn"
-              
-              title="Toggle voice responses"
-           >
-              <span class="mai-voice-icon">🔇</span>
-              <span id="mai-voice-label">Voice Off</span>
-            </button>
-            <button
- id="event-hook-38"       class="mai-close-btn"
-       
-       title="Close"
-     >
-              ✕
-            </button>
-          </div>
-        </div>
-        <div class="mai-head-badge">Travel · Explore · Discover · Wander</div>
-      </div>
-
-      <!-- Messages -->
-      <div class="mai-msgs" id="mai-msgs"></div>
-
-      <!-- Quick suggestions -->
-      <div class="mai-suggestions" id="mai-suggestions">
-        <button id="event-hook-39" class="mai-sug">
-          Best time to visit Ladakh?
-        </button>
-        <button id="event-hook-40" class="mai-sug">
-          Kerala backwater trip plan
-        </button>
-        <button id="event-hook-41" class="mai-sug">
-          Budget for Rajasthan tour
-        </button>
-        <button id="event-hook-42" class="mai-sug">
-          Taj Mahal entry &amp; tips
-        </button>
-        <button id="event-hook-43" class="mai-sug">
-          Safest places solo travel
-        </button>
-        <button id="event-hook-44" class="mai-sug">
-          Best wildlife sanctuaries
-        </button>
-      </div>
-
-      <!-- Input -->
-      <div class="mai-input-row">
-        <div class="mai-input-wrap">
-          <textarea
-            class="mai-input"
-            id="mai-input"
-            rows="1"
-            placeholder="Ask about any destination in India…"
-            
-            
-            aria-label="Type your travel question"
-         ></textarea>
-        </div>
-        <button
- id="event-hook-45"     class="mai-send"
-     
-     title="Send message"
-     aria-label="Send"
-   >
-          <svg viewBox="0 0 24 24">
-            <line x1="22" y1="2" x2="11" y2="13" />
-            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+      <!-- Language Toggle -->
+      <div class="lang-toggle" id="lang-toggle">
+        <button class="lang-btn" id="lang-btn" aria-haspopup="listbox" aria-expanded="false"
+          aria-label="Select language">
+          <span id="lang-flag">🇮🇳</span>
+          <span id="lang-label">EN</span>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true">
+            <path d="M1 3l4 4 4-4" />
           </svg>
         </button>
+        <div class="lang-dropdown" id="lang-dropdown" role="listbox" aria-label="Available languages">
+          <div id="event-hook-15" class="lang-opt active" role="option" aria-selected="true" data-lang="en"
+            data-flag="🇮🇳" data-label="EN">
+            <span class="lang-flag">🇮🇳</span>
+            <div><span class="lang-name">English</span><span class="lang-native">English</span></div>
+          </div>
+          <div id="event-hook-16" class="lang-opt" role="option" aria-selected="false" data-lang="hi" data-flag="🇮🇳"
+            data-label="हि">
+            <span class="lang-flag">🇮🇳</span>
+            <div><span class="lang-name">Hindi</span><span class="lang-native">हिन्दी</span></div>
+          </div>
+          <div id="event-hook-17" class="lang-opt" role="option" aria-selected="false" data-lang="bn" data-flag="🇧🇩"
+            data-label="বাং">
+            <span class="lang-flag">🇧🇩</span>
+            <div><span class="lang-name">Bengali</span><span class="lang-native">বাংলা</span></div>
+          </div>
+          <div id="event-hook-18" class="lang-opt" role="option" aria-selected="false" data-lang="ta" data-flag="🇮🇳"
+            data-label="த">
+            <span class="lang-flag">🇮🇳</span>
+            <div><span class="lang-name">Tamil</span><span class="lang-native">தமிழ்</span></div>
+          </div>
+          <div id="event-hook-19" class="lang-opt" role="option" aria-selected="false" data-lang="te" data-flag="🇮🇳"
+            data-label="తె">
+            <span class="lang-flag">🇮🇳</span>
+            <div><span class="lang-name">Telugu</span><span class="lang-native">తెలుగు</span></div>
+          </div>
+          <div id="event-hook-20" class="lang-opt" role="option" aria-selected="false" data-lang="mr" data-flag="🇮🇳"
+            data-label="म">
+            <span class="lang-flag">🇮🇳</span>
+            <div><span class="lang-name">Marathi</span><span class="lang-native">मराठी</span></div>
+          </div>
+        </div>
       </div>
 
-      <div class="mai-disclaimer">
-        Musafir AI · India Travel Specialist · Powered by TravelMantra
+      <button id="event-hook-21" class="btn-nv" aria-label="Plan your India trip with AI">✦ Plan with AI</button>
+      <button class="hbg" id="hbg" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════════ HERO — 3D GLOBE (UNTOUCHED) ═══════════ -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-vignette"></div>
+    <div class="hero-leaf-ov"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow" id="hero-eyebrow">
+        <div class="hero-eye-dot"></div>
+        AI-Powered ·
+        <strong class="util-style-13">INDIA</strong>
+        · Travel Intelligence
+      </div>
+      <h1 class="hero-h1" id="hero-h1">
+        Discover<br /><span class="accent">Incredible</span><br /><span class="util-style-19 outline">India.</span>
+      </h1>
+      <p class="hero-desc" id="hero-desc">
+        Where real satellite geography meets AI-powered journey planning.
+        Explore every mountain, coastline and temple of
+        <strong class="util-style-3">INDIA</strong> —
+        mapped, rated and ready for your next adventure.
+      </p>
+      <div class="hero-btns" id="hero-btns">
+        <button id="event-hook-22" class="btn-primary">
+          🌿 Explore Destinations
+        </button>
+        <button id="event-hook-23" class="btn-outline">
+          View Trip Plans
+        </button>
+      </div>
+      <div class="hero-stats" id="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-n" data-count="36" data-suf="+">0</div>
+          <div class="hero-stat-l">States & UTs</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n" data-count="847" data-suf="+">0</div>
+          <div class="hero-stat-l">Destinations</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n" data-count="42" data-suf="+">0</div>
+          <div class="hero-stat-l">UNESCO Sites</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-n" data-count="2.4" data-suf="M">0</div>
+          <div class="hero-stat-l">Trips Planned</div>
+        </div>
       </div>
     </div>
-    <!-- Project Scripts -->
-    <script src="js/utils/config.js"></script>
-    <script src="js/utils/constants.js"></script>
-    <script src="js/utils/helpers.js"></script>
-    
-    <script src="js/core/main.js"></script>
-    <script src="js/core/navigation.js"></script>
-    <script src="js/core/scroll-progress.js"></script>
-    <script src="js/core/reveal-animations.js"></script>
-    
-    <script src="js/effects/falling-leaves.js"></script>
-    <script src="js/effects/fireflies.js"></script>
-    <script src="js/effects/rain.js"></script>
-    <script src="js/effects/clouds.js"></script>
-    <script src="js/effects/stars.js"></script>
-    <script src="js/effects/aurora.js"></script>
-    <script src="js/effects/nature-effects.js"></script>
-    
-    <script src="js/hero/hero-canvas.js"></script>
-    <script src="js/hero/hero-animation.js"></script>
-    <script src="js/hero/orbital-badges.js"></script>
-    
-    <script src="js/destinations/destinations-data.js"></script>
-    <script src="js/destinations/destinations-filter.js"></script>
-    <script src="js/destinations/destination-render.js"></script>
-    <script src="js/destinations/destination-modal.js"></script>
-    
-    <script src="js/city-guide/city-data.js"></script>
-    <script src="js/city-guide/city-filter.js"></script>
-    <script src="js/city-guide/city-render.js"></script>
-    
-    <script src="js/plans/plan-data.js"></script>
-    <script src="js/plans/plan-tabs.js"></script>
-    <script src="js/plans/plan-render.js"></script>
-    
-    <script src="js/ai-builder/ai-form.js"></script>
-    <script src="js/ai-builder/ai-itinerary.js"></script>
-    <script src="js/ai-builder/ai-result-panel.js"></script>
-    <script src="js/ai-builder/ai-actions.js"></script>
-    <script src="js/core/inline-events.js"></script>
+    <div class="hero-orbital-info" id="hero-orbital-info">
+      <div class="orbital-badge" id="ob-1">
+        <div class="orbital-badge-title">Live Mapping</div>
+        <div class="orbital-badge-val">
+          <span class="badge-dot"></span>3.28M km²
+        </div>
+        <div class="orbital-badge-sub">Full Indian Subcontinent</div>
+      </div>
+      <div class="orbital-badge" id="ob-2">
+        <div class="orbital-badge-title">AI Accuracy</div>
+        <div class="orbital-badge-val">
+          <span class="badge-dot"></span>98.7%
+        </div>
+        <div class="orbital-badge-sub">Trip Planning Precision</div>
+      </div>
+      <div class="orbital-badge" id="ob-3">
+        <div class="orbital-badge-title">Eco Score</div>
+        <div class="orbital-badge-val"><span class="badge-dot"></span>A+</div>
+        <div class="orbital-badge-sub">Sustainable Travel Rated</div>
+      </div>
+    </div>
+    <div class="scroll-ind">
+      <div class="scroll-ind-line"></div>
+      <div class="scroll-ind-text">Scroll</div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="mq-wrap" aria-hidden="true">
+    <div class="mq-track" id="mq-t"></div>
+  </div>
+
+  <!-- ═══════════ CITY-WISE DESTINATION GUIDE ═══════════ -->
+  <section id="city-guide" class="sec nature-sec">
+    <div class="util-style-18 topo-contours util-style-18"></div>
+    <div class="firefly-container" id="firefly-cities"></div>
+
+    <div class="sec-inner">
+      <div class="util-style-21">
+        <div>
+          <div class="sec-tag rv">City-Wise Guide</div>
+          <h2 class="sec-h2 rv">
+            <strong class="india-bold">India's</strong> Greatest<br /><em>Cities to Explore</em>
+          </h2>
+          <p class="sec-sub rv d1">
+            From ancient capitals to coastal gems — every legendary city of
+            <strong>India</strong> curated with insider knowledge, seasonal
+            tips &amp; cultural depth.
+          </p>
+        </div>
+      </div>
+
+      <!-- City Filters -->
+      <div class="city-filters rv d2" id="city-filters">
+        <button class="cf on" data-tag="all">All Cities</button>
+        <button class="cf" data-tag="Mountain">Mountain</button>
+        <button class="cf" data-tag="Beach">Beach</button>
+        <button class="cf" data-tag="Heritage">Heritage</button>
+        <button class="cf" data-tag="Honeymoon">Honeymoon</button>
+        <button class="cf" data-tag="Solo Travel">Solo Travel</button>
+      </div>
+
+      <div class="city-grid" id="city-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════ AI TRIP BUILDER ═══════════ -->
+  <section id="ai-trip-builder" class="sec nature-sec">
+    <div class="star-field" id="star-field-ai"></div>
+    <div class="util-style-24 aurora util-style-24"></div>
+
+    <div class="ai-builder-inner">
+      <div class="sec-tag rv">Powered by AI</div>
+      <h2 class="sec-h2 rv">
+        Plan your <strong class="india-bold">India</strong><br /><em>trip in seconds</em>
+      </h2>
+      <p class="sec-sub rv d1">
+        Describe your dream journey across <strong>India</strong> — our AI
+        builds a complete day-by-day itinerary with budgets, routes and local
+        tips instantly.
+      </p>
+
+      <div class="ai-builder-grid rv d2">
+        <!-- ─── Form Panel ─── -->
+        <div class="ai-builder-form">
+          <div class="ai-form-title">
+            <span>🤖</span> Tell the AI your plan
+            <span class="ai-chip">Live</span>
+          </div>
+
+          <div class="util-style-28 ai-field util-style-28">
+            <label class="util-style-4">
+              <span>🎤 Voice Search (Beta)</span>
+              <button class="util-style-2" id="ai-mic-btn" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                  <line x1="12" y1="19" x2="12" y2="22"></line>
+                </svg>
+              </button>
+            </label>
+            <textarea class="util-style-16 ai-input" id="ai-voice-prompt"
+              placeholder="Click the mic and say: 'Plan a 5-day honeymoon in Kerala under 50k'" rows="2"></textarea>
+          </div>
+
+          <div class="ai-field">
+            <label>📍 Destination in <strong>India</strong></label>
+            <input class="ai-input" id="ai-dest" placeholder="e.g. Rajasthan, Kerala, Ladakh…" />
+          </div>
+
+          <div class="ai-row">
+            <div class="ai-field">
+              <label>📅 Duration</label>
+              <select class="ai-select" id="ai-days">
+                <option value="2">2 Days</option>
+                <option value="3">3 Days</option>
+                <option value="5" selected>5 Days</option>
+                <option value="7">7 Days</option>
+                <option value="10">10 Days</option>
+                <option value="14">14 Days</option>
+              </select>
+            </div>
+            <div class="ai-field">
+              <label>💰 Budget Style</label>
+              <select class="ai-select" id="ai-budget">
+                <option value="budget">Budget (₹1k–2k/day)</option>
+                <option value="mid" selected>Mid-range (₹3k–7k/day)</option>
+                <option value="luxury">Luxury (₹15k+/day)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="ai-field">
+            <label>👥 Travellers</label>
+            <select class="ai-select" id="ai-group">
+              <option value="solo">Solo Explorer</option>
+              <option value="couple" selected>Couple</option>
+              <option value="family">Family with Kids</option>
+              <option value="friends">Group of Friends</option>
+            </select>
+          </div>
+
+          <span class="ai-chips-label">✦ Travel Interests (select all that apply)</span>
+          <div class="ai-chips" id="ai-interests">
+            <button class="ai-chip-btn sel" data-i="Heritage">
+              🏛️ Heritage
+            </button>
+            <button class="ai-chip-btn" data-i="Nature">🌿 Nature</button>
+            <button class="ai-chip-btn sel" data-i="Food">🍛 Food</button>
+            <button class="ai-chip-btn" data-i="Adventure">
+              ⛰️ Adventure
+            </button>
+            <button class="ai-chip-btn" data-i="Spiritual">
+              🙏 Spiritual
+            </button>
+            <button class="ai-chip-btn" data-i="Wildlife">🐅 Wildlife</button>
+            <button class="ai-chip-btn" data-i="Beaches">🏖️ Beaches</button>
+            <button class="ai-chip-btn" data-i="Luxury">✨ Luxury</button>
+          </div>
+
+          <button class="ai-generate-btn" id="ai-gen-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5"
+              stroke-linecap="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+            Generate My <strong>India</strong> Itinerary
+          </button>
+        </div>
+
+        <!-- ─── Result Panel ─── -->
+        <div>
+          <div class="ai-result-panel" id="ai-result-panel">
+            <div class="ai-result-idle" id="ai-result-idle">
+              <div class="ai-orb">🗺️</div>
+              <h3>
+                Your <strong class="india-bold">India</strong> Plan Awaits
+              </h3>
+              <p>
+                Fill in your preferences and let AI craft a perfect itinerary
+                — destinations, daily activities, costs and local tips across
+                <strong>India</strong>.
+              </p>
+            </div>
+            <div class="util-style-12" id="ai-result-content"></div>
+          </div>
+
+          <!-- Feature highlights below result -->
+          <div class="ai-builder-features">
+            <div class="ai-feat">
+              <span class="ai-feat-icon">⚡</span>
+              <div>
+                <div class="ai-feat-t">Instant Generation</div>
+                <div class="ai-feat-d">
+                  Complete <strong>India</strong> itinerary in under 2 seconds
+                </div>
+              </div>
+            </div>
+            <div class="ai-feat">
+              <span class="ai-feat-icon">💰</span>
+              <div>
+                <div class="ai-feat-t">Accurate Budgets</div>
+                <div class="ai-feat-d">
+                  Real ₹ costs for every <strong>India</strong> destination
+                </div>
+              </div>
+            </div>
+            <div class="ai-feat">
+              <span class="ai-feat-icon">🗺️</span>
+              <div>
+                <div class="ai-feat-t">Route Optimised</div>
+                <div class="ai-feat-d">
+                  Smart sequencing across <strong>India</strong>'s geography
+                </div>
+              </div>
+            </div>
+            <div class="ai-feat">
+              <span class="ai-feat-icon">🏨</span>
+              <div>
+                <div class="ai-feat-t">Stay Included</div>
+                <div class="ai-feat-d">
+                  Hotel tiers matched to your style in <strong>India</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ DESTINATIONS — Forest Biome ═══════════ -->
+  <section id="destinations" class="sec nature-sec">
+    <!-- Nature layers: Leaves, Fireflies, Mountain silhouettes, Topo -->
+    <div class="topo-contours"></div>
+    <div class="leaf-container" id="leaf-container"></div>
+    <div class="firefly-container" id="firefly-dest"></div>
+    <canvas class="nature-canvas" id="nc-dest"></canvas>
+    <div class="util-style-25 mountain-layer util-style-25">
+      <svg class="util-style-17" viewBox="0 0 1440 200" preserveAspectRatio="none">
+        <path
+          d="M0,200 L0,140 Q120,60 240,100 Q360,30 480,80 Q600,10 720,60 Q840,30 960,90 Q1080,40 1200,70 Q1320,20 1440,80 L1440,200Z"
+          fill="rgba(27,94,32,.4)" />
+        <path d="M0,200 L0,160 Q180,100 360,130 Q540,70 720,110 Q900,60 1080,100 Q1260,80 1440,120 L1440,200Z"
+          fill="rgba(46,204,113,.15)" />
+      </svg>
+    </div>
+
+    <div class="sec-inner">
+      <div class="util-style-15">
+        <div>
+          <div class="sec-tag rv">All Destinations</div>
+          <h2 class="sec-h2 rv">
+            Every corner of<br /><em>incredible India</em>
+          </h2>
+          <p class="sec-sub rv d1">
+            From Himalayan peaks to tropical backwaters — all 36 states and
+            UTs mapped, rated and priced for your journey.
+          </p>
+        </div>
+        <div class="util-style-6 rv d2" id="dest-count"></div>
+      </div>
+      <div class="dest-filter rv d2" id="dest-filter">
+        <button class="df on" data-cat="all">All</button>
+        <button class="df" data-cat="Heritage">Heritage</button>
+        <button class="df" data-cat="Beaches">Beaches</button>
+        <button class="df" data-cat="Mountains">Mountains</button>
+        <button class="df" data-cat="Spiritual">Spiritual</button>
+        <button class="df" data-cat="Wildlife">Wildlife</button>
+        <button class="df" data-cat="Backwaters">Backwaters</button>
+        <button class="df" data-cat="Urban">Urban</button>
+      </div>
+      <div class="dest-grid" id="dest-grid"></div>
+      <div class="see-more-wrap rv" id="see-more-wrap">
+        <button class="btn-see-more" id="btn-see-more">
+          See All Destinations <span class="arrow">↓</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ TRIP PLANS — Mountain/Sky Biome ═══════════ -->
+  <section id="plans" class="sec nature-sec">
+    <div class="star-field" id="star-field-plans"></div>
+    <div class="cloud-container" id="cloud-plans"></div>
+    <div class="util-style-7 topo-contours util-style-7"></div>
+    <canvas class="nature-canvas" id="nc-plans"></canvas>
+    <div class="util-style-8 mountain-layer util-style-8">
+      <svg class="util-style-27" viewBox="0 0 1440 220" preserveAspectRatio="none">
+        <path
+          d="M0,220 L0,100 Q100,20 200,70 Q300,10 420,50 Q500,0 600,40 Q720,15 840,60 Q960,5 1080,45 Q1200,25 1320,55 Q1380,10 1440,50 L1440,220Z"
+          fill="rgba(20,30,50,.6)" />
+        <path d="M0,220 L0,140 Q200,80 400,120 Q600,60 800,100 Q1000,70 1200,110 Q1340,80 1440,100 L1440,220Z"
+          fill="rgba(30,40,60,.4)" />
+      </svg>
+    </div>
+
+    <div class="sec-inner">
+      <div class="sec-tag rv">Curated Itineraries</div>
+      <h2 class="sec-h2 rv">Ready-made<br /><em>trip plans</em></h2>
+      <p class="sec-sub rv d1">
+        Choose your duration. AI curates every detail — hotels, transport,
+        activities and costs.
+      </p>
+      <div class="util-style-10 plans-tabs rv d2 util-style-10">
+        <button id="event-hook-24" class="plan-tab">
+          2 Days
+        </button>
+        <button id="event-hook-25" class="plan-tab">
+          3 Days
+        </button>
+        <button id="event-hook-26" class="plan-tab on">
+          5 Days
+        </button>
+        <button id="event-hook-27" class="plan-tab">
+          7 Days
+        </button>
+      </div>
+      <div id="plans-2d" class="plans-content">
+        <div class="plan-grid" id="pg-2d"></div>
+      </div>
+      <div id="plans-3d" class="plans-content">
+        <div class="plan-grid" id="pg-3d"></div>
+      </div>
+      <div id="plans-5d" class="plans-content on">
+        <div class="plan-grid" id="pg-5d"></div>
+      </div>
+      <div id="plans-7d" class="plans-content">
+        <div class="plan-grid" id="pg-7d"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ VIDEO CLIPS — Ocean Biome ═══════════ -->
+  <section id="clips" class="sec nature-sec">
+    <div class="rain-container" id="rain-clips"></div>
+    <div class="lightning-flash"></div>
+    <canvas class="nature-canvas" id="nc-clips"></canvas>
+
+    <div class="sec-inner">
+      <div class="util-style-11">
+        <div>
+          <div class="sec-tag rv">Destination Reels</div>
+          <h2 class="sec-h2 rv">See it before<br /><em>you go</em></h2>
+          <p class="sec-sub rv d1">
+            Cinematic clips from India's most breathtaking destinations. Hit
+            play and let India speak.
+          </p>
+        </div>
+      </div>
+      <div class="clips-grid" id="clips-grid"></div>
+    </div>
+  </section>
+
+  <!-- VIDEO MODAL -->
+  <div class="vid-modal" id="vid-modal">
+    <div class="vid-inner">
+      <button id="event-hook-28" class="vid-close">✕ Close</button>
+      <iframe id="vid-iframe" src="" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- DESTINATION DETAIL MODAL -->
+  <div class="dest-modal-overlay" id="dest-modal-overlay">
+    <div class="dest-modal" id="dest-modal">
+      <button id="event-hook-29" class="dm-close">✕</button>
+      <div class="dm-hero" id="dm-hero">
+        <div class="dm-hero-ov"></div>
+        <div class="dm-hero-emoji" id="dm-emoji"></div>
+        <div class="dm-hero-badge" id="dm-badge"></div>
+      </div>
+      <div class="dm-body">
+        <div class="dm-cat" id="dm-cat"></div>
+        <div class="dm-name" id="dm-name"></div>
+        <div class="dm-loc" id="dm-loc"></div>
+        <div class="dm-desc" id="dm-desc"></div>
+        <div class="dm-info-grid" id="dm-info-grid"></div>
+        <div class="dm-highlights" id="dm-highlights">
+          <div class="dm-highlights-title">✨ Highlights & Attractions</div>
+          <div class="dm-hl-grid" id="dm-hl-grid"></div>
+        </div>
+        <div class="dm-tips" id="dm-tips">
+          <div class="dm-tips-title">💡 Travel Tips</div>
+          <div class="dm-tips-text" id="dm-tips-text"></div>
+        </div>
+        <div class="dm-cta">
+          <button id="event-hook-30" class="btn-primary" onclick="
+        closeDestModal();
+        scrollTo2('plans');
+       ">
+            🗺️ Plan a Trip Here
+          </button>
+          <button id="event-hook-31" class="btn-outline">
+            Back to Destinations
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ FAQ — Desert Biome ═══════════ -->
+  <section id="faq" class="sec nature-sec">
+    <div class="sand-container" id="sand-faq"></div>
+    <div class="util-style-22 topo-contours util-style-22"></div>
+    <canvas class="nature-canvas" id="nc-faq"></canvas>
+    <div class="util-style-25 mountain-layer util-style-25">
+      <svg class="util-style-5" viewBox="0 0 1440 160" preserveAspectRatio="none">
+        <path d="M0,160 L0,120 Q200,60 400,100 Q600,40 800,80 Q1000,50 1200,90 Q1350,60 1440,80 L1440,160Z"
+          fill="rgba(40,30,15,.4)" />
+      </svg>
+    </div>
+
+    <div class="sec-inner">
+      <div class="sec-tag rv">FAQ</div>
+      <h2 class="sec-h2 rv">Answers for every<br /><em>explorer</em></h2>
+      <div class="faq-grid rv d1" id="faq-grid"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════ TRAVEL INSIGHTS ═══════════ -->
+  <section id="travel-insights" class="sec nature-sec" aria-labelledby="insights-heading">
+    <div class="star-field" id="star-field-insights"></div>
+    <div class="sec-inner" id="main-content">
+      <div class="sec-tag rv">Travel Insights</div>
+      <h2 class="sec-h2 rv" id="insights-heading">Stories from <strong
+          class="india-bold">India's</strong><br><em>greatest journeys</em></h2>
+      <p class="sec-sub rv d1">Expert guides, hidden gems, cultural deep-dives and practical tips — written by
+        travellers who've lived every road in <strong>India</strong>.</p>
+
+      <!-- Featured + Side Stack -->
+      <div class="insights-featured rv d2">
+        <a class="insight-featured-card" href="#" aria-label="Read: Top 10 Hidden Gems in Northeast India">
+          <img src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?w=900&q=80"
+            alt="Northeast India hidden gems — misty hills of Meghalaya" loading="lazy" />
+          <div class="insight-featured-ov"></div>
+          <div class="insight-featured-body">
+            <span class="insight-featured-badge">🌿 NORTHEAST</span>
+            <div class="insight-featured-title">Top 10 Hidden Gems in Northeast India You've Never Heard Of</div>
+            <div class="insight-featured-excerpt">Beyond Shillong and Kaziranga lies a wild, unexplored India — seven
+              sisters of culture, cuisine and jaw-dropping landscapes that most travellers miss entirely.</div>
+            <div class="util-style-9">
+              <div class="insight-author">
+                <div class="insight-avatar" aria-hidden="true">✍️</div>
+                <span class="insight-author-name">Priya Sharma · 8 min read</span>
+              </div>
+              <span class="insight-read-more" aria-hidden="true">Read →</span>
+            </div>
+          </div>
+        </a>
+
+        <div class="insight-side-stack">
+          <a class="insight-side-card" href="#" aria-label="Read: How to survive the Golden Triangle">
+            <div class="insight-side-thumb">
+              <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?w=400&q=80"
+                alt="Taj Mahal Agra — Golden Triangle" loading="lazy" />
+            </div>
+            <div class="insight-side-body">
+              <div class="insight-side-cat">Heritage</div>
+              <div class="insight-side-title">How to Survive the Golden Triangle in 5 Days</div>
+              <div class="insight-side-meta">6 min read · Apr 2026</div>
+            </div>
+          </a>
+          <a class="insight-side-card" href="#" aria-label="Read: Kerala Monsoon travel guide">
+            <div class="insight-side-thumb">
+              <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400&q=80"
+                alt="Kerala backwaters during monsoon" loading="lazy" />
+            </div>
+            <div class="insight-side-body">
+              <div class="insight-side-cat">Backwaters</div>
+              <div class="insight-side-title">Kerala Monsoon: Why It's the Best Time to Visit</div>
+              <div class="insight-side-meta">5 min read · Mar 2026</div>
+            </div>
+          </a>
+          <a class="insight-side-card" href="#" aria-label="Read: Solo female travel in Rajasthan">
+            <div class="insight-side-thumb">
+              <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=400&q=80"
+                alt="Jaipur Rajasthan Amber Fort" loading="lazy" />
+            </div>
+            <div class="insight-side-body">
+              <div class="insight-side-cat">Solo Travel</div>
+              <div class="insight-side-title">Solo Female Travel in Rajasthan: A Complete Safety Guide</div>
+              <div class="insight-side-meta">9 min read · Feb 2026</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Article Grid -->
+      <div class="insights-grid">
+        <a class="insight-card rv d1" href="#" aria-label="Read: Budget Ladakh trip under ₹30,000">
+          <div class="insight-thumb">
+            <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80"
+              alt="Ladakh Pangong Lake budget travel" loading="lazy" />
+            <div class="insight-thumb-ov"></div>
+            <div class="insight-cat-badge">💰 Budget</div>
+            <div class="insight-read-time">7 min</div>
+          </div>
+          <div class="insight-body">
+            <div class="insight-date">Apr 12, 2026</div>
+            <div class="insight-title">How to Do Ladakh Under ₹30,000 — A Real Budget Breakdown</div>
+            <div class="insight-excerpt">Permits, shared jeeps, homestays and dhabas — a brutally honest cost guide for
+              every backpacker dreaming of Pangong Lake without breaking the bank.</div>
+            <div class="insight-footer">
+              <div class="insight-author">
+                <div class="insight-avatar" aria-hidden="true">🏔️</div>
+                <span class="insight-author-name">Arjun Mehta</span>
+              </div>
+              <span class="insight-read-more" aria-hidden="true">Read →</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="insight-card rv d2" href="#" aria-label="Read: India's best street food cities ranked">
+          <div class="insight-thumb">
+            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80"
+              alt="Indian street food chaat" loading="lazy" />
+            <div class="insight-thumb-ov"></div>
+            <div class="insight-cat-badge">🍛 Food</div>
+            <div class="insight-read-time">5 min</div>
+          </div>
+          <div class="insight-body">
+            <div class="insight-date">Mar 28, 2026</div>
+            <div class="insight-title">India's 8 Greatest Street Food Cities, Honestly Ranked</div>
+            <div class="insight-excerpt">From Kolkata's puchkas to Delhi's parathas to Chennai's idlis at 5 AM — which
+              city wins the ultimate street food crown? We ate our way through all of them.</div>
+            <div class="insight-footer">
+              <div class="insight-author">
+                <div class="insight-avatar" aria-hidden="true">🍜</div>
+                <span class="insight-author-name">Anika Roy</span>
+              </div>
+              <span class="insight-read-more" aria-hidden="true">Read →</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="insight-card rv d3" href="#" aria-label="Read: Spiritual circuit of India guide">
+          <div class="insight-thumb">
+            <img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=600&q=80"
+              alt="Varanasi Ganga Aarti spiritual" loading="lazy" />
+            <div class="insight-thumb-ov"></div>
+            <div class="insight-cat-badge">🙏 Spiritual</div>
+            <div class="insight-read-time">10 min</div>
+          </div>
+          <div class="insight-body">
+            <div class="insight-date">Mar 15, 2026</div>
+            <div class="insight-title">The Great Spiritual Circuit of India — 12 Sacred Sites in One Journey</div>
+            <div class="insight-excerpt">Char Dham to Tirupati, Varanasi to Amritsar — a definitive pilgrim's route
+              through India's most transcendent, soul-stirring sacred landscapes.</div>
+            <div class="insight-footer">
+              <div class="insight-author">
+                <div class="insight-avatar" aria-hidden="true">🪔</div>
+                <span class="insight-author-name">Kavita Nair</span>
+              </div>
+              <span class="insight-read-more" aria-hidden="true">Read →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ CTA — Aurora Biome ═══════════ -->
+  <section id="cta-sec" class="nature-sec">
+    <div class="aurora"></div>
+    <div class="star-field" id="star-field-cta"></div>
+    <div class="firefly-container" id="firefly-cta"></div>
+
+    <div class="cta-inner">
+      <div class="cta-eye rv">Start Your Journey</div>
+      <h2 class="cta-h2 rv">India is<br /><em>calling you.</em></h2>
+      <p class="cta-p rv d1">
+        Join 2.4 million travellers who let AI build their perfect Indian
+        adventure. Free to start. No credit card required.
+      </p>
+      <div class="util-style-23 rv d2">
+        <button id="event-hook-32" class="btn-primary">
+          🌿 Explore Destinations
+        </button>
+        <button id="event-hook-33" class="btn-outline">
+          View Trip Plans
+        </button>
+      </div>
+      <div class="cta-form rv d3" id="cta-form">
+        <input class="cta-input" type="email" id="cta-email" placeholder="your@email.com — Get notified at launch" />
+        <button id="event-hook-34" class="btn-primary">Notify Me</button>
+      </div>
+      <div class="cta-ok" id="cta-ok">
+        🎉 You're on the list! We'll reach you at launch.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft-top">
+      <div>
+        <div class="ft-logo">Travel<span>Mantra</span> AI</div>
+        <div class="ft-sub">Explore · Discover · Wander</div>
+        <p class="ft-tag">
+          India's first AI-powered geographic travel platform. Explore
+          sustainably, travel smart.
+        </p>
+        <div class="ft-soc">
+          <div class="ft-s">𝕏</div>
+          <div class="ft-s">IG</div>
+          <div class="ft-s">IN</div>
+          <div class="ft-s">YT</div>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-t">Explore</div>
+        <ul class="ft-links" id="ft-explore"></ul>
+      </div>
+      <div>
+        <div class="ft-col-t">Platform</div>
+        <ul class="ft-links">
+          <li><a>AI Trip Builder</a></li>
+          <li><a>Price Predictor</a></li>
+          <li><a>Crowd Insights</a></li>
+          <li><a>Weather AI</a></li>
+          <li><a>Travel Rewards</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-col-t">Company</div>
+        <ul class="ft-links">
+          <li><a>About TravelMantra</a></li>
+          <li><a>Blog</a></li>
+          <li><a>Careers</a></li>
+          <li><a>Press Kit</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-col-t">Legal</div>
+        <ul class="ft-links">
+          <li><a>Privacy Policy</a></li>
+          <li><a>Terms of Service</a></li>
+          <li><a>Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <div class="ft-copy">
+        © 2025 TravelMantra AI · Made with ❤️ in India
+      </div>
+      <div class="ft-badges">
+        <span class="ft-badge">🔒 SSL</span><span class="ft-badge">🇮🇳 India</span><span class="ft-badge">🌿 Eco
+          Travel</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════ MUSAFIR AI — Travel Assistant Widget ═══════════ -->
+  <!-- Launcher Button -->
+  <button class="util-style-20" id="musafir-launcher" title="Chat with Musafir AI"
+    aria-label="Open Musafir AI Travel Assistant">
+    <img id="event-hook-35" class="util-style-1" src="assets/logos/musafir-ai-logo.png" alt="Musafir AI" onerror="
+   this.style.display = 'none';
+   this.parentElement.innerHTML = '<span style=font-size:28px>🧭</span>';
+    " />
+  </button>
+
+  <!-- Chat Panel -->
+  <div id="musafir-panel" role="dialog" aria-label="Musafir AI Travel Assistant">
+    <!-- Header -->
+    <div class="mai-header">
+      <div class="mai-head-row">
+        <div class="util-style-26 mai-avatar">
+          <img id="event-hook-36" class="util-style-14" src="assets/logos/musafir-ai-logo.png" alt="Musafir AI" />
+        </div>
+        <div class="mai-name-col">
+          <div class="mai-name">Musafir <span>AI</span></div>
+          <div class="mai-status">
+            <span class="mai-status-dot"></span>Online · India Travel Expert
+          </div>
+        </div>
+        <div class="mai-head-actions">
+          <button id="event-hook-37" class="mai-reset-btn" title="Reset conversation">
+            ↺
+          </button>
+          <button class="mai-voice-toggle" id="mai-voice-btn" title="Toggle voice responses">
+            <span class="mai-voice-icon">🔇</span>
+            <span id="mai-voice-label">Voice Off</span>
+          </button>
+          <button id="event-hook-38" class="mai-close-btn" title="Close">
+            ✕
+          </button>
+        </div>
+      </div>
+      <div class="mai-head-badge">Travel · Explore · Discover · Wander</div>
+    </div>
+
+    <!-- Messages -->
+    <div class="mai-msgs" id="mai-msgs"></div>
+
+    <!-- Quick suggestions -->
+    <div class="mai-suggestions" id="mai-suggestions">
+      <button id="event-hook-39" class="mai-sug">
+        Best time to visit Ladakh?
+      </button>
+      <button id="event-hook-40" class="mai-sug">
+        Kerala backwater trip plan
+      </button>
+      <button id="event-hook-41" class="mai-sug">
+        Budget for Rajasthan tour
+      </button>
+      <button id="event-hook-42" class="mai-sug">
+        Taj Mahal entry &amp; tips
+      </button>
+      <button id="event-hook-43" class="mai-sug">
+        Safest places solo travel
+      </button>
+      <button id="event-hook-44" class="mai-sug">
+        Best wildlife sanctuaries
+      </button>
+    </div>
+
+    <!-- Input -->
+    <div class="mai-input-row">
+      <div class="mai-input-wrap">
+        <textarea class="mai-input" id="mai-input" rows="1" placeholder="Ask about any destination in India…"
+          aria-label="Type your travel question"></textarea>
+      </div>
+      <button id="event-hook-45" class="mai-send" title="Send message" aria-label="Send">
+        <svg viewBox="0 0 24 24">
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="mai-disclaimer">
+      Musafir AI · India Travel Specialist · Powered by TravelMantra
+    </div>
+  </div>
+  <!-- Splash Screen (must load first) -->
+  <script src="js/core/splash-screen.js"></script>
+  <!-- Project Scripts -->
+  <script src="js/utils/config.js"></script>
+  <script src="js/utils/constants.js"></script>
+  <script src="js/utils/helpers.js"></script>
+
+  <script src="js/core/main.js"></script>
+  <script src="js/core/navigation.js"></script>
+  <script src="js/core/scroll-progress.js"></script>
+  <script src="js/core/reveal-animations.js"></script>
+
+  <script src="js/effects/falling-leaves.js"></script>
+  <script src="js/effects/fireflies.js"></script>
+  <script src="js/effects/rain.js"></script>
+  <script src="js/effects/clouds.js"></script>
+  <script src="js/effects/stars.js"></script>
+  <script src="js/effects/aurora.js"></script>
+  <script src="js/effects/nature-effects.js"></script>
+
+  <script src="js/hero/hero-canvas.js"></script>
+  <script src="js/hero/hero-animation.js"></script>
+  <script src="js/hero/orbital-badges.js"></script>
+
+  <script src="js/destinations/destinations-data.js"></script>
+  <script src="js/destinations/destinations-filter.js"></script>
+  <script src="js/destinations/destination-render.js"></script>
+  <script src="js/destinations/destination-modal.js"></script>
+
+  <script src="js/city-guide/city-data.js"></script>
+  <script src="js/city-guide/city-filter.js"></script>
+  <script src="js/city-guide/city-render.js"></script>
+
+  <script src="js/plans/plan-data.js"></script>
+  <script src="js/plans/plan-tabs.js"></script>
+  <script src="js/plans/plan-render.js"></script>
+
+  <script src="js/ai-builder/ai-form.js"></script>
+  <script src="js/ai-builder/ai-itinerary.js"></script>
+  <script src="js/ai-builder/ai-result-panel.js"></script>
+  <script src="js/ai-builder/ai-actions.js"></script>
+  <script src="js/core/inline-events.js"></script>
 </body>
+
 </html>

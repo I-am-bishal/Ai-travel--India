@@ -1,0 +1,373 @@
+/* ═══════════════════════════════════════════════════
+   SPLASH SCREEN — Globe Zoom Intro (1s)
+   ═══════════════════════════════════════════════════ */
+
+/* Overlay that covers everything */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: radial-gradient(ellipse at center, #0d1f0d 0%, #060b06 50%, #000000 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: all;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#splash-screen.splash-exit {
+  opacity: 0;
+  transform: scale(1.08);
+  pointer-events: none;
+}
+
+#splash-screen.splash-gone {
+  display: none;
+}
+
+/* Star particles in background */
+.splash-stars {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.splash-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: splash-star-twinkle 1.2s ease-in-out infinite;
+}
+
+@keyframes splash-star-twinkle {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.7; }
+}
+
+/* The central globe container */
+.splash-globe-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: splash-globe-zoom 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes splash-globe-zoom {
+  0% {
+    transform: scale(0.4) rotateY(-30deg);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  30% {
+    opacity: 1;
+    filter: blur(0px);
+  }
+  60% {
+    transform: scale(1) rotateY(0deg);
+  }
+  100% {
+    transform: scale(3.5) rotateY(15deg);
+    opacity: 0.3;
+    filter: blur(2px);
+  }
+}
+
+/* The globe itself */
+.splash-globe {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  position: relative;
+  background: 
+    radial-gradient(circle at 35% 35%, rgba(46, 204, 113, 0.3) 0%, transparent 60%),
+    radial-gradient(circle at 65% 55%, rgba(26, 188, 156, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, #0d2818 0%, #071510 60%, #040a07 100%);
+  box-shadow: 
+    inset -20px -10px 40px rgba(0, 0, 0, 0.6),
+    inset 15px 10px 30px rgba(46, 204, 113, 0.15),
+    0 0 60px rgba(46, 204, 113, 0.25),
+    0 0 120px rgba(46, 204, 113, 0.1);
+  overflow: hidden;
+  animation: splash-globe-rotate 2s linear infinite;
+}
+
+@keyframes splash-globe-rotate {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Continent-like shapes on the globe */
+.splash-globe::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: 
+    radial-gradient(ellipse 40% 25% at 30% 40%, rgba(46, 204, 113, 0.35) 0%, transparent 100%),
+    radial-gradient(ellipse 20% 35% at 60% 30%, rgba(139, 195, 74, 0.25) 0%, transparent 100%),
+    radial-gradient(ellipse 30% 20% at 45% 65%, rgba(46, 204, 113, 0.2) 0%, transparent 100%),
+    radial-gradient(ellipse 15% 15% at 70% 60%, rgba(27, 94, 32, 0.3) 0%, transparent 100%);
+  animation: splash-continents-drift 3s linear infinite;
+}
+
+@keyframes splash-continents-drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-20px); }
+}
+
+/* Atmosphere glow ring */
+.splash-globe::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(46, 204, 113, 0.15);
+  box-shadow: 
+    0 0 30px rgba(46, 204, 113, 0.15),
+    inset 0 0 30px rgba(46, 204, 113, 0.05);
+  animation: splash-atmos-pulse 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes splash-atmos-pulse {
+  0% { 
+    border-color: rgba(46, 204, 113, 0.1);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.1);
+  }
+  100% { 
+    border-color: rgba(46, 204, 113, 0.25);
+    box-shadow: 0 0 40px rgba(46, 204, 113, 0.2);
+  }
+}
+
+/* Orbital ring around globe */
+.splash-orbit-ring {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border: 1px solid rgba(46, 204, 113, 0.12);
+  border-radius: 50%;
+  animation: splash-orbit-spin 1.5s linear infinite;
+  transform: rotateX(70deg) rotateZ(0deg);
+}
+
+.splash-orbit-ring::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--green, #2ecc71);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(46, 204, 113, 0.6);
+  transform: translateX(-50%);
+}
+
+@keyframes splash-orbit-spin {
+  0% { transform: rotateX(70deg) rotateZ(0deg); }
+  100% { transform: rotateX(70deg) rotateZ(360deg); }
+}
+
+/* Second orbital */
+.splash-orbit-ring-2 {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border: 1px solid rgba(139, 195, 74, 0.08);
+  border-radius: 50%;
+  animation: splash-orbit-spin-2 2.2s linear infinite;
+  transform: rotateX(55deg) rotateZ(45deg);
+}
+
+.splash-orbit-ring-2::before {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--lime, #8bc34a);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(139, 195, 74, 0.5);
+  transform: translateX(-50%);
+}
+
+@keyframes splash-orbit-spin-2 {
+  0% { transform: rotateX(55deg) rotateZ(45deg); }
+  100% { transform: rotateX(55deg) rotateZ(405deg); }
+}
+
+/* Brand text underneath */
+.splash-brand {
+  position: relative;
+  margin-top: 32px;
+  text-align: center;
+  z-index: 2;
+  animation: splash-brand-fade 0.8s ease-out 0.1s both;
+}
+
+@keyframes splash-brand-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.splash-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #f5f5f0;
+  letter-spacing: 0.02em;
+}
+
+.splash-brand-name span {
+  color: var(--green, #2ecc71);
+  font-weight: 800;
+}
+
+.splash-brand-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: rgba(46, 204, 113, 0.6);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* Scanning line effect */
+.splash-scanline {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(46, 204, 113, 0.3) 20%, 
+    rgba(46, 204, 113, 0.6) 50%, 
+    rgba(46, 204, 113, 0.3) 80%, 
+    transparent 100%
+  );
+  top: 0;
+  left: 0;
+  animation: splash-scan-move 0.8s ease-in-out forwards;
+  opacity: 0.5;
+}
+
+@keyframes splash-scan-move {
+  0% { top: 0; opacity: 0.5; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Corner coordinates */
+.splash-coord {
+  position: absolute;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(46, 204, 113, 0.25);
+  letter-spacing: 0.1em;
+  animation: splash-coord-fade 0.6s ease-out 0.2s both;
+}
+
+@keyframes splash-coord-fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.splash-coord-tl { top: 24px; left: 24px; }
+.splash-coord-tr { top: 24px; right: 24px; }
+.splash-coord-bl { bottom: 24px; left: 24px; }
+.splash-coord-br { bottom: 24px; right: 24px; }
+
+/* Hide main content while splash is active */
+body.splash-active {
+  overflow: hidden;
+}
+
+body.splash-active #nav,
+body.splash-active #hero,
+body.splash-active .mq-wrap,
+body.splash-active #prog {
+  opacity: 0;
+}
+
+body.splash-active #nav {
+  transform: translateY(-100%);
+}
+
+/* Smooth reveal of page elements */
+body:not(.splash-active) #nav {
+  transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+}
+
+body:not(.splash-active) #hero {
+  transition: opacity 0.6s ease 0s;
+}
+
+body:not(.splash-active) .mq-wrap {
+  transition: opacity 0.6s ease 0.2s;
+}
+
+body:not(.splash-active) #prog {
+  transition: opacity 0.4s ease 0.3s;
+}
+
+/* Loading progress bar at bottom of splash */
+.splash-progress {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.splash-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--green, #2ecc71), var(--lime, #8bc34a));
+  border-radius: 2px;
+  animation: splash-progress-fill 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  box-shadow: 0 0 8px rgba(46, 204, 113, 0.4);
+}
+
+@keyframes splash-progress-fill {
+  0% { width: 0%; }
+  40% { width: 60%; }
+  70% { width: 85%; }
+  100% { width: 100%; }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .splash-globe-container {
+    animation-duration: 0.01s;
+  }
+  .splash-globe,
+  .splash-globe::before,
+  .splash-globe::after,
+  .splash-orbit-ring,
+  .splash-orbit-ring-2 {
+    animation: none;
+  }
+  #splash-screen {
+    transition-duration: 0.01s;
+  }
+}
