@@ -43,7 +43,7 @@
   const camera = new THREE.PerspectiveCamera(
     45, window.innerWidth / window.innerHeight, 0.1, 1000
   );
-  // Start far away in space
+  // We will position the camera precisely based on India's latitude later
   camera.position.set(0, 0, 12);
 
   const renderer = new THREE.WebGLRenderer({
@@ -52,7 +52,8 @@
     alpha: false
   });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  // Cap pixel ratio to 1.5 to prevent massive fill-rate issues on retina/mobile screens
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
   renderer.setClearColor(0x000000, 1);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
@@ -72,37 +73,35 @@
   );
 
   /* ── Earth Globe ── */
-  const globeGeo = new THREE.SphereGeometry(GLOBE_RADIUS, 128, 128);
-  const globeMat = new THREE.MeshPhongMaterial({
+  const globeGeo = new THREE.SphereGeometry(GLOBE_RADIUS, 48, 48); // Optimized from 64
+  // Using Lambert instead of Phong to save shading cost; removed heavy bumpMap
+  const globeMat = new THREE.MeshLambertMaterial({
     map: earthTex,
-    bumpMap: bumpTex,
-    bumpScale: 0.05,
-    shininess: 12,
-    specular: new THREE.Color(0x111a11)
+    color: 0xffffff
   });
   const globe = new THREE.Mesh(globeGeo, globeMat);
-  // Rotate globe so India is visible from default camera angle
-  globe.rotation.y = -1.4;  // ~78°E longitude facing camera
   scene.add(globe);
 
   /* ── Cloud Layer ── */
-  const cloudGeo = new THREE.SphereGeometry(GLOBE_RADIUS * 1.008, 64, 64);
+  const cloudGeo = new THREE.SphereGeometry(GLOBE_RADIUS * 1.008, 24, 24); // Optimized
   const cloudTex = loader.load(
     'https://unpkg.com/three-globe@2.31.1/example/img/earth-water.png'
   );
-  const cloudMat = new THREE.MeshPhongMaterial({
-    alphaMap: cloudTex,
+  // Basic material is much faster than Phong for a transparent overlay
+  const cloudMat = new THREE.MeshBasicMaterial({
+    map: cloudTex,
     transparent: true,
     opacity: 0.06,
     depthWrite: false,
     color: 0xffffff,
-    side: THREE.DoubleSide
+    side: THREE.DoubleSide,
+    blending: THREE.AdditiveBlending
   });
   const clouds = new THREE.Mesh(cloudGeo, cloudMat);
   scene.add(clouds);
 
   /* ── Atmosphere Glow (Shader) ── */
-  const atmosGeo = new THREE.SphereGeometry(GLOBE_RADIUS * 1.18, 64, 64);
+  const atmosGeo = new THREE.SphereGeometry(GLOBE_RADIUS * 1.18, 32, 32); // Optimized
   const atmosMat = new THREE.ShaderMaterial({
     uniforms: {
       uGlow: { value: new THREE.Color(0x4caf50) },
@@ -134,7 +133,7 @@
   scene.add(atmosphere);
 
   /* ── Orbital Ring ── */
-  const ringGeo = new THREE.TorusGeometry(GLOBE_RADIUS * 1.5, 0.005, 8, 128);
+  const ringGeo = new THREE.TorusGeometry(GLOBE_RADIUS * 1.5, 0.005, 6, 64); // Optimized
   const ringMat = new THREE.MeshBasicMaterial({
     color: 0x4caf50,
     transparent: true,
@@ -148,7 +147,7 @@
   scene.add(ring);
 
   /* ── Second Orbital Ring ── */
-  const ring2Geo = new THREE.TorusGeometry(GLOBE_RADIUS * 1.8, 0.003, 8, 128);
+  const ring2Geo = new THREE.TorusGeometry(GLOBE_RADIUS * 1.8, 0.003, 6, 64); // Optimized
   const ring2Mat = new THREE.MeshBasicMaterial({
     color: 0x8bc34a,
     transparent: true,
@@ -185,7 +184,7 @@
   scene.add(satGlow);
 
   /* ── Stars ── */
-  const starCount = 2500;
+  const starCount = 600; // Drastically reduced for performance
   const starGeo = new THREE.BufferGeometry();
   const starPos = new Float32Array(starCount * 3);
   const starSizes = new Float32Array(starCount);
@@ -231,7 +230,7 @@
   globe.add(marker);  // child of globe so it rotates with it
 
   // Marker pulse ring
-  const pulseGeo = new THREE.RingGeometry(0.04, 0.07, 32);
+  const pulseGeo = new THREE.RingGeometry(0.04, 0.07, 16); // Optimized
   const pulseMat = new THREE.MeshBasicMaterial({
     color: 0x2ecc71,
     transparent: true,
@@ -261,37 +260,45 @@
      GSAP ANIMATION TIMELINE
      ══════════════════════════════════════ */
 
-  // Camera zoom: 12 → 4 → 2.8 (close to globe surface)
-  const camTarget = { z: 12, y: 0, rotY: globe.rotation.y };
+  // India coordinates: 20.59°N, 78.96°E
+  // The globe texture alignment means -1.38 rad places 79°E at the front center
+  const camState = { 
+    radius: 2.12,  // Start extremely close to the surface (radius = 2.0)
+    rotY: -1.38    // India perfectly centered horizontally
+  };
+
+  function updateCamera() {
+    const latRad = 20.59 * Math.PI / 180;
+    // Position camera along the vector matching India's latitude
+    camera.position.y = camState.radius * Math.sin(latRad);
+    camera.position.z = camState.radius * Math.cos(latRad);
+    camera.position.x = 0;
+    
+    globe.rotation.y = camState.rotY;
+    camera.lookAt(0, 0, 0);
+  }
+  
+  // Set initial precise position
+  updateCamera();
 
   const tl = gsap.timeline({ paused: false });
 
-  // Phase 1 (0–0.6s): Zoom in from deep space, globe rotates to show India
-  tl.to(camTarget, {
-    z: 4.5,
-    y: 0.3,
-    rotY: globe.rotation.y + 0.15, // slight rotate to center India
-    duration: 0.8,
-    ease: 'power2.inOut',
-    onUpdate: function() {
-      camera.position.z = camTarget.z;
-      camera.position.y = camTarget.y;
-      globe.rotation.y = camTarget.rotY;
-    }
+  // Phase 1 (0–1.2s): Slow pull back, globe slightly rotates west
+  tl.to(camState, {
+    radius: 3.5,
+    rotY: -1.5,
+    duration: 1.2,
+    ease: 'power1.out',
+    onUpdate: updateCamera
   });
 
-  // Phase 2 (0.6–1.4s): Slow dramatic push closer
-  tl.to(camTarget, {
-    z: 3.2,
-    y: 0.2,
-    rotY: camTarget.rotY + 0.05,
-    duration: 0.8,
-    ease: 'power1.inOut',
-    onUpdate: function() {
-      camera.position.z = camTarget.z;
-      camera.position.y = camTarget.y;
-      globe.rotation.y = camTarget.rotY;
-    }
+  // Phase 2: Steady slow drift outwards while loading continues
+  tl.to(camState, {
+    radius: 4.5,
+    rotY: -1.6,
+    duration: 1.5,
+    ease: 'linear',
+    onUpdate: updateCamera
   });
 
   /* ══════════════════════════════════════
@@ -366,9 +373,9 @@
     // Update HUD percentage
     if (pctEl) pctEl.textContent = Math.round(progress) + '%';
 
-    // Update altitude (decreases as camera zooms in)
+    // Update altitude
     if (altEl) {
-      const alt = Math.max(50, Math.round(35786 * (camera.position.z / 12)));
+      const alt = Math.max(50, Math.round(35786 * (camState.radius / 12)));
       altEl.textContent = alt.toLocaleString() + ' km';
     }
 
@@ -392,37 +399,38 @@
     if (!pageLoaded || !minTimePassed || exiting) return;
     exiting = true;
 
-    // Final zoom: camera rushes into the globe
-    gsap.to(camera.position, {
-      z: 0.5,
-      y: 0.1,
-      duration: 0.7,
-      ease: 'power3.in',
+    // Final zoom out: camera pulls back to visually match the Hero section globe size
+    // Hero globe ratio = 3.84 distance / 1.5 radius = 2.56. Splash radius = 2.0. Target dist = 5.12.
+    gsap.to(camState, {
+      radius: 5.12, 
+      rotY: -1.75, // Spin the globe slightly as we leave
+      duration: 1.0,
+      ease: 'power2.inOut',
       onUpdate: function() {
-        camera.lookAt(0, 0, 0);
-        // Increase atmosphere intensity as we get close
-        atmosMat.uniforms.uIntensity.value = 0.65 + (1 - camera.position.z / 3.2) * 2;
+        updateCamera();
+        // Decrease atmosphere intensity slightly
+        atmosMat.uniforms.uIntensity.value = Math.max(0.4, 0.65 - (camState.radius / 5.12) * 0.2);
       }
     });
 
-    // Fade out HUD elements
+    // Fade out HUD elements smoothly
     gsap.to([brandEl, '.splash-hud', '.splash-progress'], {
       opacity: 0,
-      duration: 0.4,
-      ease: 'power2.in'
+      duration: 0.5,
+      ease: 'power2.inOut'
     });
 
-    // Fade reticle scale up
+    // Fade reticle scale up and out
     if (reticle) {
       gsap.to(reticle, {
-        scale: 3,
+        scale: 4,
         opacity: 0,
-        duration: 0.5,
-        ease: 'power2.in'
+        duration: 0.7,
+        ease: 'power2.inOut'
       });
     }
 
-    // After zoom, fade out the entire splash
+    // After the zoom reaches the surface, fade out the entire splash
     setTimeout(function() {
       splash.classList.add('splash-exit');
 
@@ -433,7 +441,7 @@
       setTimeout(function() {
         // Stop render loop
         if (animFrameId) cancelAnimationFrame(animFrameId);
-        // Dispose Three.js resources
+        // Dispose Three.js resources to free memory
         renderer.dispose();
         globeGeo.dispose();
         globeMat.dispose();
@@ -453,7 +461,7 @@
           if (splash.parentNode) splash.parentNode.removeChild(splash);
         }, 100);
       }, EXIT_DURATION);
-    }, 650);
+    }, 850); // Wait for the 0.9s zoom animation to almost finish
   }
 
   /* ── Triggers ── */
