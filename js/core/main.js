@@ -1886,7 +1886,7 @@
         const footerBtns = card.querySelector(".plan-footer");
         const originalHTML = footerBtns.innerHTML;
         footerBtns.innerHTML =
-          '<div style="font-size:12px;color:var(--green);font-weight:bold;text-align:center;width:100%">TravelMantra AI Itinerary</div>';
+          '<div style="font-size:12px;color:var(--green);font-weight:bold;text-align:center;width:100%">Indigenix Itinerary</div>';
 
         const opt = {
           margin: 0.4,

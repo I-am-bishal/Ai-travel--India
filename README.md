@@ -1,6 +1,6 @@
 <div align="center">
-  <img src="travelmantra-logo.png" alt="TravelMantra AI Logo" width="120" style="border-radius: 50%; box-shadow: 0 0 20px rgba(46,204,113,0.3); border: 2px solid rgba(46,204,113,0.25);"/>
-  <h1>TravelMantra AI</h1>
+  <img src="travelmantra-logo.png" alt="Indigenix Logo" width="120" style="border-radius: 50%; box-shadow: 0 0 20px rgba(46,204,113,0.3); border: 2px solid rgba(46,204,113,0.25);"/>
+  <h1>Indigenix</h1>
   <p><strong>India's first AI-powered geographic travel platform.</strong></p>
   <p>Explore sustainably. Travel smart. Discover Incredible India.</p>
 
@@ -12,7 +12,7 @@
 
 ## 🌍 About The Project
 
-**TravelMantra AI** is a next-generation travel platform focused entirely on discovering the beauty and diversity of India. Built with modern web technologies, it delivers a highly immersive, futuristic, and performant user experience without relying on heavy frameworks. 
+**Indigenix** is a next-generation travel platform focused entirely on discovering the beauty and diversity of India. Built with modern web technologies, it delivers a highly immersive, futuristic, and performant user experience without relying on heavy frameworks. 
 
 The platform features an intelligent AI trip planner, comprehensive destination guides, an interactive 3D globe visualization, and a conversational AI assistant named **Musafir AI** to help travelers curate their perfect itinerary.
 
@@ -39,7 +39,7 @@ The platform features an intelligent AI trip planner, comprehensive destination 
 
 ## 🛠️ Tech Stack
 
-TravelMantra AI takes pride in being blazing fast by minimizing dependencies and leveraging the raw power of the browser.
+Indigenix takes pride in being blazing fast by minimizing dependencies and leveraging the raw power of the browser.
 
 | Technology      | Purpose                                     |
 | :-------------- | :------------------------------------------ |
@@ -63,11 +63,11 @@ A modern web browser (Chrome, Firefox, Safari, Edge).
 ### Installation & Execution
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/travelmantra-ai.git
+   git clone https://github.com/your-username/indigenix.git
    ```
 2. **Navigate to the directory:**
    ```bash
-   cd travelmantra-ai
+   cd indigenix
    ```
 3. **Launch the application:**
    Simply double-click on `index.html` or serve it using a local development server:
@@ -87,7 +87,7 @@ A modern web browser (Chrome, Firefox, Safari, Edge).
 ```text
 ├── index.html               # Main application layout and UI
 ├── main.js                  # Core JavaScript logic & AI simulations
-├── travelmantra-logo.png    # Primary brand asset
+├── indigenix-logo.png       # Primary brand asset
 ├── musafir-ai-logo.png      # AI Assistant avatar
 ├── mysuru_palace.png        # Local image asset
 ├── udaipur_lake.png         # Local image asset
