@@ -9,8 +9,14 @@
     <img src="https://img.shields.io/badge/3D_Engine-Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white" alt="Three.js"/>
     <img src="https://img.shields.io/badge/Animations-GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white" alt="GSAP"/>
     <img src="https://img.shields.io/badge/Status-v2.0_Beta-success?style=for-the-badge" alt="Status"/>
+    <a href="https://app.netlify.com/sites/animated-faloodeh-b30ecb/deploys">
+      <img src="https://api.netlify.com/api/v1/badges/6bc0a809-8ec7-4912-baf7-17e2b8dad7cc/deploy-status" alt="Netlify Status"/>
+    </a>
     <a href="https://69f329c3574300c2f8b5f6b6--animated-faloodeh-b30ecb.netlify.app/">
       <img src="https://img.shields.io/badge/Live-Demo-FF4B2B?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Demo"/>
+    </a>
+    <a href="https://app.netlify.com/start/deploy?repository=https://github.com/your-username/indigenix">
+      <img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"/>
     </a>
   </div>
 </div>

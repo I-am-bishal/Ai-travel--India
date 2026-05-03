@@ -825,10 +825,10 @@
           View Trip Plans
         </button>
       </div>
-      <div class="cta-form rv d3" id="cta-form">
-        <input class="cta-input" type="email" id="cta-email" placeholder="your@email.com — Get notified at launch" />
-        <button id="event-hook-34" class="btn-primary">Notify Me</button>
-      </div>
+      <form class="cta-form rv d3" id="cta-form" name="launch-notifications" method="POST" data-netlify="true">
+        <input class="cta-input" type="email" id="cta-email" name="email" placeholder="your@email.com — Get notified at launch" required />
+        <button id="event-hook-34" class="btn-primary" type="submit">Notify Me</button>
+      </form>
       <div class="cta-ok" id="cta-ok">
         🎉 You're on the list! We'll reach you at launch.
       </div>
