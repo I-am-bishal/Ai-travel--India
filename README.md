@@ -12,7 +12,7 @@
     <a href="https://app.netlify.com/sites/animated-faloodeh-b30ecb/deploys">
       <img src="https://api.netlify.com/api/v1/badges/6bc0a809-8ec7-4912-baf7-17e2b8dad7cc/deploy-status" alt="Netlify Status"/>
     </a>
-    <a href="https://69f329c3574300c2f8b5f6b6--animated-faloodeh-b30ecb.netlify.app/">
+    <a href="https://animated-faloodeh-b30ecb.netlify.app">
       <img src="https://img.shields.io/badge/Live-Demo-FF4B2B?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Demo"/>
     </a>
     <a href="https://app.netlify.com/start/deploy?repository=https://github.com/your-username/indigenix">
