@@ -25,7 +25,6 @@
   <link rel="stylesheet" href="css/layout/hero.css" />
   <link rel="stylesheet" href="css/layout/sections.css" />
   <link rel="stylesheet" href="css/layout/footer.css" />
-  <link rel="stylesheet" href="css/layout/responsive.css" />
   <link rel="stylesheet" href="css/pages/destinations.css" />
   <link rel="stylesheet" href="css/pages/city-guide.css" />
   <link rel="stylesheet" href="css/pages/ai-trip-builder.css" />
@@ -37,6 +36,8 @@
   <link rel="stylesheet" href="css/effects/marquee.css" />
   <link rel="stylesheet" href="css/effects/loaders.css" />
   <link rel="stylesheet" href="css/effects/tour-guide.css" />
+  <!-- Responsive MUST load last to override all base styles -->
+  <link rel="stylesheet" href="css/layout/responsive.css" />
 </head>
 
 <body class="splash-active">
@@ -102,9 +103,13 @@
   <div class="mob-menu" id="mob-menu">
     <button id="event-hook-3" class="mob-x">✕</button>
     <a id="event-hook-4" href="#destinations">Destinations</a>
+    <a id="mob-city-guide" href="#city-guide">City Guide</a>
+    <a id="mob-ai-planner" href="#ai-trip-builder">AI Planner</a>
     <a id="event-hook-5" href="#plans">Trip Plans</a>
     <a id="event-hook-6" href="#clips">Explore</a>
+    <a id="mob-insights" href="#travel-insights">Insights</a>
     <a id="event-hook-7" href="#faq">FAQ</a>
+    <button class="mob-cta-btn" id="mob-plan-btn">✦ Plan with AI</button>
   </div>
 
   <!-- NAV -->

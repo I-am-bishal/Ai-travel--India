@@ -320,4 +320,30 @@ document.addEventListener('DOMContentLoaded', () => {
       musafirSend();
     });
   }
+  // ── Mobile menu — new links ──
+  const el_mob_city_guide = document.getElementById('mob-city-guide');
+  if(el_mob_city_guide) {
+    el_mob_city_guide.addEventListener('click', function(event) {
+      closeMob();
+    });
+  }
+  const el_mob_ai_planner = document.getElementById('mob-ai-planner');
+  if(el_mob_ai_planner) {
+    el_mob_ai_planner.addEventListener('click', function(event) {
+      closeMob();
+    });
+  }
+  const el_mob_insights = document.getElementById('mob-insights');
+  if(el_mob_insights) {
+    el_mob_insights.addEventListener('click', function(event) {
+      closeMob();
+    });
+  }
+  const el_mob_plan_btn = document.getElementById('mob-plan-btn');
+  if(el_mob_plan_btn) {
+    el_mob_plan_btn.addEventListener('click', function(event) {
+      closeMob();
+      scrollTo2('ai-trip-builder');
+    });
+  }
 });

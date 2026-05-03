@@ -1,112 +1,1036 @@
-/* ═══════════ RESPONSIVE ═══════════ */
+/* ═══════════ RESPONSIVE — Complete Mobile Optimization ═══════════ */
 
-      @media (max-width: 1024px) {
-        .hero-orbital-info {
-          display: none;
-        }
+/* ── Tablet (≤1024px) ── */
+@media (max-width: 1024px) {
+  .hero-orbital-info {
+    display: none;
+  }
 
-        .ft-top {
-          grid-template-columns: 1fr 1fr 1fr;
-        }
+  .ft-top {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
-        .dest-grid {
-          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        }
+  .dest-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
 
-        .clips-grid {
-          grid-template-columns: 1fr 1fr;
-        }
+  .clips-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 
-        .faq-grid {
-          grid-template-columns: 1fr;
-        }
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
 
-        .dm-info-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
+  .dm-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-      @media (max-width: 768px) {
-        .nav-links,
-        .btn-nv {
-          display: none;
-        }
+  .insights-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
 
-        .hbg {
-          display: flex;
-        }
+  .plan-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
 
-        .hero-content {
-          padding: 0 24px;
-          padding-top: 80px;
-        }
+  .ai-builder-features {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
-        .hero-stats {
-          grid-template-columns: 1fr 1fr;
-        }
+/* ── Small Tablet / Large Phone (≤768px) ── */
+@media (max-width: 768px) {
+  /* ── Navigation ── */
+  .nav-links,
+  .btn-nv {
+    display: none;
+  }
 
-        .hero-h1 {
-          font-size: clamp(38px, 9vw, 60px);
-        }
+  .hbg {
+    display: flex;
+  }
 
-        .plans-tabs {
-          flex-wrap: wrap;
-        }
+  nav {
+    padding: 0 20px;
+    height: 68px;
+  }
 
-        .clips-grid {
-          grid-template-columns: 1fr;
-        }
+  .nav-logo-icon {
+    width: 42px;
+    height: 42px;
+  }
 
-        .ft-top {
-          grid-template-columns: 1fr 1fr;
-        }
+  .nav-logo-name {
+    font-size: 17px;
+  }
 
-        .cta-form {
-          flex-direction: column;
-        }
+  .nav-coord {
+    display: none;
+  }
 
-        nav {
-          padding: 0 20px;
-          height: 68px;
-        }
+  .hc-btn {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
 
-        .dm-body {
-          padding: 20px 22px 24px;
-        }
+  .lang-btn {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
 
-        .dm-name {
-          font-size: 26px;
-        }
+  .nav-acts {
+    gap: 8px;
+  }
 
-        .dm-info-grid {
-          grid-template-columns: 1fr;
-        }
+  /* ── Hero ── */
+  .hero-content {
+    padding: 0 24px;
+    padding-top: 80px;
+  }
 
-        .dm-cta {
-          flex-direction: column;
-        }
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+  }
 
-        .falling-leaf {
-          display: none;
-        }
-      }
+  .hero-h1 {
+    font-size: clamp(38px, 9vw, 60px);
+  }
 
-      @media (max-width: 480px) {
-        .hero-stats {
-          grid-template-columns: 1fr;
-        }
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.7;
+  }
 
-        .ft-top {
-          grid-template-columns: 1fr;
-        }
+  .hero-eyebrow {
+    font-size: 11px;
+    gap: 8px;
+  }
 
-        .hero-btns {
-          flex-direction: column;
-        }
+  .scroll-ind {
+    display: none;
+  }
 
-        .dest-grid {
-          grid-template-columns: 1fr;
-        }
-      }
+  /* ── Sections ── */
+  .sec {
+    padding: clamp(50px, 8vw, 100px) clamp(16px, 4vw, 40px);
+  }
 
-      
+  .sec-h2 {
+    font-size: clamp(28px, 7vw, 48px);
+  }
+
+  .sec-sub {
+    font-size: 15px;
+  }
+
+  /* ── City Guide ── */
+  .city-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+
+  .city-card {
+    height: 280px;
+  }
+
+  .city-filters {
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .cf {
+    padding: 8px 16px;
+    font-size: 11px;
+  }
+
+  /* ── AI Trip Builder ── */
+  .ai-builder-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .ai-builder-form {
+    padding: 24px;
+  }
+
+  .ai-result-panel {
+    padding: 24px;
+    min-height: 320px;
+  }
+
+  .ai-builder-features {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-form-title {
+    font-size: 19px;
+  }
+
+  /* ── Destinations ── */
+  .dest-filter {
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .df {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  /* ── Trip Plans ── */
+  .plans-tabs {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .plan-tab {
+    padding: 10px 20px;
+    font-size: 12px;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Clips ── */
+  .clips-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .clip-thumb {
+    height: 200px;
+  }
+
+  /* ── Insights ── */
+  .insights-featured {
+    grid-template-columns: 1fr;
+  }
+
+  .insight-featured-card {
+    height: 340px;
+  }
+
+  .insight-featured-title {
+    font-size: 20px;
+  }
+
+  .insight-featured-body {
+    padding: 22px;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .insight-side-card {
+    height: auto;
+    min-height: 110px;
+  }
+
+  /* ── FAQ ── */
+  .faq-grid {
+    gap: 12px;
+  }
+
+  .faq-q {
+    padding: 16px 18px;
+  }
+
+  .faq-q-text {
+    font-size: 15px;
+  }
+
+  .faq-a-inner {
+    font-size: 14px;
+  }
+
+  /* ── Footer ── */
+  .ft-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .ft-bot {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .ft-badges {
+    justify-content: center;
+  }
+
+  .cta-form {
+    flex-direction: column;
+  }
+
+  /* ── Destination Modal ── */
+  .dm-body {
+    padding: 20px 22px 24px;
+  }
+
+  .dm-name {
+    font-size: 26px;
+  }
+
+  .dm-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dm-cta {
+    flex-direction: column;
+  }
+
+  .dm-cta .btn-primary,
+  .dm-cta .btn-outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .dm-hero {
+    height: 220px;
+  }
+
+  .dm-desc {
+    font-size: 15px;
+  }
+
+  .dest-modal {
+    max-height: 92vh;
+    border-radius: 16px;
+  }
+
+  .dest-modal-overlay {
+    padding: 10px;
+  }
+
+  /* ── Video Modal ── */
+  .vid-inner {
+    width: 96vw;
+    border-radius: 10px;
+  }
+
+  .vid-close {
+    top: -38px;
+    font-size: 14px;
+  }
+
+  /* ── Musafir Chatbot Panel ── */
+  #musafir-panel {
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    max-width: 100vw;
+    max-height: 100vh;
+    max-height: 100dvh;
+  }
+
+  #musafir-launcher {
+    bottom: 20px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+  }
+
+  #musafir-launcher svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* ── Nature effects — reduce for performance ── */
+  .falling-leaf {
+    display: none;
+  }
+
+  .star-field {
+    opacity: 0.5;
+  }
+
+  .rain-container {
+    opacity: 0.4;
+  }
+
+  .cloud-container {
+    opacity: 0.3;
+  }
+
+  .topo-contours {
+    opacity: 0.01 !important;
+  }
+}
+
+/* ── Phone (≤480px) ── */
+@media (max-width: 480px) {
+  /* ── Hero ── */
+  .hero-content {
+    padding: 0 16px;
+    padding-top: 76px;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+  }
+
+  .hero-h1 {
+    font-size: clamp(32px, 10vw, 48px);
+    margin-bottom: 18px;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 14px 24px;
+    font-size: 13px;
+  }
+
+  .hero-stat {
+    padding: 14px 16px;
+  }
+
+  .hero-stat-n {
+    font-size: 24px;
+  }
+
+  .hero-stat-l {
+    font-size: 9px;
+  }
+
+  #hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  /* ── Sections ── */
+  .sec {
+    padding: clamp(40px, 6vw, 80px) 16px;
+  }
+
+  .sec-h2 {
+    font-size: clamp(26px, 8vw, 38px);
+  }
+
+  .sec-sub {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .sec-tag {
+    font-size: 10px;
+    margin-bottom: 12px;
+  }
+
+  /* ── City Guide ── */
+  .city-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .city-card {
+    height: 260px;
+  }
+
+  .city-name {
+    font-size: 20px;
+  }
+
+  .city-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+  }
+
+  .city-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cf {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── AI Trip Builder ── */
+  .ai-builder-form {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .ai-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-form-title {
+    font-size: 17px;
+    flex-wrap: wrap;
+  }
+
+  .ai-chip-btn {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
+  .ai-generate-btn {
+    font-size: 11px;
+    padding: 14px;
+  }
+
+  .ai-result-panel {
+    padding: 18px;
+    min-height: 260px;
+    border-radius: 16px;
+  }
+
+  .ai-plan-title {
+    font-size: 18px;
+  }
+
+  .ai-plan-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ai-save-btn,
+  .ai-share-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .ai-plan-footer {
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .ai-plan-budget {
+    text-align: center;
+  }
+
+  .ai-builder-features {
+    gap: 8px;
+  }
+
+  .ai-feat {
+    padding: 12px;
+  }
+
+  .ai-feat-t {
+    font-size: 13px;
+  }
+
+  .ai-feat-d {
+    font-size: 11px;
+  }
+
+  /* ── Destinations ── */
+  .dest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dest-filter {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+  }
+
+  .dest-filter::-webkit-scrollbar {
+    display: none;
+  }
+
+  .df {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+
+  .dest-img {
+    height: 180px;
+  }
+
+  .dest-name {
+    font-size: 19px;
+  }
+
+  .dest-body {
+    padding: 14px 16px 16px;
+  }
+
+  .btn-see-more {
+    padding: 14px 32px;
+    font-size: 13px;
+  }
+
+  /* ── Trip Plans ── */
+  .plans-tabs {
+    padding: 3px;
+    border-radius: 20px;
+    gap: 2px;
+  }
+
+  .plan-tab {
+    padding: 9px 12px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .plan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-dest {
+    font-size: 19px;
+  }
+
+  .plan-header {
+    padding: 16px 18px;
+  }
+
+  .plan-days {
+    padding: 14px 18px;
+  }
+
+  .plan-footer {
+    padding: 14px 18px;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .plan-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* ── Clips ── */
+  .clip-thumb {
+    height: 180px;
+  }
+
+  .clip-name {
+    font-size: 17px;
+  }
+
+  .clip-play {
+    width: 48px;
+    height: 48px;
+  }
+
+  .clip-play::after {
+    border-left-width: 18px;
+    border-top-width: 10px;
+    border-bottom-width: 10px;
+    margin-left: 3px;
+  }
+
+  /* ── Insights ── */
+  .insight-featured-card {
+    height: 280px;
+  }
+
+  .insight-featured-title {
+    font-size: 18px;
+  }
+
+  .insight-featured-excerpt {
+    font-size: 13px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .insight-featured-body {
+    padding: 18px;
+  }
+
+  .insight-title {
+    font-size: 17px;
+  }
+
+  .insight-thumb {
+    height: 170px;
+  }
+
+  .insight-body {
+    padding: 16px 16px 18px;
+  }
+
+  .insight-side-thumb {
+    width: 90px;
+  }
+
+  .insight-side-body {
+    padding: 10px 12px;
+  }
+
+  .insight-side-title {
+    font-size: 13px;
+  }
+
+  /* ── FAQ ── */
+  .faq-q {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+
+  .faq-q-text {
+    font-size: 14px;
+  }
+
+  .faq-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+  }
+
+  .faq-a-inner {
+    padding: 0 16px 16px;
+    font-size: 13px;
+  }
+
+  .faq-item.open .faq-a-inner {
+    padding-top: 14px;
+  }
+
+  /* ── Footer ── */
+  .ft-top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .ft-logo {
+    font-size: 22px;
+  }
+
+  footer {
+    padding: 40px 16px 28px;
+  }
+
+  .ft-col-t {
+    margin-bottom: 12px;
+  }
+
+  .ft-links li a {
+    font-size: 14px;
+  }
+
+  .ft-copy {
+    font-size: 10px;
+  }
+
+  .ft-badge {
+    font-size: 9px;
+    padding: 4px 10px;
+  }
+
+  /* ── Destination Modal ── */
+  .dest-modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .dest-modal {
+    max-height: 95vh;
+    max-height: 95dvh;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .dm-hero {
+    height: 180px;
+  }
+
+  .dm-hero-emoji {
+    font-size: 44px;
+    bottom: 14px;
+    left: 20px;
+  }
+
+  .dm-body {
+    padding: 16px 18px 20px;
+  }
+
+  .dm-name {
+    font-size: 22px;
+  }
+
+  .dm-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .dm-info-box {
+    padding: 12px;
+  }
+
+  .dm-info-val {
+    font-size: 16px;
+  }
+
+  .dm-hl-tag {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .dm-tips {
+    padding: 16px 18px;
+  }
+
+  /* ── Splash Screen ── */
+  .splash-brand-name {
+    font-size: clamp(28px, 8vw, 42px) !important;
+  }
+
+  .splash-brand-sub {
+    font-size: clamp(10px, 3vw, 14px) !important;
+  }
+
+  .splash-hud-tl,
+  .splash-hud-tr,
+  .splash-hud-bl,
+  .splash-hud-br {
+    font-size: 10px;
+  }
+
+  .splash-reticle svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* ── Marquee ── */
+  .mq-wrap {
+    overflow: hidden;
+  }
+
+  /* ── CTA ── */
+  .cta-inner {
+    padding: 60px 16px;
+  }
+
+  .cta-h2 {
+    font-size: clamp(32px, 8vw, 52px);
+  }
+
+  .cta-p {
+    font-size: 14px;
+  }
+
+  .cta-form {
+    gap: 8px;
+  }
+
+  .cta-input {
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+
+  /* ── Musafir ── */
+  #musafir-launcher {
+    bottom: 16px;
+    right: 16px;
+    width: 52px;
+    height: 52px;
+  }
+
+  #musafir-launcher svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* ── Nature effects — disable for performance ── */
+  .nature-canvas,
+  .leaf-container,
+  .cloud-container,
+  .rain-container,
+  .sand-container,
+  .firefly-container {
+    display: none !important;
+  }
+
+  .mountain-layer {
+    opacity: 0.03 !important;
+  }
+}
+
+/* ── Tiny Phone (≤360px) ── */
+@media (max-width: 360px) {
+  nav {
+    padding: 0 14px;
+    height: 60px;
+  }
+
+  .nav-logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-logo-name {
+    font-size: 15px;
+  }
+
+  .nav-logo-sub {
+    font-size: 8px;
+  }
+
+  .hero-h1 {
+    font-size: 30px;
+  }
+
+  .hero-desc {
+    font-size: 13px;
+  }
+
+  .sec-h2 {
+    font-size: 24px;
+  }
+
+  .ai-builder-form {
+    padding: 14px;
+  }
+
+  .ai-input,
+  .ai-select {
+    padding: 11px 14px;
+    font-size: 14px;
+  }
+
+  .lang-toggle {
+    display: none;
+  }
+}
+
+/* ── Mobile Menu Enhancements ── */
+@media (max-width: 768px) {
+  .mob-menu {
+    gap: 28px;
+    padding: 20px;
+  }
+
+  .mob-menu a {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+
+  .mob-x {
+    top: 20px;
+    right: 24px;
+    font-size: 24px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  }
+}
+
+/* ── Touch Target Sizes (Mobile a11y) ── */
+@media (pointer: coarse) {
+  button,
+  [role="button"],
+  .df,
+  .cf,
+  .plan-tab,
+  .ai-chip-btn,
+  .faq-q {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .dest-card:active {
+    transform: scale(0.98);
+  }
+
+  .city-card:active {
+    transform: scale(0.98);
+  }
+
+  /* Show tagline always on touch devices */
+  .city-tagline {
+    max-height: 60px;
+    opacity: 0.8;
+  }
+
+  /* Show explore button always on touch */
+  .city-explore-btn {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Landscape phone ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  #hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .hero-content {
+    padding-top: 70px;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .hero-h1 {
+    font-size: clamp(28px, 5vh, 42px);
+  }
+
+  .hero-desc {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .hero-btns {
+    margin-bottom: 20px;
+  }
+}
+
+/* ── Safe area insets for notched devices ── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  nav {
+    padding-left: max(20px, env(safe-area-inset-left));
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+
+  footer {
+    padding-bottom: max(28px, env(safe-area-inset-bottom));
+  }
+
+  .mob-menu {
+    padding-top: max(20px, env(safe-area-inset-top));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+
+  #musafir-launcher {
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}

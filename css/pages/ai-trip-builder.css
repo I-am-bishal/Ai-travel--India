@@ -625,6 +625,28 @@
         cursor: pointer;
       }
 
+      .mob-cta-btn {
+        margin-top: 16px;
+        padding: 16px 40px;
+        background: linear-gradient(135deg, var(--green), var(--green3));
+        color: #000;
+        font-family: "Space Mono", monospace;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border: none;
+        border-radius: 32px;
+        cursor: pointer;
+        box-shadow: 0 4px 24px rgba(46, 204, 113, 0.35);
+        transition: all 0.3s;
+      }
+
+      .mob-cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 40px rgba(46, 204, 113, 0.5);
+      }
+
       
 
       /* ── Musafir AI Root Variables ── */
