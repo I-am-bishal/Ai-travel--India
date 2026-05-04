@@ -518,6 +518,8 @@
   .cf {
     white-space: nowrap;
     flex-shrink: 0;
+    min-height: 40px; /* Touch target */
+    touch-action: pan-y;
   }
 
   /* ── AI Trip Builder ── */
@@ -535,9 +537,32 @@
     flex-wrap: wrap;
   }
 
+  .ai-input,
+  .ai-select {
+    font-size: 16px !important; /* Prevents iOS auto-zoom */
+    min-height: 44px;
+  }
+
+  .ai-chips {
+    display: flex;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+    margin: 0 -16px;
+    padding: 0 16px 8px 16px;
+  }
+
+  .ai-chips::-webkit-scrollbar {
+    display: none;
+  }
+
   .ai-chip-btn {
-    padding: 7px 12px;
-    font-size: 12px;
+    padding: 10px 16px; /* Larger touch target */
+    font-size: 13px;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .ai-generate-btn {
@@ -793,6 +818,8 @@
 
   .ft-links li a {
     font-size: 14px;
+    display: block;
+    padding: 8px 0;
   }
 
   .ft-copy {
@@ -804,6 +831,23 @@
     padding: 4px 10px;
   }
 
+  /* ── CTA Form ── */
+  .cta-form {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .cta-input {
+    width: 100%;
+    font-size: 16px !important; /* Prevents iOS auto-zoom */
+    text-align: center;
+  }
+
+  .cta-form .btn-primary {
+    width: 100%;
+  }
+
   /* ── Destination Modal ── */
   .dest-modal-overlay {
     padding: 0;
@@ -811,9 +855,20 @@
   }
 
   .dest-modal {
-    max-height: 95vh;
-    max-height: 95dvh;
-    border-radius: 20px 20px 0 0;
+    max-height: 85vh;
+    max-height: 85dvh;
+    border-radius: 24px 24px 0 0;
+    width: 100%;
+    margin: 0;
+  }
+
+  .dm-close {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
   }
 
   .dm-hero {
