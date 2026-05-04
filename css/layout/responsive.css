@@ -57,8 +57,8 @@
   }
 
   .nav-logo-icon {
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
   }
 
   .nav-logo-name {
@@ -131,7 +131,7 @@
   }
 
   .city-card {
-    height: 280px;
+    height: 260px;
   }
 
   .city-filters {
@@ -336,13 +336,13 @@
   #musafir-launcher {
     bottom: 20px;
     right: 20px;
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
   }
 
   #musafir-launcher svg {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
   }
 
   /* ── Nature effects — reduce for performance ── */
@@ -372,7 +372,16 @@
   /* ── Hero ── */
   .hero-content {
     padding: 0 16px;
-    padding-top: 76px;
+    padding-top: 72px;
+  }
+
+  .nav-logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav-logo-name {
+    font-size: 15px;
   }
 
   .hero-stats {
@@ -447,7 +456,7 @@
   }
 
   .city-card {
-    height: 260px;
+    height: 220px;
   }
 
   .city-name {
@@ -473,8 +482,8 @@
 
   /* ── AI Trip Builder ── */
   .ai-builder-form {
-    padding: 18px;
-    border-radius: 16px;
+    padding: 16px;
+    border-radius: 12px;
   }
 
   .ai-row {
@@ -497,9 +506,15 @@
   }
 
   .ai-result-panel {
-    padding: 18px;
-    min-height: 260px;
-    border-radius: 16px;
+    padding: 16px;
+    min-height: 240px;
+    border-radius: 12px;
+  }
+
+  .ai-result-idle .ai-orb {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
   }
 
   .ai-plan-title {
@@ -532,16 +547,16 @@
     gap: 8px;
   }
 
-  .ai-feat {
-    padding: 12px;
+  .ai-feat-icon {
+    font-size: 16px;
   }
 
   .ai-feat-t {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .ai-feat-d {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   /* ── Destinations ── */
@@ -569,7 +584,7 @@
   }
 
   .dest-img {
-    height: 180px;
+    height: 160px;
   }
 
   .dest-name {
@@ -628,7 +643,7 @@
 
   /* ── Clips ── */
   .clip-thumb {
-    height: 180px;
+    height: 160px;
   }
 
   .clip-name {
@@ -649,7 +664,7 @@
 
   /* ── Insights ── */
   .insight-featured-card {
-    height: 280px;
+    height: 240px;
   }
 
   .insight-featured-title {
@@ -674,7 +689,7 @@
   }
 
   .insight-thumb {
-    height: 170px;
+    height: 140px;
   }
 
   .insight-body {
@@ -762,13 +777,18 @@
   }
 
   .dm-hero {
-    height: 180px;
+    height: 160px;
   }
 
   .dm-hero-emoji {
-    font-size: 44px;
+    font-size: 32px;
     bottom: 14px;
     left: 20px;
+  }
+
+  .dm-hero-badge {
+    font-size: 9px;
+    padding: 4px 12px;
   }
 
   .dm-body {
