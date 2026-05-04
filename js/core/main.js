@@ -1409,7 +1409,9 @@
        RENDER DESTINATIONS
     ═══════════════════════════════════════════════════ */
       let showAllDestsFlag = false;
-      const INITIAL_COUNT = 8;
+      function getInitialCount() {
+        return window.innerWidth <= 480 ? 3 : 8;
+      }
 
       function starsHTML(r) {
         const f = Math.floor(r);
@@ -1425,7 +1427,7 @@
         const data = cat === "all" ? DESTS : DESTS.filter((d) => d.cat === cat);
         const isAll = cat === "all";
         const showCount =
-          isAll && !showAllDestsFlag ? INITIAL_COUNT : data.length;
+          isAll && !showAllDestsFlag ? getInitialCount() : data.length;
         const visibleData = data.slice(0, showCount);
         document.getElementById("dest-count").textContent =
           `Showing ${visibleData.length} of ${data.length} destinations`;
@@ -1456,7 +1458,7 @@
         });
         const wrap = document.getElementById("see-more-wrap");
         const btn = document.getElementById("btn-see-more");
-        if (isAll && data.length > INITIAL_COUNT) {
+        if (isAll && data.length > getInitialCount()) {
           wrap.style.display = "flex";
           if (showAllDestsFlag) {
             btn.innerHTML = 'Show Less <span class="arrow">↑</span>';
