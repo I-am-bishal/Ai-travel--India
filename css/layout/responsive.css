@@ -409,6 +409,11 @@
     display: none !important;
   }
 
+  .plan-days {
+    max-height: 280px;
+    overflow-y: auto;
+  }
+
   /* ── Hero ── */
   .hero-content {
     padding: 0 16px;
@@ -523,6 +528,22 @@
   }
 
   /* ── AI Trip Builder ── */
+  #ai-trip-builder .sec-tag {
+    justify-content: center;
+    margin: 0 auto 12px;
+  }
+
+  #ai-trip-builder .sec-h2,
+  #ai-trip-builder .sec-sub {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #ai-trip-builder .sec-h2 br {
+    display: none; /* Let text wrap naturally on mobile */
+  }
+
   .ai-builder-form {
     padding: 16px;
     border-radius: 12px;
@@ -541,6 +562,11 @@
   .ai-select {
     font-size: 16px !important; /* Prevents iOS auto-zoom */
     min-height: 44px;
+    min-width: 0;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .ai-chips {
@@ -574,6 +600,10 @@
     padding: 16px;
     min-height: 240px;
     border-radius: 12px;
+  }
+
+  .ai-timeline {
+    max-height: 320px; /* Limits the scrolling area of the generated plan */
   }
 
   .ai-result-idle .ai-orb {
