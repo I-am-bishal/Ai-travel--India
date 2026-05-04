@@ -1,5 +1,10 @@
 /* ═══════════ RESPONSIVE — Complete Mobile Optimization ═══════════ */
 
+/* Default hidden for larger screens */
+.mob-see-more-wrap {
+  display: none;
+}
+
 /* ── Tablet (≤1024px) ── */
 @media (max-width: 1024px) {
   .hero-orbital-info {
@@ -369,6 +374,41 @@
 
 /* ── Phone (≤480px) ── */
 @media (max-width: 480px) {
+  /* ── Mobile "See More" Logic ── */
+  .mob-see-more-wrap {
+    display: flex !important;
+    justify-content: center;
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .btn-mob-see-more {
+    padding: 10px 24px;
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.5);
+    color: var(--green);
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: "Space Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-mob-see-more:active {
+    background: rgba(46, 204, 113, 0.2);
+  }
+
+  /* Collapse items by default on mobile */
+  #city-grid:not(.expanded) > .city-card:nth-child(n+4),
+  #clips-grid:not(.expanded) > .clip-card:nth-child(n+3),
+  #insights-grid:not(.expanded) > .insight-card:nth-child(n+2),
+  #faq-grid:not(.expanded) > .faq-item:nth-child(n+5),
+  .plan-grid:not(.expanded) > .plan-card:nth-child(n+3) {
+    display: none !important;
+  }
+
   /* ── Hero ── */
   .hero-content {
     padding: 0 16px;
@@ -456,11 +496,11 @@
   }
 
   .city-card {
-    height: 220px;
+    height: 160px;
   }
 
   .city-name {
-    font-size: 20px;
+    font-size: 17px;
   }
 
   .city-filters {
@@ -584,11 +624,11 @@
   }
 
   .dest-img {
-    height: 160px;
+    height: 120px;
   }
 
   .dest-name {
-    font-size: 19px;
+    font-size: 16px;
   }
 
   .dest-body {
@@ -643,11 +683,11 @@
 
   /* ── Clips ── */
   .clip-thumb {
-    height: 160px;
+    height: 120px;
   }
 
   .clip-name {
-    font-size: 17px;
+    font-size: 14px;
   }
 
   .clip-play {
@@ -664,7 +704,7 @@
 
   /* ── Insights ── */
   .insight-featured-card {
-    height: 240px;
+    height: 180px;
   }
 
   .insight-featured-title {
@@ -689,7 +729,7 @@
   }
 
   .insight-thumb {
-    height: 140px;
+    height: 100px;
   }
 
   .insight-body {
@@ -697,7 +737,7 @@
   }
 
   .insight-side-thumb {
-    width: 90px;
+    width: 70px;
   }
 
   .insight-side-body {
@@ -777,7 +817,7 @@
   }
 
   .dm-hero {
-    height: 160px;
+    height: 130px;
   }
 
   .dm-hero-emoji {
