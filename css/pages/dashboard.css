@@ -242,7 +242,7 @@
 .tour-popup {
     position: fixed;
     z-index: 3001;
-    width: 320px;
+    width: min(320px, calc(100vw - 40px));
     background: #1a2a1a;
     border: 1px solid var(--green);
     border-radius: 16px;
