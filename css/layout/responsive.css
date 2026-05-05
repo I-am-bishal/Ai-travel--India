@@ -587,6 +587,11 @@
     flex-wrap: wrap;
   }
 
+  .util-style-4 {
+    justify-content: flex-start !important;
+    gap: 8px !important;
+  }
+
   .ai-input,
   .ai-select {
     font-size: 16px !important; /* Prevents iOS auto-zoom */
