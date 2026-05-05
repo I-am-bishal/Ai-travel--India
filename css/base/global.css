@@ -181,10 +181,10 @@
   height: 140px;
 }
 .util-style-6 {
-  font-family: &quot;Space Mono&quot;, monospace;
-              font-size: 13px;
-              color: var(--green);
-              letter-spacing: 0.08em;
+  font-family: "Space Mono", monospace;
+  font-size: 13px;
+  color: var(--green);
+  letter-spacing: 0.08em;
 }
 .util-style-7 {
   opacity: 0.015;
