@@ -420,7 +420,7 @@
 
   /* ── Hero ── */
   .hero-content {
-    padding: 0 16px;
+    padding: 0 20px;
     padding-top: 72px;
   }
 
@@ -483,7 +483,7 @@
 
   /* ── Sections ── */
   .sec {
-    padding: clamp(40px, 6vw, 80px) 16px;
+    padding: clamp(40px, 6vw, 80px) 20px;
   }
 
   .sec-h2 {
@@ -573,12 +573,13 @@
   }
 
   .ai-builder-form {
-    padding: 16px;
-    border-radius: 12px;
+    padding: 20px;
+    border-radius: 16px;
   }
 
   .ai-row {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 16px;
   }
 
   .ai-form-title {
@@ -598,14 +599,12 @@
   }
 
   .ai-chips {
-    display: flex;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 8px;
-    margin: 0 -16px;
-    padding: 0 16px 8px 16px;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    padding: 0 0 12px 0 !important;
+    overflow-x: visible !important;
   }
 
   .ai-chips::-webkit-scrollbar {
@@ -613,21 +612,30 @@
   }
 
   .ai-chip-btn {
-    padding: 10px 16px; /* Larger touch target */
+    padding: 12px 10px;
     font-size: 13px;
-    flex-shrink: 0;
-    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    white-space: normal;
   }
 
   .ai-generate-btn {
-    font-size: 11px;
-    padding: 14px;
+    font-size: 13px !important;
+    padding: 16px !important;
+    line-height: 1.5;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+  .ai-generate-btn svg {
+    margin-bottom: 2px;
   }
 
   .ai-result-panel {
-    padding: 16px;
+    padding: 20px;
     min-height: 240px;
-    border-radius: 12px;
+    border-radius: 16px;
   }
 
   .ai-timeline {
